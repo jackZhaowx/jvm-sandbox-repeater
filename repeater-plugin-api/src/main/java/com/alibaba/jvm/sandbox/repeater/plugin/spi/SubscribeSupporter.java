@@ -7,7 +7,7 @@ import com.google.common.eventbus.Subscribe;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface SubscribeSupporter<E extends SubscribeEvent> {
 

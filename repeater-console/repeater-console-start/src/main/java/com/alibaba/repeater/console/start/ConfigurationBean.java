@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Configuration
 public class ConfigurationBean {

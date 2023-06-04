@@ -4,7 +4,7 @@ package com.alibaba.jvm.sandbox.repeater.plugin.exception;
  * {@link RepeatException} 回放异常
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RepeatException extends NormalException {
 

@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
  * 由于上下文信息是从entrance插件开启{@code Tracer.start()}，必须在entrance插件进行关闭({@code Tracer.end()})，否则会出现上下文错乱问题
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  * @since 1.0.0
  */
 public class Tracer {

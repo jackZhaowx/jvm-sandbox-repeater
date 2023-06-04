@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * {@link DefaultBroadcaster} 默认的Http方式的消息投递实现
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class DefaultBroadcaster extends AbstractBroadcaster {
 

@@ -11,7 +11,7 @@ import java.util.ServiceLoader;
  * {@link ComparableFactory}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class ComparableFactory {
 

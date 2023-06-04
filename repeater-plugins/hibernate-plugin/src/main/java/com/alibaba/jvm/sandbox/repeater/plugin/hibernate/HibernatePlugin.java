@@ -15,7 +15,7 @@ import java.util.List;
  * {@link HibernatePlugin} Hibernate插件
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class HibernatePlugin extends AbstractInvokePluginAdapter {

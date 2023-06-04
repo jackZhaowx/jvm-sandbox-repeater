@@ -13,7 +13,7 @@ import java.util.Map;
  * 该方法的局限性在于，必须该实例的埋点被采样到
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 class JavaInstanceCache {
 

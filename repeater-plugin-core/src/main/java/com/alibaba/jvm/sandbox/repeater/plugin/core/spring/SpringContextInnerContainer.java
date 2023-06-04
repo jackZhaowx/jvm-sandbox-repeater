@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * <p>
  * SpringContext内部容器，如果应用是通过agent方式挂载sandbox，会保存bean信息到内部容器
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class SpringContextInnerContainer {
 

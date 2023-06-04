@@ -13,11 +13,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/dist/css/ionicons/2.0.1/css/ionicons.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="/dist/css/fonts/googlefonts.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini ">
 <!-- Site wrapper -->
@@ -45,18 +45,19 @@
                  alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">Phoenix</span>
+            <span class="brand-text font-weight-light">华夏星斗流量录制回放平台</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="/online/search.htm"  class="nav-link">
+                        <a href="/online/search.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
                                 在线流量
@@ -65,7 +66,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#"  class="nav-link active">
+                        <a href="/replay/list.htm" target="_self" class="nav-link">
+                            <i class="nav-icon fa fa-heartbeat"></i>
+                            <p>
+                                回放记录
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" target="_self" class="nav-link active">
                             <i class="nav-icon fa fa-cogs"></i>
                             <p>
                                 配置管理
@@ -73,7 +82,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/module/list.htm"  class="nav-link">
+                        <a href="/module/list.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-heartbeat"></i>
                             <p>
                                 在线模块
@@ -98,7 +107,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">首页</a></li>
+                            <li class="breadcrumb-item"><a href="/" target="_self">首页</a></li>
                             <li class="breadcrumb-item active">配置管理</li>
                         </ol>
                     </div>
@@ -117,7 +126,7 @@
                             </h5>
                             <div class="card-tools">
                                 <a href="/config/add.htm" target="_blank" class="btn btn-primary btn-sm float-right"
-                                        data-loading-text="searching" >
+                                   data-loading-text="searching">
                                     新增配置
                                 </a>
                             </div>
@@ -135,7 +144,8 @@
                                         </div>
                                         <div class="form-group" style="margin-left: 10px">
                                             <label for="TraceId">环境:</label>
-                                            <input type="text" class="form-control" placeholder="environment" name="environment"
+                                            <input type="text" class="form-control" placeholder="environment"
+                                                   name="environment"
                                                    value="$!requestParams.environment" autocomplete="off"
                                                    data-toggle="tooltip"
                                                    title="environment" style="width: 210px;margin-left:10px">
@@ -170,11 +180,13 @@
                                             <td style="vertical-align: middle">$!{data.gmtCreate}</td>
                                             <td style="vertical-align: middle">$!{data.gmtModified}</td>
                                             <td style="vertical-align: middle">
-                                                <a href="/config/detail.htm?appName=$!{data.appName}&environment=$!{data.environment}" class="btn btn-primary btn-xs " data-toggle="tooltip"
-                                                        title="详情" data-env="$!{data.environment}"
-                                                        data-app="$!{data.appName}">详情
+                                                <a href="/config/detail.htm?appName=$!{data.appName}&environment=$!{data.environment}"
+                                                   class="btn btn-primary btn-xs " data-toggle="tooltip"
+                                                   title="详情" data-env="$!{data.environment}"
+                                                   data-app="$!{data.appName}">详情
                                                 </a>
-                                                <a href="/config/edit.htm?appName=$!{data.appName}&environment=$!{data.environment}" class="btn btn-info btn-xs " data-toggle="tooltip"
+                                                <a href="/config/edit.htm?appName=$!{data.appName}&environment=$!{data.environment}"
+                                                   class="btn btn-info btn-xs " data-toggle="tooltip"
                                                    title="编辑" data-env="$!{data.environment}"
                                                    data-app="$!{data.appName}">编辑
                                                 </a>
@@ -201,9 +213,9 @@
 
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.1
+            <b>Version</b> 1.0.0
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+        <strong>Copyright &copy; 2023-2024 <a href="#">华夏人寿保险股份有限公司</a>.</strong> All rights
         reserved.
     </footer>
 
@@ -230,7 +242,7 @@
     jQuery(function ($) {
         $(".btn-push").on('click', function () {
             var appName = $(this).attr('data-app')
-            var environment  = $(this).attr('data-env')
+            var environment = $(this).attr('data-env')
             showLoading(10)
             $.ajax({
                 type: 'POST',

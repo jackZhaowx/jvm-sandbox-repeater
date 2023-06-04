@@ -2,9 +2,9 @@
 <configuration scan="true" scanPeriod="10000">
 
     <appender name="REPEATER-FILE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${user.home}/logs/sandbox/repeater/repeater.log</file>
+        <file>/app/logs/sandbox/repeater/repeater.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>${user.home}/logs/sandbox/repeater/repeater.log.%d{yyyy-MM-dd}</FileNamePattern>
+            <FileNamePattern>/app/logs/sandbox/repeater/repeater.log.%d{yyyy-MM-dd}</FileNamePattern>
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
         <encoder>

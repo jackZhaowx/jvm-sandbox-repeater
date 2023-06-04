@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.alibaba.repeater.console.dal.repository")

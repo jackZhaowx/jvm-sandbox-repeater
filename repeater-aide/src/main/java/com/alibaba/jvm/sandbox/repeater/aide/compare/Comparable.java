@@ -1,10 +1,12 @@
 package com.alibaba.jvm.sandbox.repeater.aide.compare;
 
+import java.util.List;
+
 /**
  * {@link Comparable}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface Comparable {
 

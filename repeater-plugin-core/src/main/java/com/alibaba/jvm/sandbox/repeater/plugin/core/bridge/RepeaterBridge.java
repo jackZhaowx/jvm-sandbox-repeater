@@ -11,7 +11,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.spi.Repeater;
  * {@link RepeaterBridge} 回放器桥接器
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RepeaterBridge {
 

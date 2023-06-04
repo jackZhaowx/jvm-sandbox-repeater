@@ -1,5 +1,6 @@
 package com.alibaba.jvm.sandbox.repater.plugin.http;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.jvm.sandbox.repeater.plugin.Constants;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.impl.AbstractRepeater;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.util.HttpUtil;
@@ -19,13 +20,14 @@ import java.util.Map;
  * {@link HttpRepeater} HTTP类型入口回放器;
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Repeater.class)
 public class HttpRepeater extends AbstractRepeater {
 
     @Override
     protected Object executeRepeat(RepeatContext context) throws Exception {
+        log.debug("开始执行回放，入参为：{}", JSON.toJSON(context));
         Invocation invocation = context.getRecordModel().getEntranceInvocation();
         if (!(invocation instanceof HttpInvocation)) {
             throw new RepeatException("type miss match, required HttpInvocation but found " + invocation.getClass().getSimpleName());
@@ -45,6 +47,7 @@ public class HttpRepeater extends AbstractRepeater {
         String url = builder.toString();
         Map<String, String> headers = rebuildHeaders(hi.getHeaders(), extra);
         HttpUtil.Resp resp = HttpUtil.invoke(url, hi.getMethod(), headers, hi.getParamsMap(), hi.getBody());
+        log.debug("开始执行回放，回放结果：{}", JSON.toJSON(resp));
         return resp.isSuccess() ? resp.getBody() : resp.getMessage();
     }
 

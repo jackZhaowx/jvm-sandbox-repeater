@@ -13,7 +13,7 @@ import com.google.common.collect.Lists;
  * {@link RepeatInterceptorFacade}作为{@link RepeatInterceptor}的包装，负责管理和执行所有的SPI实现
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RepeatInterceptorFacade implements RepeatInterceptor {
 

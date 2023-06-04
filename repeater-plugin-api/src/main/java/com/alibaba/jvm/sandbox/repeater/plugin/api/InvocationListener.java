@@ -18,7 +18,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RecordModel;
  * {@link RecordModel#entranceInvocation}组装；并通过{@link Broadcaster}分发消息
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface InvocationListener {
 

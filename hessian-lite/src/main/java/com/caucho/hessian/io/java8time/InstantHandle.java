@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  * {@link InstantHandle}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @SuppressWarnings("unchecked")
 public class InstantHandle implements HessianHandle, Serializable {

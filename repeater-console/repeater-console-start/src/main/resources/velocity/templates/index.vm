@@ -6,18 +6,18 @@
     <link rel="shortcut icon" href="/favorite.ico" type="image/x-icon"/>
     <link rel=”icon” href="/favorite.ico" type="image/x-icon"/>
     <link rel="bookmark" href="/favorite.ico" type="image/x-icon"/>
-    <title>在线流量 - Repeater</title>
+    <title>首页 - Repeater</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/dist/css/ionicons/2.0.1/css/ionicons.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="/dist/css/fonts/googlefonts.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini ">
 <!-- Site wrapper -->
@@ -45,18 +45,19 @@
                  alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">Phoenix</span>
+            <span class="brand-text font-weight-light">华夏星斗流量录制回放平台</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="#"  class="nav-link active">
+                        <a href="/online/search.htm" class="nav-link">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
                                 在线流量
@@ -65,7 +66,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#"  class="nav-link">
+                        <a href="/replay/list.htm" class="nav-link">
+                            <i class="nav-icon fa fa-heartbeat"></i>
+                            <p>
+                                回放记录
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/config/list.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-cogs"></i>
                             <p>
                                 配置管理
@@ -73,7 +82,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#"  class="nav-link">
+                        <a href="/module/list.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-heartbeat"></i>
                             <p>
                                 在线模块
@@ -90,88 +99,25 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>在线流量</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">首页</a></li>
-                            <li class="breadcrumb-item active">在线流量</li>
-                        </ol>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card card-blue card-outline">
-                        <div class="card-tools">
-                            <h5 class="card-header text-blue">
-                                在线流量 <i class="fa fa-database"></i>
-                            </h5>
-                            <div class="card-tools">
-                            </div>
-                            <div class="row" style="margin-top: 5px;margin-bottom: 5px">
-                                <div class="col-lg-12">
-                                    <form class="form-inline" method="get" action="search.htm">
-                                        <div class="form-group" style="margin-left: 10px">
-                                            <label for="TraceId">TraceId:</label>
-                                            <input type="text" class="form-control" placeholder="TraceId" name="traceId"
-                                                   value="$!requestVO.traceId" autocomplete="off"
-                                                   data-toggle="tooltip"
-                                                   title="TraceId" style="width: 210px;margin-left:10px">
-                                        </div>
-                                        <div class="form-group" style="margin-left:10px">
-                                            <label for="appName">appName:</label>
-                                            <input type="text" class="form-control" placeholder="appName" name="appName"
-                                                   value="$!requestVO.appName" autocomplete="off"
-                                                   data-toggle="tooltip"
-                                                   title="TraceId" style="width: 210px;margin-left:10px">
-                                        </div>
-                                        <div class="form-group" style="margin-left: 20px">
-                                            <button type="submit" class="btn btn-primary"
-                                                    data-loading-text="searching" id="search-online-btn">
-                                                查询 <i class="fa fa-search icon-on-right bigger"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="card-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div id="container" style="padding: 15% 0 0 25%;"></div>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.1
+            <b>Version</b> 1.0.0
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+        <strong>Copyright &copy; 2023-2024 <a href="#">华夏人寿保险股份有限公司</a>.</strong> All rights
         reserved.
     </footer>
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
+
     </aside>
     <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -179,5 +125,16 @@
 <script src="/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+<script src="/dist/js/g2.min.js"></script>
+<script src="/dist/js/index.js"></script>
+<script>
+    jQuery(function ($) {
+        var data = load();
+        var char = renderBarChart(data);
+        setInterval(function () {
+            updateBarChart(char, load())
+        }, 1000);
+    })
+</script>
 </body>
 </html>

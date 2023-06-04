@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
  * 兜底逻辑会使用{@link JavaInstanceCache} 进行实例获取
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Repeater.class)
 public class JavaRepeater extends AbstractRepeater {

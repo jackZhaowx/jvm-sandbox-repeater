@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
  * {@link ZoneIdHandle}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @SuppressWarnings("unchecked")
 public class ZoneIdHandle implements HessianHandle, Serializable {

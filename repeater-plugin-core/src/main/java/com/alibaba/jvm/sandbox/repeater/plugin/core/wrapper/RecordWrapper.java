@@ -11,7 +11,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RecordModel;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RecordWrapper {
 
@@ -20,6 +20,10 @@ public class RecordWrapper {
     private String appName;
 
     private String environment;
+
+    private String clientHost;
+
+    private String url;
 
     private String host;
 
@@ -37,16 +41,19 @@ public class RecordWrapper {
      */
     private List<Invocation> subInvocations;
 
-    public RecordWrapper() {}
+    public RecordWrapper() {
+    }
 
     public RecordWrapper(RecordModel recordModel) {
         this.timestamp = recordModel.getTimestamp();
         this.appName = recordModel.getAppName();
         this.environment = recordModel.getEnvironment();
+        this.clientHost = recordModel.getClientHost();
+        this.url = recordModel.getUrl();
         this.host = recordModel.getHost();
         this.traceId = recordModel.getTraceId();
         if (recordModel.getEntranceInvocation() instanceof HttpInvocation) {
-            this.entranceDesc = ((HttpInvocation)recordModel.getEntranceInvocation()).getRequestURL();
+            this.entranceDesc = ((HttpInvocation) recordModel.getEntranceInvocation()).getRequestURL();
         } else {
             this.entranceDesc = recordModel.getEntranceInvocation().getIdentity().getUri();
         }
@@ -56,7 +63,7 @@ public class RecordWrapper {
 
     /**
      * 将{@link RecordWrapper} 转换成 {@link RecordModel}
-     * 
+     *
      * @return Record
      */
     public RecordModel reTransform() {
@@ -93,6 +100,22 @@ public class RecordWrapper {
 
     public void setEnvironment(String environment) {
         this.environment = environment;
+    }
+
+    public String getClientHost() {
+        return clientHost;
+    }
+
+    public void setClientHost(String clientHost) {
+        this.clientHost = clientHost;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getHost() {

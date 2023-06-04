@@ -14,7 +14,7 @@ import com.google.common.collect.Lists;
  * {@link MockInterceptorFacade}作为{@link MockInterceptor}的包装，负责管理和执行所有的SPI实现
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class MockInterceptorFacade implements MockInterceptor {
 

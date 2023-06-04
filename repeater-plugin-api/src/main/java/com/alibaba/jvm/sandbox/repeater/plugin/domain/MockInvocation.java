@@ -4,7 +4,7 @@ package com.alibaba.jvm.sandbox.repeater.plugin.domain;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class MockInvocation implements java.io.Serializable {
     private int index;

@@ -19,7 +19,7 @@ import org.kohsuke.MetaInfServices;
  * Java入口插件
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class JavaEntrancePlugin extends AbstractInvokePluginAdapter {

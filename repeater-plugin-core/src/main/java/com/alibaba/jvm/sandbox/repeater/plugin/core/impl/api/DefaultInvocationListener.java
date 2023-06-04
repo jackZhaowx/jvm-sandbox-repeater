@@ -1,6 +1,7 @@
 package com.alibaba.jvm.sandbox.repeater.plugin.core.impl.api;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -11,6 +12,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.core.model.ApplicationModel;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.serialize.SerializeException;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.trace.Tracer;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.wrapper.SerializerWrapper;
+import com.alibaba.jvm.sandbox.repeater.plugin.domain.HttpInvocation;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.Invocation;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.InvokeType;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RecordModel;
@@ -23,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * {@link DefaultInvocationListener} 默认的调用监听实现
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class DefaultInvocationListener implements InvocationListener {
 
@@ -44,16 +46,21 @@ public class DefaultInvocationListener implements InvocationListener {
             log.error("Error occurred serialize", e);
         }
         if (invocation.isEntrance()) {
+            log.info("是否为HttpInvocation：{}",invocation instanceof HttpInvocation);
             ApplicationModel am = ApplicationModel.instance();
             RecordModel recordModel = new RecordModel();
             recordModel.setAppName(am.getAppName());
             recordModel.setEnvironment(am.getEnvironment());
+            if (invocation instanceof HttpInvocation) {
+                recordModel.setClientHost(((HttpInvocation) invocation).getClientHost());
+                recordModel.setUrl(((HttpInvocation) invocation).getRequestURI());
+            }
             recordModel.setHost(am.getHost());
             recordModel.setTraceId(invocation.getTraceId());
             recordModel.setTimestamp(invocation.getStart());
             recordModel.setEntranceInvocation(invocation);
             recordModel.setSubInvocations(RecordCache.getSubInvocation(invocation.getTraceId()));
-            if (log.isDebugEnabled()){
+            if (log.isDebugEnabled()) {
                 log.debug("sampleOnRecord:traceId={},rootType={},subTypes={}", recordModel.getTraceId(), invocation.getType(), assembleTypes(recordModel));
             }
             broadcast.sendRecord(recordModel);

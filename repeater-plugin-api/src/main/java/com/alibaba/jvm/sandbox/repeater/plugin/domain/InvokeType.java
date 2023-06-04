@@ -5,7 +5,7 @@ package com.alibaba.jvm.sandbox.repeater.plugin.domain;
  * {@link InvokeType } 定义一种调用类型
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class InvokeType implements java.io.Serializable {
 

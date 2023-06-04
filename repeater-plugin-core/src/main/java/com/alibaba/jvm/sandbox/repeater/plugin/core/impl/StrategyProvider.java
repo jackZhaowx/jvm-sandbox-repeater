@@ -14,7 +14,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.spi.MockStrategy.StrategyType;
  * 该SPI loader基于 repeater-plugin-core，只能识别repeater-plugin-core中的实现
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 class StrategyProvider {
 

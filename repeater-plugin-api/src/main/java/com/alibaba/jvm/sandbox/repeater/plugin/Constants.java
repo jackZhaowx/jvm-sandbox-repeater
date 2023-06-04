@@ -4,10 +4,29 @@ package com.alibaba.jvm.sandbox.repeater.plugin;
  * {@link Constants} 通用一些关键字
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Constants {
-
+    /**
+     * namespance
+     */
+    public static final String NAMESPANCE = "namespance";
+    /**
+     * appName
+     */
+    public static final String APP_NAME = "app.name";
+    /**
+     * appEnv
+     */
+    public static final String APP_ENV = "app.env";
+    /**
+     *
+     */
+    public static final String REPEAT_MODE = "repeate.mode";
+    /**
+     * repeate基础url
+     */
+    public static final String REPEAT_BASE_URL = "repeate.base.url";
     /**
      * console与module通信数据传输字段
      */
@@ -46,7 +65,7 @@ public class Constants {
     /**
      * 模块心跳地址
      */
-    public static final String REPEAT_HEARTBEAT_URL= "repeat.heartbeat.url";
+    public static final String REPEAT_HEARTBEAT_URL = "repeat.heartbeat.url";
 
     /**
      * 插件自有类正则

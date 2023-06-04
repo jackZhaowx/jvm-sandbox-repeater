@@ -15,7 +15,7 @@ import java.io.File;
  * {@link StandaloneConfigManager} 本地的配置管理
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class StandaloneConfigManager implements ConfigManager {
 

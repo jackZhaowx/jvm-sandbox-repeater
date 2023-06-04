@@ -8,7 +8,7 @@ import java.util.List;
  * {@link Difference}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Difference {
     private Object left;

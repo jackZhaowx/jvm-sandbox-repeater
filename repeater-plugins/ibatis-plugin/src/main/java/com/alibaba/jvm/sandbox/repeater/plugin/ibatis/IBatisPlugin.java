@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class IBatisPlugin extends AbstractInvokePluginAdapter {

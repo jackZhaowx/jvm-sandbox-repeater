@@ -4,6 +4,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
 import com.alibaba.repeater.console.common.domain.ModuleInfoBO;
 import com.alibaba.repeater.console.common.domain.PageResult;
 import com.alibaba.repeater.console.common.params.ModuleInfoParams;
+import com.alibaba.repeater.console.dal.model.ModuleInfo;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * {@link ModuleInfoService}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface ModuleInfoService {
 
@@ -30,4 +31,10 @@ public interface ModuleInfoService {
     RepeaterResult<String> install(ModuleInfoParams params);
 
     RepeaterResult<String> reload(ModuleInfoParams params);
+
+    ModuleInfo getOne(Long id);
+
+    RepeaterResult<ModuleInfo> updateIngoreKeys(ModuleInfoParams params);
+
+    RepeaterResult<List<ModuleInfoBO>> queryNotIp(String appName, String ip);
 }

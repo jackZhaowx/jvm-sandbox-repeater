@@ -6,7 +6,7 @@ import lombok.*;
  * {@link ReplayParams}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Getter
 @Setter
@@ -20,6 +20,10 @@ public class ReplayParams extends BaseParams {
     private String repeatId;
 
     private String port;
+
+    private String namespace;
+
+    private String ingoreKeys;
 
     private boolean mock;
 

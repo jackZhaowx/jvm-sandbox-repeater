@@ -12,7 +12,7 @@ import java.util.Map;
  * {@link Identity} 定义一次{@link Invocation}的标志；
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Identity implements java.io.Serializable{
 

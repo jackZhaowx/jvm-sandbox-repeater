@@ -12,7 +12,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.InvokeType;
  * {@link InvocationProcessor} 调用处理器；组装各种请求、返回、mock请求等
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface InvocationProcessor extends InvocationFilter {
 

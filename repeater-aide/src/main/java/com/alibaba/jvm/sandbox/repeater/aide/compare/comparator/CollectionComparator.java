@@ -14,7 +14,7 @@ import static com.alibaba.jvm.sandbox.repeater.aide.compare.TypeUtils.isCollecti
  * {@link CollectionComparator}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Comparator.class)
 public class CollectionComparator implements Comparator {

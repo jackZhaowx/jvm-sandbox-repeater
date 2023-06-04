@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  * {@link ModuleConfigRepository}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Repository
 @Transactional(rollbackFor = {RuntimeException.class, Error.class, BizException.class})

@@ -8,7 +8,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.exception.RepeatException;
  * {@link FlowDispatcher} 流量分配器，用于分配回放流量到指定的回放器
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  * @since 1.0.0
  */
 public interface FlowDispatcher {

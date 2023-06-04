@@ -15,7 +15,7 @@ import com.google.common.collect.Lists;
  * {@link RecordCache} 录制缓存
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RecordCache {
 

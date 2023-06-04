@@ -7,7 +7,7 @@ import java.util.Map;
  * <p>
  * dubbo的调用，自定义属性
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class DubboInvocation extends Invocation {
 

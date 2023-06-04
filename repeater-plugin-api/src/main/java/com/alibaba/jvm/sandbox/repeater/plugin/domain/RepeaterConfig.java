@@ -12,7 +12,7 @@ import java.util.List;
  * 配置主要包含一些模块的工作模式；插件启动鉴权；采样率等
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  * @since 1.0.0
  */
 public class RepeaterConfig implements java.io.Serializable{

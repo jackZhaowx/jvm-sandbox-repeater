@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class WrapperAsyncListener implements AsyncListener {
 

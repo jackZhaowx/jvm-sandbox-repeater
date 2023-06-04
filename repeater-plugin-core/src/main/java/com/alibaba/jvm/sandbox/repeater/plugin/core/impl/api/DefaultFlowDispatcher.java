@@ -14,7 +14,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.spi.Repeater;
  * {@link DefaultFlowDispatcher} 默认的流量分配器实现
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class DefaultFlowDispatcher implements FlowDispatcher {
 

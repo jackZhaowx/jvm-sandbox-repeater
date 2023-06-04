@@ -19,7 +19,7 @@ import java.util.List;
  * {@link }
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("moduleConfigDao")
 public class ModuleConfigDao {

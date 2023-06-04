@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
  * 异常感知器
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class ExceptionAware {
 

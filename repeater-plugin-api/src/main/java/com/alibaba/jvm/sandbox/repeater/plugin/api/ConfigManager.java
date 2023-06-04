@@ -7,7 +7,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
  * {@link ConfigManager} 配置拉取服务
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface ConfigManager {
 

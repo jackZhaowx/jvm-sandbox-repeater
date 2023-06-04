@@ -11,7 +11,7 @@ import java.util.Locale;
  * {@link LocaleHandle}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class LocaleHandle implements HessianHandle, Serializable {
 

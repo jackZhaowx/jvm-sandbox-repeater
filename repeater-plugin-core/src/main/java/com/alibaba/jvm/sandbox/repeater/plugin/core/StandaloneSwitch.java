@@ -15,7 +15,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.core.util.PropertyUtil;
  * 本地模式和远程模式的差别在于；配置拉取 和 消息投递，两个服务抽象独立的模式
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class StandaloneSwitch {
 

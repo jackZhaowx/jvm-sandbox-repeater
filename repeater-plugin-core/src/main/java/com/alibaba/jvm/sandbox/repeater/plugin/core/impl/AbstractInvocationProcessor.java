@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public abstract class AbstractInvocationProcessor implements InvocationProcessor {
 

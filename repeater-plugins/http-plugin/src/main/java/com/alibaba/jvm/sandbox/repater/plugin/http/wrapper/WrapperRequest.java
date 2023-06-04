@@ -16,7 +16,7 @@ import java.io.*;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class WrapperRequest extends HttpServletRequestWrapper {
 
@@ -40,7 +40,7 @@ public class WrapperRequest extends HttpServletRequestWrapper {
         this.response = response;
         this.listener = listener;
         // application/json的方式提交，需要拦截body
-        this.usingBody = StringUtils.contains(request.getContentType(), "application/json");
+        this.usingBody = true;
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;
         if (usingBody) {

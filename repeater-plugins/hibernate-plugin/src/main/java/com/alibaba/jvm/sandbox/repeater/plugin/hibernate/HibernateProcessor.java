@@ -7,7 +7,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.InvokeType;
  * {@link HibernateProcessor}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 class HibernateProcessor extends DefaultInvocationProcessor {
 

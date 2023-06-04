@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * {@link BaseBO}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public abstract class BaseBO {
 

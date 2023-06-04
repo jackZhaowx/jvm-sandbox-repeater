@@ -6,7 +6,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
  * {@link ResultHelper}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class ResultHelper {
 

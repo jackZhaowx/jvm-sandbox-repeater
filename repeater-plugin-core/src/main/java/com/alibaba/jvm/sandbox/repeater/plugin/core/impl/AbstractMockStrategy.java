@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * {@link AbstractMockStrategy}抽象的mock策略执行；子类只需要实现{@code select}方法即可
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public abstract class AbstractMockStrategy implements MockStrategy {
 

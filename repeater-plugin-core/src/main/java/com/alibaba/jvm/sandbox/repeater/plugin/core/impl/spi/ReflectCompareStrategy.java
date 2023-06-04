@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * {@link ReflectCompareStrategy}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(MockStrategy.class)
 public class ReflectCompareStrategy extends AbstractMockStrategy {

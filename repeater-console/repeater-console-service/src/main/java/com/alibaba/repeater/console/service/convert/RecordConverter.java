@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * {@link RecordConverter}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("recordConverter")
 public class RecordConverter implements ModelConverter<Record, RecordBO> {

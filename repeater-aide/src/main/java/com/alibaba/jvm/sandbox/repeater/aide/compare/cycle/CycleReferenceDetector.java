@@ -9,7 +9,7 @@ import java.util.List;
  * {@link CycleReferenceDetector}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class CycleReferenceDetector {
 

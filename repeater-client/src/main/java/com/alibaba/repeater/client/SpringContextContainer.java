@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
  * {@link SpringContextContainer} 应用改造之后的springBean容器；给sandbox模块提供了{@code getInstance}的钩子
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class SpringContextContainer {
 

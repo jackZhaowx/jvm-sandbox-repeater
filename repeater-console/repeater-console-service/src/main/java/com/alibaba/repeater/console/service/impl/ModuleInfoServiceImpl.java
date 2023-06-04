@@ -11,6 +11,7 @@ import com.alibaba.repeater.console.dal.model.ModuleInfo;
 import com.alibaba.repeater.console.service.ModuleInfoService;
 import com.alibaba.repeater.console.service.convert.ModuleInfoConverter;
 import com.alibaba.repeater.console.service.util.ResultHelper;
+import com.google.common.collect.Lists;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.Predicate;
 import java.io.*;
 import java.lang.management.ManagementFactory;
 import java.util.Date;
@@ -28,14 +30,14 @@ import java.util.stream.Collectors;
  * {@link ModuleInfoServiceImpl}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Service("heartbeatService")
 public class ModuleInfoServiceImpl implements ModuleInfoService {
 
-    private static String activeURI = "http://%s:%s/sandbox/default/module/http/sandbox-module-mgr/active?ids=repeater";
+    private static String activeURI = "http://%s:%s/sandbox/%s/module/http/sandbox-module-mgr/active?ids=repeater";
 
-    private static String frozenURI = "http://%s:%s/sandbox/default/module/http/sandbox-module-mgr/frozen?ids=repeater";
+    private static String frozenURI = "http://%s:%s/sandbox/%s/module/http/sandbox-module-mgr/frozen?ids=repeater";
 
     @Value("${repeat.reload.url}")
     private String reloadURI;
@@ -157,8 +159,27 @@ public class ModuleInfoServiceImpl implements ModuleInfoService {
         if (moduleInfo == null) {
             return ResultHelper.fail("data not exist");
         }
-        HttpUtil.Resp resp = HttpUtil.doGet(String.format(reloadURI, moduleInfo.getIp(), moduleInfo.getPort()));
+        HttpUtil.Resp resp = HttpUtil.doGet(String.format(reloadURI, moduleInfo.getIp(), moduleInfo.getPort(), moduleInfo.getNamespace()));
         return ResultHelper.fs(resp.isSuccess());
+    }
+
+    @Override
+    public ModuleInfo getOne(Long id) {
+        return moduleInfoDao.findOneById(id);
+    }
+
+    @Override
+    public RepeaterResult<ModuleInfo> updateIngoreKeys(ModuleInfoParams params) {
+        moduleInfoDao.updateIngoreKeys(params);
+        ModuleInfo moduleInfo = new ModuleInfo();
+        moduleInfo.setId(params.getId());
+        return ResultHelper.success(moduleInfo);
+    }
+
+    @Override
+    public RepeaterResult<List<ModuleInfoBO>> queryNotIp(String appName, String ip) {
+        List<ModuleInfo> moduleInfos = moduleInfoDao.queryNotIp(appName, ip);
+        return ResultHelper.success(moduleInfos.stream().map(moduleInfoConverter::convert).collect(Collectors.toList()));
     }
 
     private RepeaterResult<ModuleInfoBO> execute(String uri, ModuleInfoParams params, ModuleStatus finishStatus) {
@@ -166,7 +187,7 @@ public class ModuleInfoServiceImpl implements ModuleInfoService {
         if (moduleInfo == null) {
             return ResultHelper.fail("data not exist");
         }
-        HttpUtil.Resp resp = HttpUtil.doGet(String.format(uri, moduleInfo.getIp(), moduleInfo.getPort()));
+        HttpUtil.Resp resp = HttpUtil.doGet(String.format(uri, moduleInfo.getIp(), moduleInfo.getPort(), moduleInfo.getNamespace()));
         if (!resp.isSuccess()) {
             return ResultHelper.fail(resp.getMessage());
         }

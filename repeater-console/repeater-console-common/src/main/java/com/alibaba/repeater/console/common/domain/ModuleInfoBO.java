@@ -10,7 +10,7 @@ import java.util.Date;
  * <p>
  * 在线模块信息
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Getter
 @Setter
@@ -30,7 +30,15 @@ public class ModuleInfoBO extends BaseBO {
 
     private String port;
 
+    private String moduleName;
+
+    private String repeateMode;
+
+    private String namespace;
+
     private String version;
+
+    private String ingoreKeys;
 
     private ModuleStatus status;
 

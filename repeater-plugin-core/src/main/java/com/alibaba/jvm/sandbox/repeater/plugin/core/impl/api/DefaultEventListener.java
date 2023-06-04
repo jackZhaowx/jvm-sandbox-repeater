@@ -32,7 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 对于多个入口方法组合（例如：onRequest获取入参onResponse获取返回值）这种情况，需要重写 doBefore/doRequest/doThrow 自己控制流程
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class DefaultEventListener implements EventListener {
 

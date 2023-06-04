@@ -4,7 +4,7 @@ package com.alibaba.jvm.sandbox.repeater.plugin.exception;
  * {@link RecordException} 录制异常
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RecordException extends NormalException {
 

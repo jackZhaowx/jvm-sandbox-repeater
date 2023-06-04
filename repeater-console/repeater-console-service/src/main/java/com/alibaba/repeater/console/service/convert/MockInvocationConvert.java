@@ -13,7 +13,7 @@ import java.util.Arrays;
  * {@link MockInvocationConvert}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("MockInvocationConvert")
 public class MockInvocationConvert implements ModelConverter<MockInvocation, MockInvocationBO> {

@@ -37,7 +37,7 @@ import java.util.Map;
  * {@link HttpStandaloneListener} 继承 {@link DefaultEventListener}但是由于http有同步异步两种策略，因此需要重写一些方法
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class HttpStandaloneListener extends DefaultEventListener implements InvokeAdvice {
 
@@ -65,7 +65,7 @@ public class HttpStandaloneListener extends DefaultEventListener implements Invo
                 HttpServletRequest req = ((HttpServletRequest) request);
                 // header透传开始回放；
                 String traceIdX = req.getHeader(Constants.HEADER_TRACE_ID_X);
-                if (StringUtils.isEmpty(traceIdX)){
+                if (StringUtils.isEmpty(traceIdX)) {
                     traceIdX = req.getParameter(Constants.HEADER_TRACE_ID_X);
                 }
                 if (TraceGenerator.isValid(traceIdX)) {
@@ -86,7 +86,7 @@ public class HttpStandaloneListener extends DefaultEventListener implements Invo
                 }
                 // header透传traceId
                 String traceId = req.getHeader(Constants.HEADER_TRACE_ID);
-                if (StringUtils.isEmpty(traceId)){
+                if (StringUtils.isEmpty(traceId)) {
                     traceId = req.getParameter(Constants.HEADER_TRACE_ID);
                 }
                 if (TraceGenerator.isValid(traceId)) {
@@ -200,7 +200,9 @@ public class HttpStandaloneListener extends DefaultEventListener implements Invo
             return;
         }
         try {
-            wtm.setResponse(new String(wtm.copier.getResponseData(), wtm.copier.getCharacterEncoding()));
+            byte[] responseData = wtm.copier.getResponseData();
+            wtm.setResponse(new String(responseData, GetByteEncode.guessEncoding(responseData)));
+            LogUtil.info("请求返回结果为：{},编码为：{}", new String(responseData, GetByteEncode.guessEncoding(responseData)), GetByteEncode.guessEncoding(responseData));
         } catch (Exception e) {
             LogUtil.error("error occurred when get response,message = {}", e.getMessage());
         }
@@ -217,6 +219,7 @@ public class HttpStandaloneListener extends DefaultEventListener implements Invo
 
     private void assembleHttpAttribute(HttpInvocation invocation, WrapperTransModel wtm) {
         Identity identity = new Identity(InvokeType.HTTP.name(), wtm.getRequestURI(), "", null);
+        invocation.setClientHost(wtm.getClientHost());
         invocation.setRequestURL(wtm.getRequestURL());
         invocation.setRequestURI(wtm.getRequestURI());
         invocation.setPort(wtm.getPort());

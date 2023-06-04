@@ -7,7 +7,7 @@ import java.util.List;
  * <p>
  * define a method to locate the absolute path of each node
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface PathLocator {
 

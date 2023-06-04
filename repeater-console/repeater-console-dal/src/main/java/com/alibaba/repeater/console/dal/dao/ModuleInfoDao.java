@@ -19,7 +19,7 @@ import java.util.List;
  * {@link }
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("moduleInfoDao")
 public class ModuleInfoDao {
@@ -64,5 +64,28 @@ public class ModuleInfoDao {
 
     public ModuleInfo findByAppNameAndIp(String appName, String ip) {
         return moduleInfoRepository.findByAppNameAndIp(appName, ip);
+    }
+
+    public ModuleInfo findOneById(Long id) {
+        return moduleInfoRepository.findById(id);
+    }
+
+    public void updateIngoreKeys(ModuleInfoParams params) {
+        moduleInfoRepository.updateIngoreKeys(params);
+    }
+
+    public List<ModuleInfo> queryNotIp(String appName, String ip) {
+        return moduleInfoRepository.findAll(
+                (root, query, cb) -> {
+                    List<Predicate> predicates = Lists.newArrayList();
+                    if (appName != null && !appName.isEmpty()) {
+                        predicates.add(cb.equal(root.<String>get("appName"), appName));
+                    }
+                    if (ip != null && !ip.isEmpty()) {
+                        predicates.add(cb.notEqual(root.<String>get("ip"), ip));
+                    }
+                    return cb.and(predicates.toArray(new Predicate[0]));
+                }
+        );
     }
 }

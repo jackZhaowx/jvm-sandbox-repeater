@@ -28,7 +28,7 @@ import org.kohsuke.MetaInfServices;
  * <p>
  * 参数相似度匹配策略
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(MockStrategy.class)
 public class ParameterMatchMockStrategy extends AbstractMockStrategy {

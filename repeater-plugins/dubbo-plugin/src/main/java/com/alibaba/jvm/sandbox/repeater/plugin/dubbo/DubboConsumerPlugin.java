@@ -20,7 +20,7 @@ import java.util.List;
  * 拦截ConsumerContextFilter#invoke进行MOCK
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class DubboConsumerPlugin extends AbstractInvokePluginAdapter {

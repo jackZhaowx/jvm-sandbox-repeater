@@ -6,7 +6,7 @@ import java.util.Date;
  * {@link Student}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Student {
 

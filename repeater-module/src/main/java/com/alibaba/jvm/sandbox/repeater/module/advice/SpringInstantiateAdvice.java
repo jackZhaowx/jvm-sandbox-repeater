@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  * {@link SpringInstantiateAdvice} spring初始化拦截器，agent启动模式下拦截记录beanName和bean，用作回放
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class SpringInstantiateAdvice {
 

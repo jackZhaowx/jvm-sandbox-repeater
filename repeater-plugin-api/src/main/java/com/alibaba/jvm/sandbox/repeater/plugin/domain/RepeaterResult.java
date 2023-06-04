@@ -5,7 +5,7 @@ package com.alibaba.jvm.sandbox.repeater.plugin.domain;
  * {@link RepeaterResult}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 
 public class RepeaterResult<T> {

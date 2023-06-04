@@ -12,7 +12,7 @@ import java.util.List;
  * {@link Record}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Entity
 @Table(name = "record")
@@ -35,6 +35,11 @@ public class Record implements java.io.Serializable {
     private String appName;
 
     private String environment;
+
+    @Column(name = "client_host")
+    private String clientHost;
+
+    private String url;
 
     private String host;
 

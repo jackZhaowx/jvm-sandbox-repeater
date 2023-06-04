@@ -7,7 +7,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.SubscribeEvent;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RepeatEvent extends SubscribeEvent {
 

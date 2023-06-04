@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * {@link }
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("recordDetailConverter")
 @Slf4j

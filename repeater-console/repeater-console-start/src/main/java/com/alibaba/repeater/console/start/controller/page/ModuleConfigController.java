@@ -25,7 +25,7 @@ import java.util.List;
  * <p>
  * 配置管理页面
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @RequestMapping("/config")
 @Controller

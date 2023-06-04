@@ -12,9 +12,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeatMeta;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeatModel;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
 import com.alibaba.jvm.sandbox.repeater.plugin.spi.MockStrategy;
-import com.alibaba.repeater.console.common.domain.ModuleInfoBO;
-import com.alibaba.repeater.console.common.domain.ReplayBO;
-import com.alibaba.repeater.console.common.domain.ReplayStatus;
+import com.alibaba.repeater.console.common.domain.*;
 import com.alibaba.repeater.console.common.params.ReplayParams;
 import com.alibaba.repeater.console.dal.dao.RecordDao;
 import com.alibaba.repeater.console.dal.dao.ReplayDao;
@@ -24,26 +22,25 @@ import com.alibaba.repeater.console.service.ModuleInfoService;
 import com.alibaba.repeater.console.service.ReplayService;
 import com.alibaba.repeater.console.service.convert.DifferenceConvert;
 import com.alibaba.repeater.console.service.convert.ReplayConverter;
+import com.alibaba.repeater.console.service.convert.ReplayListConverter;
 import com.alibaba.repeater.console.service.util.ConvertUtil;
 import com.alibaba.repeater.console.service.util.JacksonUtil;
 import com.alibaba.repeater.console.service.util.ResultHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * {@link ReplayServiceImpl}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Service("replayService")
 @Slf4j
@@ -61,6 +58,8 @@ public class ReplayServiceImpl implements ReplayService {
     @Resource
     private ReplayConverter replayConverter;
     @Resource
+    private ReplayListConverter replayListConverter;
+    @Resource
     private DifferenceConvert differenceConvert;
 
     @Override
@@ -74,6 +73,8 @@ public class ReplayServiceImpl implements ReplayService {
         }
         params.setPort(result.getData().getPort());
         params.setEnvironment(result.getData().getEnvironment());
+        params.setNamespace(result.getData().getNamespace());
+        params.setIngoreKeys(result.getData().getIngoreKeys());
         final Record record = recordDao.selectByAppNameAndTraceId(params.getAppName(), params.getTraceId());
         if (record == null) {
             return RepeaterResult.builder().success(false).message("data does not exist").build();
@@ -107,9 +108,9 @@ public class ReplayServiceImpl implements ReplayService {
         Object actual;
         try {
             if (rm.getResponse() instanceof String) {
-                replay.setResponse(ConvertUtil.convert2Json((String)rm.getResponse()));
+                replay.setResponse(ConvertUtil.convert2Json((String) rm.getResponse()));
                 try {
-                    actual = JacksonUtil.deserialize((String)rm.getResponse(), Object.class);
+                    actual = JacksonUtil.deserialize((String) rm.getResponse(), Object.class);
                 } catch (SerializeException e) {
                     actual = rm.getResponse();
                 }
@@ -129,6 +130,17 @@ public class ReplayServiceImpl implements ReplayService {
         }
         Comparable comparable = ComparableFactory.instance().createDefault();
         // simple compare
+        if (StringUtils.isNotBlank(replay.getIngoreKeys()) && actual instanceof Map && expect instanceof Map) {
+            Map<Object, Object> actual_temp = (Map<Object, Object>) actual;
+            Map<Object, Object> expect_temp = (Map<Object, Object>) expect;
+            List<String> keys = Arrays.asList(replay.getIngoreKeys().split(","));
+            for (String key : keys) {
+                actual_temp.remove(key);
+                expect_temp.remove(key);
+            }
+            actual = actual_temp;
+            expect = expect_temp;
+        }
         CompareResult result = comparable.compare(actual, expect);
         replay.setSuccess(!result.hasDifference());
         try {
@@ -153,6 +165,21 @@ public class ReplayServiceImpl implements ReplayService {
         return RepeaterResult.builder().success(true).data(replayConverter.convert(replay)).build();
     }
 
+    @Override
+    public PageResult<ReplayListBO> list(ReplayParams params) {
+        Page<Replay> page = replayDao.selectByParams(params);
+        PageResult<ReplayListBO> result = new PageResult<>();
+        if (page.hasContent()) {
+            result.setSuccess(true);
+            result.setPageIndex(params.getPage());
+            result.setCount(page.getTotalElements());
+            result.setPageSize(params.getSize());
+            result.setTotalPage(page.getTotalPages());
+            result.setData(page.getContent().stream().map(replayListConverter::convert).collect(Collectors.toList()));
+        }
+        return result;
+    }
+
     private RepeaterResult<String> doRepeat(Record record, ReplayParams params) {
         RepeatMeta meta = new RepeatMeta();
         meta.setAppName(record.getAppName());
@@ -166,7 +193,7 @@ public class ReplayServiceImpl implements ReplayService {
         } catch (SerializeException e) {
             return RepeaterResult.builder().success(false).message(e.getMessage()).build();
         }
-        HttpUtil.Resp resp = HttpUtil.doPost(String.format(repeatURL,params.getIp(),params.getPort()), requestParams);
+        HttpUtil.Resp resp = HttpUtil.doPost(String.format(repeatURL, params.getIp(), params.getPort(), params.getNamespace()), requestParams);
         if (resp.isSuccess()) {
             return RepeaterResult.builder().success(true).message("operate success").data(meta.getRepeatId()).build();
         }
@@ -183,6 +210,7 @@ public class ReplayServiceImpl implements ReplayService {
         replay.setGmtCreate(new Date());
         replay.setGmtModified(new Date());
         replay.setStatus(ReplayStatus.PROCESSING.getStatus());
+        replay.setIngoreKeys(params.getIngoreKeys());
         // 冗余了一个repeatID，实际可以直接使用replay#id
         return replayDao.save(replay);
     }

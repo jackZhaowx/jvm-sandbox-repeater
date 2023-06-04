@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * the real location can be parsed by <a>https://github.com/json-path/JsonPath</a>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class JsonPathLocator implements PathLocator {
 

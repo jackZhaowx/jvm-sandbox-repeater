@@ -13,7 +13,7 @@ import java.util.Map;
  * {@link HessianSerializer} hessian序列化实现
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Serializer.class)
 public class HessianSerializer extends AbstractSerializerAdapter {

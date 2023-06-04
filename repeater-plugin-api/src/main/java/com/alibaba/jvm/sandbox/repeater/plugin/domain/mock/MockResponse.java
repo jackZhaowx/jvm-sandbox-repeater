@@ -8,7 +8,7 @@ import java.beans.ConstructorProperties;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class MockResponse {
 

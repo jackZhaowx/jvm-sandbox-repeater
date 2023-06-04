@@ -7,7 +7,7 @@ import java.util.List;
  * {@link RepeatModel} 回放消息数据类型
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RepeatModel implements java.io.Serializable {
 

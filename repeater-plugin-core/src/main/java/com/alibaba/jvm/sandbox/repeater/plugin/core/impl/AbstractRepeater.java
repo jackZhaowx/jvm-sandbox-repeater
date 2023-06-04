@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * {@link AbstractRepeater} 抽象的回放实现；统一回放基本流程，包括hook和消息反馈，实现类是需要关心{@code executeRepeat}执行回放
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public abstract class AbstractRepeater implements Repeater {
 

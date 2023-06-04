@@ -20,7 +20,7 @@ import java.util.Set;
  * dubbo consumer调用处理器，需要重写组装identity 和 组装request
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 class DubboConsumerInvocationProcessor extends DefaultInvocationProcessor {
 

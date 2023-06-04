@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * {@link BigDecimalSerializerFactory}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class BigDecimalSerializerFactory extends AbstractSerializerFactory {
 

@@ -8,7 +8,7 @@ import java.io.OutputStream;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class WrapperOutputStreamCopier extends ServletOutputStream {
 

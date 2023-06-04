@@ -15,7 +15,7 @@ import org.kohsuke.MetaInfServices;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class MybatisPlugin extends AbstractInvokePluginAdapter {

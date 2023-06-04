@@ -19,7 +19,7 @@ import java.util.List;
  * 拦截ContextFilter$ContextListener#onResponse进行录制
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class DubboProviderPlugin extends AbstractInvokePluginAdapter {

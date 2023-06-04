@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * {@link ModuleInfoConverter}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("moduleInfoConverter")
 public class ModuleInfoConverter implements ModelConverter<ModuleInfo, ModuleInfoBO> {

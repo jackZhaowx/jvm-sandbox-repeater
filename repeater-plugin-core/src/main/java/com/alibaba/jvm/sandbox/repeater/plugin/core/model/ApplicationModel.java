@@ -3,10 +3,13 @@ package com.alibaba.jvm.sandbox.repeater.plugin.core.model;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import com.alibaba.jvm.sandbox.repeater.plugin.Constants;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterConfig;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.util.ExceptionAware;
+import org.apache.commons.lang3.StringUtils;
 
 
+import static com.alibaba.jvm.sandbox.repeater.plugin.core.util.PropertyUtil.getPropertyOrDefault;
 import static com.alibaba.jvm.sandbox.repeater.plugin.core.util.PropertyUtil.getSystemPropertyOrDefault;
 
 /**
@@ -18,13 +21,17 @@ import static com.alibaba.jvm.sandbox.repeater.plugin.core.util.PropertyUtil.get
  * 模块配置  {@link ApplicationModel#config}
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class ApplicationModel {
 
     private String appName;
 
     private String environment;
+
+    private String repeateMode;
+
+    private String namespance;
 
     private String host;
 
@@ -37,13 +44,25 @@ public class ApplicationModel {
     private static ApplicationModel instance = new ApplicationModel();
 
     private ApplicationModel() {
-        // for example, you can define it your self
-        this.appName = getSystemPropertyOrDefault("app.name", "unknown");
-        this.environment = getSystemPropertyOrDefault("app.env", "unknown");
+        this.appName = getPropertyOrDefault(Constants.APP_NAME, "");
+        if (StringUtils.isEmpty(appName)) {
+            appName = getSystemPropertyOrDefault(Constants.APP_NAME, "defaultAppName");
+        }
+        this.environment = getPropertyOrDefault(Constants.APP_ENV, "");
+        if (StringUtils.isEmpty(environment)) {
+            environment = getSystemPropertyOrDefault(Constants.APP_ENV, "defaultAppEnv");
+        }
+        this.repeateMode = getPropertyOrDefault(Constants.REPEAT_MODE, "");
+        if (StringUtils.isEmpty(repeateMode)) {
+            repeateMode = getSystemPropertyOrDefault(Constants.REPEAT_MODE, "0");
+        }
+        this.namespance = getPropertyOrDefault(Constants.NAMESPANCE, "");
+        if (StringUtils.isEmpty(namespance)) {
+            namespance = getSystemPropertyOrDefault(Constants.NAMESPANCE, "");
+        }
         try {
             this.host = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
-            // default value for disaster
             this.host = "127.0.0.1";
         }
     }
@@ -82,7 +101,7 @@ public class ApplicationModel {
         }
     }
 
-    public Integer getSampleRate(){
+    public Integer getSampleRate() {
         return config == null ? 0 : config.getSampleRate();
     }
 
@@ -100,6 +119,22 @@ public class ApplicationModel {
 
     public void setEnvironment(String environment) {
         this.environment = environment;
+    }
+
+    public String getRepeateMode() {
+        return repeateMode;
+    }
+
+    public void setRepeateMode(String repeateMode) {
+        this.repeateMode = repeateMode;
+    }
+
+    public String getNamespance() {
+        return namespance;
+    }
+
+    public void setNamespance(String namespance) {
+        this.namespance = namespance;
     }
 
     public String getHost() {
@@ -133,4 +168,5 @@ public class ApplicationModel {
     public void setFusing(boolean fusing) {
         this.fusing = fusing;
     }
+
 }

@@ -9,15 +9,14 @@
     <title>在线流量 - Repeater</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/dist/css/ionicons/2.0.1/css/ionicons.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="/dist/css/fonts/googlefonts.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini ">
 <!-- Site wrapper -->
@@ -45,7 +44,7 @@
                  alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">Phoenix</span>
+            <span class="brand-text font-weight-light">华夏星斗流量录制回放平台</span>
         </a>
 
         <!-- Sidebar -->
@@ -57,7 +56,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link active">
+                        <a href="#" target="_self" class="nav-link active">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
                                 在线流量
@@ -66,7 +65,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/config/list.htm" class="nav-link">
+                        <a href="/replay/list.htm" target="_self" class="nav-link">
+                            <i class="nav-icon fa fa-heartbeat"></i>
+                            <p>
+                                回放记录
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/config/list.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-cogs"></i>
                             <p>
                                 配置管理
@@ -74,7 +81,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/module/list.htm" class="nav-link">
+                        <a href="/module/list.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-heartbeat"></i>
                             <p>
                                 在线模块
@@ -99,7 +106,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">首页</a></li>
+                            <li class="breadcrumb-item"><a href="/" target="_self">首页</a></li>
                             <li class="breadcrumb-item active">在线流量</li>
                         </ol>
                     </div>
@@ -141,6 +148,22 @@
                                                    data-toggle="tooltip"
                                                    title="TraceId" style="width: 210px;margin-left:10px">
                                         </div>
+                                        <div class="form-group" style="margin-left: 10px">
+                                            <label for="clientHost">客户端IP:</label>
+                                            <input type="text" class="form-control" placeholder="clientHost"
+                                                   name="clientHost"
+                                                   value="$!requestParams.clientHost" autocomplete="off"
+                                                   data-toggle="tooltip"
+                                                   title="clientHost" style="width: 210px;margin-left:10px">
+                                        </div>
+                                        <div class="form-group" style="margin-left: 10px">
+                                            <label for="url">接口地址:</label>
+                                            <input type="text" class="form-control" placeholder="url"
+                                                   name="url"
+                                                   value="$!requestParams.url" autocomplete="off"
+                                                   data-toggle="tooltip"
+                                                   title="url" style="width: 210px;margin-left:10px">
+                                        </div>
                                         <div class="form-group" style="margin-left: 20px">
                                             <button type="submit" class="btn btn-primary"
                                                     data-loading-text="searching" id="search-online-btn">
@@ -160,6 +183,7 @@
                                         <th>流量入口</th>
                                         <th>TraceID</th>
                                         <th>环境</th>
+                                        <th>客户端机器</th>
                                         <th>机器</th>
                                         <th>时间</th>
                                         <th width="100px">操作</th>
@@ -175,17 +199,18 @@
                                             <td style="vertical-align: middle">$!data.entranceDesc</td>
                                             <td style="vertical-align: middle">$!{data.traceId}</td>
                                             <td style="vertical-align: middle">$!{data.environment}</td>
+                                            <td style="vertical-align: middle">$!{data.clientHost}</td>
                                             <td style="vertical-align: middle">$!{data.host}</td>
                                             <td style="vertical-align: middle">$!{data.gmtRecord}</td>
 
                                             <td style="vertical-align: middle">
-                                                <a target="_blank"
+                                                <a target="_self"
                                                    href="detail.htm?appName=$!{data.appName}&traceId=$!{data.traceId}"
                                                    class="btn btn-primary btn-xs" data-toggle="tooltip"
                                                    title="查看详情">详情</a>
                                                 <button class="btn btn-success btn-xs btn-replay" data-toggle="tooltip"
                                                         title="执行回放" data-id="$!{data.traceId}"
-                                                        data-app="$!{data.appName}">回放
+                                                        data-app="$!{data.appName}" data-ip="$!{data.host}">回放
                                                 </button>
                                             </td>
                                         </tr>
@@ -209,9 +234,9 @@
 
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.1
+            <b>Version</b> 1.0.0
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+        <strong>Copyright &copy; 2023-2024 <a href="#">华夏人寿保险股份有限公司</a>.</strong> All rights
         reserved.
     </footer>
 

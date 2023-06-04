@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * {@link RegressPageController}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Controller
 @RequestMapping("/regress")

@@ -7,7 +7,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.exception.NormalException;
  * {@link SerializeException} 序列化异常
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class SerializeException extends NormalException {
 

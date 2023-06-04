@@ -9,7 +9,7 @@ import java.util.Map;
  * {@link RepeatMeta} 回放配置元数据
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class RepeatMeta implements java.io.Serializable {
 

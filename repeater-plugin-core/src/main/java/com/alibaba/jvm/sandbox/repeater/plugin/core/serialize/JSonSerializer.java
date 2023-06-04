@@ -8,7 +8,7 @@ import org.kohsuke.MetaInfServices;
  * {@link JSonSerializer} hessian序列化实现
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Serializer.class)
 public class JSonSerializer extends AbstractSerializerAdapter {

@@ -12,7 +12,7 @@ import com.alibaba.repeater.console.common.params.ReplayParams;
  * {@link RecordService} 存储服务示例
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface RecordService {
 

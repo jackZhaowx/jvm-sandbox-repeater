@@ -15,7 +15,7 @@ import static java.lang.Long.parseLong;
  *
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class TraceContext {
 

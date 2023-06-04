@@ -4,7 +4,7 @@ package com.alibaba.repeater.console.common;
  * {@link PackageInfo}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class PackageInfo {
 }

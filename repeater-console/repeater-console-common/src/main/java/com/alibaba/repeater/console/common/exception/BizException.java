@@ -4,7 +4,7 @@ package com.alibaba.repeater.console.common.exception;
  * {@link BizException}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class BizException extends Exception {
 

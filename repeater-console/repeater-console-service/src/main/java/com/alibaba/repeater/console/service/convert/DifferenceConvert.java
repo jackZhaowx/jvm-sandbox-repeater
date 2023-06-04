@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * {@link DifferenceConvert}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("differenceConvert")
 public class DifferenceConvert implements ModelConverter<Difference, DifferenceBO> {

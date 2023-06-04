@@ -9,7 +9,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.mock.MockResponse;
  * 回放策略来讲开放的实现比较少；用户可以自己定义和实现更多的策略
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface MockStrategy {
 

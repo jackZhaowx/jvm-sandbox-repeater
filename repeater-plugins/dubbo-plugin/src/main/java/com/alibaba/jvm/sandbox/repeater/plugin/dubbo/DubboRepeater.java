@@ -24,7 +24,7 @@ import java.util.Optional;
  * {@link DubboRepeater} dubbo回放器
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Repeater.class)
 public class DubboRepeater extends AbstractRepeater {

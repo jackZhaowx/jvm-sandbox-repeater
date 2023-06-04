@@ -9,7 +9,7 @@ import java.util.Date;
  * {@link RecordBO}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Getter
 @Setter
@@ -24,6 +24,10 @@ public class RecordBO extends BaseBO implements java.io.Serializable {
     private String appName;
 
     private String environment;
+
+    private String clientHost;
+
+    private String url;
 
     private String host;
 

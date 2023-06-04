@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContextAware;
  * {@link SpringContextAware} 如果希望能过对spring内置的bean进行录制回放；可以注入{@code SpringContextAware}即可实现回放
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class SpringContextAware implements ApplicationContextAware {
 

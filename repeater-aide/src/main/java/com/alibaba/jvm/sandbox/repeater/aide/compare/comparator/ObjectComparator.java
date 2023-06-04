@@ -16,7 +16,7 @@ import static java.lang.reflect.Modifier.isTransient;
  * <p>
  * can compare complex object
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Comparator.class)
 public class ObjectComparator implements Comparator {

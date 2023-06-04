@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
  * {@link }
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class ComparableFactoryTest {
 

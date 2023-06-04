@@ -8,7 +8,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.InvokeType;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 class IBatisProcessor extends DefaultInvocationProcessor {
 

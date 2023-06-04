@@ -9,7 +9,7 @@ import com.alibaba.repeater.console.common.params.ModuleConfigParams;
  * {@link ModuleConfigService}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface ModuleConfigService {
 

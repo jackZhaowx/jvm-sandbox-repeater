@@ -10,7 +10,7 @@ import java.util.Date;
  * {@link Replay}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Entity
 @Table(name = "replay")
@@ -42,7 +42,7 @@ public class Replay implements java.io.Serializable {
     private Integer status;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name="record_id")
+    @JoinColumn(name = "record_id")
     private Record record;
 
     /* callback to fill */
@@ -63,4 +63,7 @@ public class Replay implements java.io.Serializable {
 
     @Column(name = "diff_result")
     private String diffResult;
+
+    @Column(name = "ingore_keys")
+    private String ingoreKeys;
 }

@@ -2,7 +2,7 @@
 
 # repeater's target dir
 REPEATER_TARGET_DIR=../target/repeater
-
+REPEATER_CONSOLE_TARGET_DIR=../target/repeater-console
 # exit shell with err_code
 # $1 : err_code
 # $2 : err_msg
@@ -17,12 +17,13 @@ mvn clean package -Dmaven.test.skip=true -f ../pom.xml || exit_on_err 1 "package
 
 mkdir -p ${REPEATER_TARGET_DIR}/plugins
 mkdir -p ${REPEATER_TARGET_DIR}/cfg
+mkdir -p ${REPEATER_CONSOLE_TARGET_DIR}
 
 cp ./repeater-logback.xml ${REPEATER_TARGET_DIR}/cfg/repeater-logback.xml \
     && cp ./repeater.properties ${REPEATER_TARGET_DIR}/cfg/repeater.properties \
     && cp ./repeater-config.json ${REPEATER_TARGET_DIR}/cfg/repeater-config.json \
     && cp ../repeater-module/target/repeater-module-*-jar-with-dependencies.jar ${REPEATER_TARGET_DIR}/repeater-module.jar \
-    && cp ../repeater-console/repeater-console-start/target/repeater-console.jar ${REPEATER_TARGET_DIR}/repeater-bootstrap.jar \
+    && cp ../repeater-console/repeater-console-start/target/repeater-console.jar ${REPEATER_CONSOLE_TARGET_DIR}/repeater-bootstrap.jar \
     && cp ../repeater-plugins/ibatis-plugin/target/ibatis-plugin-*-jar-with-dependencies.jar ${REPEATER_TARGET_DIR}/plugins/ibatis-plugin.jar \
     && cp ../repeater-plugins/java-plugin/target/java-plugin-*-jar-with-dependencies.jar ${REPEATER_TARGET_DIR}/plugins/java-plugin.jar \
     && cp ../repeater-plugins/mybatis-plugin/target/mybatis-plugin-*-jar-with-dependencies.jar ${REPEATER_TARGET_DIR}/plugins/mybatis-plugin.jar \
@@ -34,7 +35,8 @@ cp ./repeater-logback.xml ${REPEATER_TARGET_DIR}/cfg/repeater-logback.xml \
 
 # tar the repeater.tar
 cd ../target/
-tar -zcvf repeater-stable-bin.tar repeater/
+zip -r repeater-module-bin.zip repeater/
+zip -r repeater-console-bin.zip repeater-console/
 cd -
 
 echo "package repeater-stable-bin.zip finish."

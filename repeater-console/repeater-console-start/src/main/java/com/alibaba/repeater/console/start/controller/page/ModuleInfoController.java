@@ -4,8 +4,10 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
 import com.alibaba.repeater.console.common.domain.ModuleInfoBO;
 import com.alibaba.repeater.console.common.domain.PageResult;
 import com.alibaba.repeater.console.common.params.ModuleInfoParams;
+import com.alibaba.repeater.console.dal.model.ModuleInfo;
 import com.alibaba.repeater.console.service.ModuleInfoService;
 import com.alibaba.repeater.console.start.controller.vo.PagerAdapter;
+import com.alibaba.repeater.console.start.controller.vo.ResultAdapter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +23,7 @@ import java.util.List;
  * <p>
  * 在线模块页面
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @RequestMapping("/module")
 @Controller
@@ -37,10 +39,23 @@ public class ModuleInfoController {
         return "module/list";
     }
 
+    @RequestMapping("detail.htm")
+    public String detail(@ModelAttribute("requestParams") ModuleInfoParams params, Model model) {
+        ModuleInfo result = moduleInfoService.getOne(params.getId());
+        model.addAttribute("moduleInfo", result);
+        return "module/detail";
+    }
+
     @ResponseBody
     @RequestMapping("/byName.json")
-    public RepeaterResult<List<ModuleInfoBO>> list(@RequestParam("appName") String appName) {
-        return moduleInfoService.query(appName);
+    public RepeaterResult<List<ModuleInfoBO>> list(@RequestParam("appName") String appName, @RequestParam("ip") String ip) {
+        return moduleInfoService.queryNotIp(appName, ip);
+    }
+
+    @ResponseBody
+    @RequestMapping("/updateIngoreKeys.json")
+    public RepeaterResult<ModuleInfo> updateIngoreKeys(@ModelAttribute("requestParams") ModuleInfoParams params) {
+        return moduleInfoService.updateIngoreKeys(params);
     }
 
     @ResponseBody

@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  * 由于录制过程发生在程序调用期间；因此序列化/消息发送需要异步进行，不占用主程序的rt（response time）
  * <p/>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public abstract class AbstractBroadcaster implements Broadcaster {
 

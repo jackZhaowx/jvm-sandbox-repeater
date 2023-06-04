@@ -7,11 +7,13 @@ import lombok.Setter;
  * {@link ModuleInfoParams}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Getter
 @Setter
 public class ModuleInfoParams extends BaseParams {
 
+    private Long id;
     private String ip;
+    private String ingoreKeys;
 }

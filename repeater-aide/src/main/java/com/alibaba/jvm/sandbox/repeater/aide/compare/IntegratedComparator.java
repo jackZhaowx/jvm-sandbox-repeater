@@ -14,7 +14,7 @@ import java.util.List;
  * {@link IntegratedComparator}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class IntegratedComparator implements Comparable {
 

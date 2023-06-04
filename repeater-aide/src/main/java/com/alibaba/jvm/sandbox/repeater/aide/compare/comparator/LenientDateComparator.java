@@ -11,7 +11,7 @@ import java.util.List;
  * {@link LenientDateComparator}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Comparator.class)
 public class LenientDateComparator implements Comparator {

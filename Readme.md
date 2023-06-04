@@ -181,14 +181,14 @@ public void doMock(BeforeEvent event, Boolean entrance, InvokeType type) throws 
 
 |    				      	插件类型     		             | 录制   |  回放 | Mock  | 支持时间  |                  贡献者                   |
 | -----------------------------------------------------------| ----- | :---: | :---: | :-----: |   :----------------------------------:    |
-| [http-plugin](/repeater-plugins/http-plugin)               |   √   |   √   |   ×   | 201906  |[zhaoyb1990](https://github.com/zhaoyb1990)|
-| [dubbo-plugin](/repeater-plugins/dubbo-plugin)             |   √   |   ×   |   √   | 201906  |[zhaoyb1990](https://github.com/zhaoyb1990)|
-| [ibatis-plugin](/repeater-plugins/ibatis-plugin)           |   √   |   ×   |   √   | 201906  |[zhaoyb1990](https://github.com/zhaoyb1990)|
+| [http-plugin](/repeater-plugins/http-plugin)               |   √   |   √   |   ×   | 201906  |[zhaowanxin](https://github.com/zhaowanxin)|
+| [dubbo-plugin](/repeater-plugins/dubbo-plugin)             |   √   |   ×   |   √   | 201906  |[zhaowanxin](https://github.com/zhaowanxin)|
+| [ibatis-plugin](/repeater-plugins/ibatis-plugin)           |   √   |   ×   |   √   | 201906  |[zhaowanxin](https://github.com/zhaowanxin)|
 | [mybatis-plugin](/repeater-plugins/mybatis-plugin)         |   √   |   ×   |   √   | 201906  |[ztbsuper](https://github.com/ztbsuper)    |
-| [java-plugin](/repeater-plugins/java-plugin)               |   √   |   √   |   √   | 201906  |[zhaoyb1990](https://github.com/zhaoyb1990)|
+| [java-plugin](/repeater-plugins/java-plugin)               |   √   |   √   |   √   | 201906  |[zhaowanxin](https://github.com/zhaowanxin)|
 | [redis-plugin](/repeater-plugins/redis-plugin)             |   √   |   ×   |   √   | 201910  |[ElesG](https://github.com/ElesG)          |
-| [hibernate](/repeater-plugins/hibernate-plugin)            |   √   |   ×   |   √   | 201910  |[zhaoyb1990](https://github.com/zhaoyb1990)|
-| [spring-data-jpa](/repeater-plugins/spring-data-jpa-plugin)|   √   |   ×   |   √   | 201910  |[zhaoyb1990](https://github.com/zhaoyb1990)|
+| [hibernate](/repeater-plugins/hibernate-plugin)            |   √   |   ×   |   √   | 201910  |[zhaowanxin](https://github.com/zhaowanxin)|
+| [spring-data-jpa](/repeater-plugins/spring-data-jpa-plugin)|   √   |   ×   |   √   | 201910  |[zhaowanxin](https://github.com/zhaowanxin)|
 
 ## 相关文档
 

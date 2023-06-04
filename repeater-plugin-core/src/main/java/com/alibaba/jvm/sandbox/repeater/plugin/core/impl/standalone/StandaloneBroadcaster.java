@@ -17,7 +17,7 @@ import java.io.IOException;
  * {@link StandaloneBroadcaster} 能够脱机工作，不依赖服务端的实现
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class StandaloneBroadcaster extends AbstractBroadcaster {
 

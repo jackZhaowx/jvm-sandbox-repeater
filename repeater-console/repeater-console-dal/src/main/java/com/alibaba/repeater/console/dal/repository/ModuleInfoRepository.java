@@ -1,6 +1,7 @@
 package com.alibaba.repeater.console.dal.repository;
 
 import com.alibaba.repeater.console.common.exception.BizException;
+import com.alibaba.repeater.console.common.params.ModuleInfoParams;
 import com.alibaba.repeater.console.dal.model.ModuleInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -16,7 +17,7 @@ import java.util.List;
  * {@link ModuleInfoRepository}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Repository
 @Transactional(rollbackFor = {RuntimeException.class, Error.class, BizException.class})
@@ -33,11 +34,20 @@ public interface ModuleInfoRepository extends JpaRepository<ModuleInfo, Long>, J
 
     @Modifying
     @Query(
-            "update ModuleInfo set gmtModified =  :#{#moduleInfo.gmtModified}" +
+            "update ModuleInfo set gmtModified =  :#{#moduleInfo.gmtModified} , namespace = :#{#moduleInfo.namespace}, port = :#{#moduleInfo.port}, version = :#{#moduleInfo.version},repeateMode = :#{#moduleInfo.repeateMode}, status = :#{#moduleInfo.status}" +
                     " where appName =  :#{#moduleInfo.appName}" +
-                    " and ip = :#{#moduleInfo.ip}"
+                    " and ip = :#{#moduleInfo.ip}" + " and environment = :#{#moduleInfo.environment}"
     )
     int updateByAppNameAndIp(@Param("moduleInfo") ModuleInfo moduleInfo);
 
     ModuleInfo findByAppNameAndIp(String appName, String ip);
+
+    ModuleInfo findById(Long id);
+
+    @Modifying
+    @Query(
+            "update ModuleInfo set ingoreKeys =  :#{#moduleInfo.ingoreKeys} " +
+                    " where id =  :#{#moduleInfo.id}"
+    )
+    int updateIngoreKeys(@Param("moduleInfo") ModuleInfoParams moduleInfo);
 }

@@ -11,7 +11,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.core.serialize.Serializer.Type;
  * {@link SerializerProvider} 可以提供序列化实现
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class SerializerProvider {
 

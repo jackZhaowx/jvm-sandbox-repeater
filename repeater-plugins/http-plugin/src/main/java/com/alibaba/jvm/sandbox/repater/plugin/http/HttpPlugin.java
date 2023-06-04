@@ -17,7 +17,7 @@ import java.util.List;
  * {@link HttpPlugin} http入口流量类型插件
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class HttpPlugin extends AbstractInvokePluginAdapter {

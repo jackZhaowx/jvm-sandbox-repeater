@@ -7,7 +7,7 @@ import lombok.Setter;
  * {@link ModuleConfigParams}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Getter
 @Setter

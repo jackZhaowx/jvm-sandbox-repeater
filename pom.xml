@@ -39,9 +39,9 @@
 
     <developers>
         <developer>
-            <id>zhaoyb1990</id>
+            <id>zhaowanxin</id>
             <name>赵跃兵</name>
-            <email>zhaoyb1990(AT)foxmail(DOT)com</email>
+            <email>zhaowanxin(AT)foxmail(DOT)com</email>
             <organization>Alibaba Open Source</organization>
             <organizationUrl>https://github.com/alibaba</organizationUrl>
             <roles>
@@ -167,31 +167,6 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-javadoc-plugin</artifactId>-->
-                <!--<version>3.0.0-M1</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>attach-javadocs</id>-->
-                        <!--<goals>-->
-                            <!--<goal>jar</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-source-plugin</artifactId>-->
-                <!--<version>3.0.1</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>jar-no-fork</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>

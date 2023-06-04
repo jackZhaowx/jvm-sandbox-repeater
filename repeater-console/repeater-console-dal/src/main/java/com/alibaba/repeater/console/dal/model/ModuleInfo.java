@@ -11,7 +11,7 @@ import java.util.Date;
  * <p>
  * 在线模块信息
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Entity
 @Table(name = "module_info")
@@ -39,7 +39,18 @@ public class ModuleInfo implements java.io.Serializable {
 
     private String port;
 
+    @Column(name = "module_name")
+    private String moduleName;
+
+    @Column(name = "repeate_mode")
+    private String repeateMode;
+
+    private String namespace;
+
     private String version;
 
     private String status;
+
+    @Column(name = "ingore_keys")
+    private String ingoreKeys;
 }

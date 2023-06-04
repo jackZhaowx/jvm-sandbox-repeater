@@ -9,7 +9,7 @@ import java.util.List;
  * {@link Comparator}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface Comparator {
 

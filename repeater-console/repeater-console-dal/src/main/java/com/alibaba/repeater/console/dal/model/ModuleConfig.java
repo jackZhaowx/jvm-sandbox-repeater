@@ -10,7 +10,7 @@ import java.util.Date;
  * {@link ModuleConfig}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Entity
 @Table(name = "module_config")

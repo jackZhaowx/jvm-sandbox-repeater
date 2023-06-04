@@ -12,7 +12,7 @@ import java.util.List;
  * {@link ArrayComparator}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Comparator.class)
 public class ArrayComparator implements Comparator {

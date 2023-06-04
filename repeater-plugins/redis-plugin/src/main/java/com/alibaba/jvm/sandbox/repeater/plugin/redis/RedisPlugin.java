@@ -20,7 +20,7 @@ import java.util.*;
  * 详见Jedis类、BinaryJedis类的实现接口
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class RedisPlugin extends AbstractInvokePluginAdapter {

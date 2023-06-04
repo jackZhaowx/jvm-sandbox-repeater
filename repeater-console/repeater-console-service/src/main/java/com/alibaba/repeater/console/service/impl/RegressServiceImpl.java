@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * {@link RegressServiceImpl} 回归用demo服务
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Service("regressService")
 public class RegressServiceImpl implements RegressService {

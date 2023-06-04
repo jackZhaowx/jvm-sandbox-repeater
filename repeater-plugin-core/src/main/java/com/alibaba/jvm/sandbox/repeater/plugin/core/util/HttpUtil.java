@@ -4,6 +4,7 @@ import okhttp3.*;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.beans.ConstructorProperties;
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * {@link HttpUtil} 基于{@link okhttp3.OkHttpClient}封装的http请求工具
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class HttpUtil {
 
@@ -57,19 +58,19 @@ public class HttpUtil {
     }
 
 
-    public static String getPureUrL(Object scheme, Object host){
+    public static String getPureUrL(Object scheme, Object host) {
         return String.valueOf(scheme) + "://" + String.valueOf(host);
     }
 
-    public static Map<String, String> getParamMap(String paramStr){
+    public static Map<String, String> getParamMap(String paramStr) {
 
         Map<String, String> paramMap = new HashMap<String, String>();
-        if (StringUtils.isBlank(paramStr) || "null".equalsIgnoreCase(paramStr)){
+        if (StringUtils.isBlank(paramStr) || "null".equalsIgnoreCase(paramStr)) {
             return paramMap;
         }
 
         String[] split = paramStr.split(PARAM_SEPARATE);
-        if (split.length == 0){
+        if (split.length == 0) {
             return paramMap;
         }
 
@@ -277,16 +278,16 @@ public class HttpUtil {
     public static Resp invokePostBody(String url,
                                       Map<String, String> headers,
                                       String body) {
-        return invokePostBody(url, headers, null ,body);
+        return invokePostBody(url, headers, null, body);
     }
 
     /**
      * Post方法请求
      *
-     * @param url     url地址
-     * @param headers 请求头
+     * @param url      url地址
+     * @param headers  请求头
      * @param paramMap 请求参数
-     * @param body    请求body
+     * @param body     请求body
      * @return resp
      */
     public static Resp invokePostBody(String url,
@@ -306,7 +307,7 @@ public class HttpUtil {
             if (!StringUtils.contains(url, QUESTION_SEPARATE)) {
                 urlBuilder.append(QUESTION_SEPARATE).append("_r=1");
             }
-            for (Map.Entry<String,String[]> entry : paramMap.entrySet()) {
+            for (Map.Entry<String, String[]> entry : paramMap.entrySet()) {
                 for (String value : entry.getValue()) {
                     urlBuilder.append(PARAM_SEPARATE)
                             .append(entry.getKey())

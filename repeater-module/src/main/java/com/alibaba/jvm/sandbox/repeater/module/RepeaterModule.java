@@ -52,15 +52,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.alibaba.jvm.sandbox.repeater.plugin.Constants.REPEAT_SPRING_ADVICE_SWITCH;
+import static com.alibaba.jvm.sandbox.repeater.plugin.Constants.*;
 
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Module.class)
-@Information(id = com.alibaba.jvm.sandbox.repeater.module.Constants.MODULE_ID, author = "zhaoyb1990", version = com.alibaba.jvm.sandbox.repeater.module.Constants.VERSION)
+@Information(id = com.alibaba.jvm.sandbox.repeater.module.Constants.MODULE_ID, author = "zhaowanxin", version = com.alibaba.jvm.sandbox.repeater.module.Constants.VERSION)
 public class RepeaterModule implements Module, ModuleLifecycle {
 
     private final static Logger log = LoggerFactory.getLogger(RepeaterModule.class);
@@ -99,7 +99,7 @@ public class RepeaterModule implements Module, ModuleLifecycle {
         // 初始化日志框架
         LogbackUtils.init(PathUtils.getConfigPath() + "/repeater-logback.xml");
         Mode mode = configInfo.getMode();
-        log.info("module on loaded,id={},version={},mode={}", com.alibaba.jvm.sandbox.repeater.module.Constants.MODULE_ID, com.alibaba.jvm.sandbox.repeater.module.Constants.VERSION, mode);
+        log.info("module on loaded,id={},appName={},environment={},version={},mode={}", com.alibaba.jvm.sandbox.repeater.module.Constants.MODULE_ID, PropertyUtil.getPropertyOrDefault(APP_NAME, ""), PropertyUtil.getPropertyOrDefault(APP_ENV, ""), com.alibaba.jvm.sandbox.repeater.module.Constants.VERSION, mode);
         /* agent方式启动 */
         if (mode == Mode.AGENT && Boolean.valueOf(PropertyUtil.getPropertyOrDefault(REPEAT_SPRING_ADVICE_SWITCH, ""))) {
             log.info("agent launch mode,use Spring Instantiate Advice to register bean.");
@@ -129,9 +129,11 @@ public class RepeaterModule implements Module, ModuleLifecycle {
 
     @Override
     public void loadCompleted() {
+        log.info("开始执行loadCompleted()....,用处理器的Java虚拟机的数量={}个",Runtime.getRuntime().availableProcessors());
         ExecutorInner.execute(new Runnable() {
             @Override
             public void run() {
+                log.info("拉取配置文件");
                 configManager = StandaloneSwitch.instance().getConfigManager();
                 broadcaster = StandaloneSwitch.instance().getBroadcaster();
                 invocationListener = new DefaultInvocationListener(broadcaster);
@@ -235,7 +237,7 @@ public class RepeaterModule implements Module, ModuleLifecycle {
     @Command("reload")
     public void reload(final Map<String, String> req, final PrintWriter writer) {
         try {
-            if (initialized.compareAndSet(true,false)) {
+            if (initialized.compareAndSet(true, false)) {
                 reload();
                 initialized.compareAndSet(false, true);
             }

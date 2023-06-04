@@ -14,7 +14,7 @@ import static com.alibaba.jvm.sandbox.repeater.aide.compare.TypeUtils.*;
  * <p>
  * can compare basic type use '==' or java.util/java.lang/java.math/java.time use 'equals'
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Comparator.class)
 public class SimpleComparator implements Comparator {

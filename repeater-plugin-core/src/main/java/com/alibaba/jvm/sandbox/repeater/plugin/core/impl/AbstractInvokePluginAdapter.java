@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
  * 同时注入了{@link com.alibaba.jvm.sandbox.repeater.plugin.core.impl.api.DefaultInvocationListener}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public abstract class AbstractInvokePluginAdapter implements InvokePlugin {
 

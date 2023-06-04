@@ -10,7 +10,7 @@ import java.util.Objects;
  * {@link }
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class HessianSerializeDomain implements java.io.Serializable {
 

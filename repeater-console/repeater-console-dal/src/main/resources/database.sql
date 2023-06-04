@@ -14,6 +14,10 @@ CREATE TABLE record
         COMMENT '应用名',
     environment    VARCHAR(255)  NOT NULL
         COMMENT '环境信息',
+    client_host           VARCHAR(36)   NOT NULL
+        COMMENT '客户机器IP',
+    url           VARCHAR(36)   NOT NULL
+        COMMENT '接口url',
     host           VARCHAR(36)   NOT NULL
         COMMENT '机器IP',
     trace_id       VARCHAR(32)   NOT NULL
@@ -76,23 +80,29 @@ CREATE TABLE replay
 DROP TABLE IF EXISTS module_info;
 CREATE TABLE module_info
 (
-    id           BIGINT(20)   NOT NULL AUTO_INCREMENT PRIMARY KEY
+    id               BIGINT(20)   NOT NULL AUTO_INCREMENT PRIMARY KEY
         COMMENT '主键',
-    gmt_create   DATETIME     NOT NULL
+    gmt_create       DATETIME     NOT NULL
         COMMENT '创建时间',
-    gmt_modified DATETIME     NOT NULL
+    gmt_modified     DATETIME     NOT NULL
         comment '修改时间',
-    app_name     VARCHAR(255) NOT NULL
+    app_name         VARCHAR(255) NOT NULL
         COMMENT '应用名',
-    environment  VARCHAR(255) NOT NULL
+    environment      VARCHAR(255) NOT NULL
         COMMENT '环境信息',
-    ip           VARCHAR(36)  NOT NULL
+    ip               VARCHAR(36)  NOT NULL
         COMMENT '机器IP',
-    port         VARCHAR(12)  NOT NULL
-        COMMENT '链路追踪ID',
-    version      VARCHAR(128) NOT NULL
+    port             VARCHAR(12)  NOT NULL
+        COMMENT '端口号',
+    module_name      VARCHAR(255) NOT NULL
+        COMMENT '模块名',
+    repeate_mode     VARCHAR(2)   NOT NULL
+        COMMENT '回放模式，0-本机，1-远程',
+    repeate_base_url VARCHAR(36)  NULL
+        COMMENT '回放基本url',
+    version          VARCHAR(128) NOT NULL
         COMMENT '模块版本号',
-    status       VARCHAR(36)  NOT NULL
+    status           VARCHAR(36)  NOT NULL
         COMMENT '模块状态'
 )
     ENGINE = InnoDB

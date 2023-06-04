@@ -22,7 +22,7 @@ import java.util.jar.JarFile;
  * 插件类加载器；父类加载器是sandbox's module classLoader
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Stealth
 public class PluginClassLoader extends URLClassLoader {

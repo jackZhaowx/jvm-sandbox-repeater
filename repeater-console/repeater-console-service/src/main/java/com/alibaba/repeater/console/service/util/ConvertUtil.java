@@ -14,23 +14,25 @@ import java.util.HashMap;
  * {@link }
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class ConvertUtil {
 
-    public static Record convertWrapper(RecordWrapper wrapper, String body){
+    public static Record convertWrapper(RecordWrapper wrapper, String body) {
         Record record = new Record();
         record.setAppName(wrapper.getAppName());
         record.setEnvironment(wrapper.getEnvironment());
         record.setGmtCreate(new Date());
         record.setGmtRecord(new Date(wrapper.getTimestamp()));
+        record.setClientHost(wrapper.getClientHost());
+        record.setUrl(wrapper.getUrl());
         record.setHost(wrapper.getHost());
         record.setTraceId(wrapper.getTraceId());
         Serializer hessian = SerializerProvider.instance().provide(Serializer.Type.HESSIAN);
         try {
             Object response = hessian.deserialize(wrapper.getEntranceInvocation().getResponseSerialized(), Object.class);
             if (response instanceof String) {
-                record.setResponse(convert2Json((String)response));
+                record.setResponse(convert2Json((String) response));
             } else {
                 record.setResponse(JacksonUtil.serialize(response));
             }

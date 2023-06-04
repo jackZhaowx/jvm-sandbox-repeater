@@ -12,7 +12,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.exception.PluginLifeCycleExceptio
  * 每个类型的流量都需要实现该插件完成录制
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface InvokePlugin {
 

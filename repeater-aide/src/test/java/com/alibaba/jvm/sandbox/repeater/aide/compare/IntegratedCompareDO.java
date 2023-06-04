@@ -10,7 +10,7 @@ import java.util.Map;
  * {@link IntegratedCompareDO}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class IntegratedCompareDO {
 

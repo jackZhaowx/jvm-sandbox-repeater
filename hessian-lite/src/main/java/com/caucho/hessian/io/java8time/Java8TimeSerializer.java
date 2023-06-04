@@ -10,7 +10,7 @@ import java.lang.reflect.Constructor;
  * {@link Java8TimeSerializer}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Java8TimeSerializer<T> extends AbstractSerializer {
 

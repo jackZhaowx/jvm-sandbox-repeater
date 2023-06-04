@@ -24,7 +24,7 @@ import java.util.List;
  * {@link RegressController} 持续回归demo服务
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @RestController
 @RequestMapping("/regress")

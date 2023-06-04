@@ -26,7 +26,7 @@ import com.alibaba.ttl.TtlRunnable;
  *
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  *
  * 适配了ThreadPoolExecutor/ScheduledThreadPoolExecutor; ForkJoinTask/ForkJoinPool没有适配
  * @see java.util.concurrent.Executor

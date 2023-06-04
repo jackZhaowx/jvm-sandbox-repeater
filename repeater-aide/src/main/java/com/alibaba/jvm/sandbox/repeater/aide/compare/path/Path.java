@@ -4,7 +4,7 @@ package com.alibaba.jvm.sandbox.repeater.aide.compare.path;
  * {@link Path}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Path {
 

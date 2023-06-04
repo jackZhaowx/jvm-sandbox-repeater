@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
  * {@link }
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class HessianSerializerTest {
 

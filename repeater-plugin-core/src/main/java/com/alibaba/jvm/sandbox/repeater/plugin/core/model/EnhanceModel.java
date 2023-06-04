@@ -16,7 +16,7 @@ import java.util.List;
  * 插件增加类型的基础抽象，{@link com.alibaba.jvm.sandbox.repeater.plugin.core.impl.AbstractInvokePluginAdapter}使用进行插件增强
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class EnhanceModel {
 

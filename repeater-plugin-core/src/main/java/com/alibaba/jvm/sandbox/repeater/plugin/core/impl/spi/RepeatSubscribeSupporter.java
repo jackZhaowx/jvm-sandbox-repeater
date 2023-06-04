@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(SubscribeSupporter.class)
 public class RepeatSubscribeSupporter implements SubscribeSupporter<RepeatEvent> {

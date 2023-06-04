@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * {@link ReplayConverter}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("replayConverter")
 public class ReplayConverter implements ModelConverter<Replay, ReplayBO> {

@@ -7,7 +7,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.mock.MockResponse;
  * {@link MockInterceptor} Mock策略执行中的拦截器；给用户自定义mock过程干预的机会
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface MockInterceptor {
 

@@ -11,7 +11,7 @@ import java.util.Map;
  * {@link Java8TimeSerializerFactory}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Java8TimeSerializerFactory extends AbstractSerializerFactory {
 

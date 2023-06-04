@@ -4,7 +4,7 @@ package com.alibaba.repeater.console.service.convert;
  * {@link ModelConverter}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface ModelConverter<S, T> {
 

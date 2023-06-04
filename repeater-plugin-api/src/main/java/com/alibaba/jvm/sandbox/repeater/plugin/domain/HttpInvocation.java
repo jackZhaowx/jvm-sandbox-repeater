@@ -1,17 +1,19 @@
 package com.alibaba.jvm.sandbox.repeater.plugin.domain;
 
 
-
 import java.util.Map;
 
 /**
  * {@link HttpInvocation} http请求调用比较独立
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class HttpInvocation extends Invocation implements java.io.Serializable {
-
+    /**
+     * 客户端Ip
+     */
+    private String clientHost;
     /**
      * 请求的URL
      */
@@ -55,6 +57,14 @@ public class HttpInvocation extends Invocation implements java.io.Serializable {
      * 是否已初始化
      */
     private transient boolean init;
+
+    public String getClientHost() {
+        return clientHost;
+    }
+
+    public void setClientHost(String clientHost) {
+        this.clientHost = clientHost;
+    }
 
     public String getRequestURL() {
         return requestURL;

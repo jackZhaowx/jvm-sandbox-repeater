@@ -18,7 +18,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
  * {@link CustomJavaTimeModule}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class CustomJavaTimeModule extends SimpleModule {
 

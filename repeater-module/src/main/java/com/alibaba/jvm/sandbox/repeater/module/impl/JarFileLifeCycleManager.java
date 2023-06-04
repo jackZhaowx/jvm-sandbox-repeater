@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class JarFileLifeCycleManager implements LifecycleManager {
 

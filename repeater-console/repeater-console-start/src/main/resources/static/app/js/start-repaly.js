@@ -6,6 +6,7 @@ jQuery(function ($) {
         var appName = $(this).attr('data-app');
         $('#replay-appName').val(appName);
         var modal = $('#start-replay-modal');
+        var ip = $(this).attr('data-ip');
         modal.on('shown.bs.modal', function () {
             $(this).css('display', 'block');
             var modalHeight = $(window).height() / 2 - $('#start-replay-modal .modal-dialog').height() / 2;
@@ -14,7 +15,7 @@ jQuery(function ($) {
             });
         });
         // 初始化场景选择列表
-        innerPost("/module/byName.json", {'appName': appName}, function (response) {
+        innerPost("/module/byName.json", {'appName': appName, 'ip': ip}, function (response) {
             var sSelectArea = $("#machine-select-group");
             var sSelect = $("#machine-select");
             var sHelp = $("#machine-help");

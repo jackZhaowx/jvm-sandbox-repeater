@@ -11,7 +11,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RecordModel;
  * {@link SerializerWrapper} 序列化工具；目标能够直接序列化{@link RecordModel}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class SerializerWrapper {
 

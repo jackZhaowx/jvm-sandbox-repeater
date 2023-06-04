@@ -6,7 +6,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RecordModel;
  * {@link RepeatInterceptor} 回放器执行中的拦截器；给用户自定义回放过程干预的机会
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface RepeatInterceptor {
 

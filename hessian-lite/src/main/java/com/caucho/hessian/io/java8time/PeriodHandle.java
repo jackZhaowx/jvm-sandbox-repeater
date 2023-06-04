@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
  * {@link PeriodHandle}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @SuppressWarnings("unchecked")
 public class PeriodHandle implements HessianHandle, Serializable {

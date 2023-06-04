@@ -9,18 +9,16 @@
     <title>回放结果 - $!{record.identity}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/dist/css/ionicons/2.0.1/css/ionicons.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- ace -->
     <link rel="stylesheet" href="/plugins/ace-diff/ace-diff.min.css">
-
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="/dist/css/fonts/googlefonts.css" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini ">
 <!-- Site wrapper -->
@@ -48,18 +46,19 @@
                  alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">Phoenix</span>
+            <span class="brand-text font-weight-light">华夏星斗流量录制回放平台</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="#"  class="nav-link active">
+                        <a href="/online/search.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
                                 在线流量
@@ -68,7 +67,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/config/list.htm"  class="nav-link">
+                        <a href="#" target="_self" class="nav-link active">
+                            <i class="nav-icon fa fa-heartbeat"></i>
+                            <p>
+                                回放记录
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/config/list.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-cogs"></i>
                             <p>
                                 配置管理
@@ -76,7 +83,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/module/list.htm"  class="nav-link">
+                        <a href="/module/list.htm" target="_self" class="nav-link">
                             <i class="nav-icon fa fa-heartbeat"></i>
                             <p>
                                 在线模块
@@ -101,7 +108,9 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/online/detail.htm?appName=${record.appName}&traceId=$!{record.TraceId}">调用详情</a></li>
+                            <li class="breadcrumb-item"><a
+                                    href="/replay/list.htm"
+                                    target="_self">回放记录</a></li>
                             <li class="breadcrumb-item active">回放结果</li>
                         </ol>
                     </div>
@@ -124,15 +133,20 @@
                         <div class="card-body" style="padding: 5px">
                             <div class="col-lg-12 col-xs-12">
                                 <ul class="nav nav-pills ml-auto">
-                                    <li class="nav-item"><a class="nav-link active" href="#basic" data-toggle="tab" aria-expanded="false">基础信息</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#request" data-toggle="tab" aria-expanded="false">请求参数</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#response" data-toggle="tab" aria-expanded="false">返回结果</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#subInvocations" data-toggle="tab" aria-expanded="false">子调用信息</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="#basic" data-toggle="tab"
+                                                            aria-expanded="false">基础信息</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#request" data-toggle="tab"
+                                                            aria-expanded="false">请求参数</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#response" data-toggle="tab"
+                                                            aria-expanded="false">返回结果</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#subInvocations" data-toggle="tab"
+                                                            aria-expanded="false">子调用信息</a></li>
                                 </ul>
                                 <div class="tab-content no-padding no-border" style="margin-top: 2px">
                                     <div class="tab-pane active" id="basic">
                                         <div class="col-xs-12">
-                                            <table class="table table-hover table-striped" style="word-break: break-all;">
+                                            <table class="table table-hover table-striped"
+                                                   style="word-break: break-all;">
                                                 <tbody>
                                                 <tr>
                                                     <td width="100px" class="text-right text-bold">应用名</td>
@@ -150,25 +164,29 @@
                                                     <td width="100px" class="text-right text-bold">录制时间</td>
                                                     <td>$!record.gmtRecord</td>
                                                     <td width="100px" class="text-right text-bold">录制环境</td>
-                                                    <td><span class="label label-primary">$!record.environment</span></td>
+                                                    <td><span class="label label-primary">$!record.environment</span>
+                                                    </td>
                                                 </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="request">
-                                        <div class="col-xs-12" id="request-editor" style="height: 400px;display: none">$!record.request</div>
+                                        <div class="col-xs-12" id="request-editor"
+                                             style="height: 400px;display: none">$!record.request</div>
                                     </div>
                                     <div class="tab-pane" id="response">
-                                        <div class="col-xs-12" id="response-editor" style="height: 400px;display: none">$!record.response</div>
+                                        <div class="col-xs-12" id="response-editor"
+                                             style="height: 400px;display: none">$!record.response</div>
                                     </div>
                                     <div class="tab-pane" id="subInvocations">
-                                        <div class="col-xs-12" id="subInvocations-editor" style="height: 400px;display: none">$!record.subInvocations</div>
+                                        <div class="col-xs-12" id="subInvocations-editor"
+                                             style="height: 400px;display: none">$!record.subInvocations</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer clearfix" >
+                        <div class="card-footer clearfix">
                         </div>
                     </div>
                 </div>
@@ -184,16 +202,21 @@
                         <div class="card-body" style="padding: 5px">
                             <div class="col-lg-12 col-xs-12">
                                 <ul class="nav nav-pills ml-auto">
-                                    <li class="nav-item"><a class="nav-link active" href="#basic-replay" data-toggle="tab" aria-expanded="false">基础信息</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#diffNode" data-toggle="tab" aria-expanded="false">差异节点</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#resultDiff" data-toggle="tab" aria-expanded="false">结果Diff</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#mockProcess" data-toggle="tab" aria-expanded="false">MOCK过程</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="#basic-replay"
+                                                            data-toggle="tab" aria-expanded="false">基础信息</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#diffNode" data-toggle="tab"
+                                                            aria-expanded="false">差异节点</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#resultDiff" data-toggle="tab"
+                                                            aria-expanded="false">结果Diff</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#mockProcess" data-toggle="tab"
+                                                            aria-expanded="false">MOCK过程</a></li>
                                 </ul>
                                 <div class="tab-content no-padding no-border" style="margin-top: 2px">
                                     <div class="tab-pane active" id="basic-replay">
                                         <div class="col-xs-12">
                                             <div class="col-xs-12">
-                                                <table class="table table-hover table-striped" style="word-break: break-all;">
+                                                <table class="table table-hover table-striped"
+                                                       style="word-break: break-all;">
                                                     <thead>
                                                     <tr>
                                                         <th>执行结果</th>
@@ -212,9 +235,9 @@
                                                                 <span class="badge bg-primary">执行中</span>
                                                             #else
                                                                 #if($!replay.success)
-                                                                        <span class="badge bg-success">成功</span>
-                                                                    #else
-                                                                        <span class="badge bg-danger">失败</span>
+                                                                    <span class="badge bg-success">成功</span>
+                                                                #else
+                                                                    <span class="badge bg-danger">失败</span>
                                                                 #end
                                                             #end
                                                         </td>
@@ -233,7 +256,8 @@
                                     <div class="tab-pane" id="diffNode">
                                         #if($!replay.differences && $!replay.differences.size()>0)
                                             <div class="col-xs-12 table-responsive no-padding">
-                                                <table class="table table-bordered table-striped" style="word-break: break-all;">
+                                                <table class="table table-bordered table-striped"
+                                                       style="word-break: break-all;">
                                                     <thead>
                                                     <tr>
                                                         <th style="min-width: 100px;">节点</th>
@@ -248,7 +272,7 @@
                                                             <td>$!diff.nodeName</td>
                                                             <td>
                                                                 #if($diff.expect)
-                                                                   $!diff.expect
+                                                                    $!diff.expect
                                                                 #else
                                                                     <span class="text-purple">null</span>
                                                                 #end
@@ -276,7 +300,8 @@
                                                 <span class="badge badge-success">预期结果</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <span class="badge badge-success" style="margin-left: 20px">实际结果</span>
+                                                <span class="badge badge-success"
+                                                      style="margin-left: 20px">实际结果</span>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -289,7 +314,8 @@
                                     <div class="tab-pane" id="mockProcess">
                                         #if($!replay.mockInvocations && $!replay.mockInvocations.size()>0)
                                             <div class="col-xs-12 table-responsive no-padding">
-                                                <table class="table table-hover table-striped" style="word-break: break-all;">
+                                                <table class="table table-hover table-striped"
+                                                       style="word-break: break-all;">
                                                     <thead>
                                                     <tr>
                                                         <th width="5%">序号</th>
@@ -331,7 +357,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer clearfix" >
+                        <div class="card-footer clearfix">
                         </div>
                     </div>
                 </div>
@@ -343,9 +369,9 @@
 
     <footer class="main-footer">
         <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.1
+            <b>Version</b> 1.0.0
         </div>
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+        <strong>Copyright &copy; 2023-2024 <a href="#">华夏人寿保险股份有限公司</a>.</strong> All rights
         reserved.
     </footer>
 
@@ -373,7 +399,7 @@
 <script src="/app/js/app.js" charset="UTF-8"></script>
 <script src="/app/js/start-repaly.js" charset="UTF-8"></script>
 <script type="application/javascript">
-    jQuery(function($){
+    jQuery(function ($) {
         if (document.getElementById("request-editor")) {
             var requestEditor = ace.edit("request-editor");
             requestEditor.setTheme("ace/theme/xcode");

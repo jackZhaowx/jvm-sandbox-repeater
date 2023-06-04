@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  * <p>
  * 在线流量页面
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Controller
 @RequestMapping("/online")

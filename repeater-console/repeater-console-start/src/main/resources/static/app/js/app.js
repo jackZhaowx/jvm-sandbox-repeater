@@ -3,7 +3,7 @@ var protocol = window.location.protocol;
 jQuery(function ($) {
     $("[data-toggle='tooltip']").tooltip();
     $("[data-toggle='popover']").popover();
-    $(".refresh-btn").on("click",function () {
+    $(".refresh-btn").on("click", function () {
         window.location.reload();
     });
 });
@@ -107,11 +107,11 @@ var checkTwice = function (message, callback) {
     $(document).on('click', '.check-btn', callback);
 };
 
-var confirmDismiss =  function () {
+var confirmDismiss = function () {
     $("#confirm-modal").modal("hide");
 };
 
-var checkDismiss =  function () {
+var checkDismiss = function () {
     $("#check-modal").modal("hide");
 };
 
@@ -165,7 +165,7 @@ var bindData = function (rootElement, json) {
 };
 
 var openNewWindow = function (url, msg) {
-    var wd = window.open(url);
+    var wd = window.open(url, '_self');
     if (wd == null) {
         noticeUrl(msg, url)
     }

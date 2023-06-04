@@ -4,7 +4,7 @@ package com.alibaba.jvm.sandbox.repeater.plugin.core.serialize;
  * {@link Serializer} 序列化工具
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface Serializer {
 

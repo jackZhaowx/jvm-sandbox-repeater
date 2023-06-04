@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * {@link ModuleConfigConverter}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("moduleConfigConverter")
 @Slf4j

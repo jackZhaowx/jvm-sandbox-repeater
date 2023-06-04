@@ -10,7 +10,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.*;
  * 每种类型{@link InvokeType}的入口流量需要自定义回放器，否则无法进行流量回放
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface Repeater {
 

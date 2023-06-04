@@ -9,7 +9,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
  * {@link Broadcaster} 消息广播服务；用于采集流量之后的消息分发
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface Broadcaster {
 

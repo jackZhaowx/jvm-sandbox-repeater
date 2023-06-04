@@ -8,7 +8,7 @@ import org.apache.commons.lang3.ArrayUtils;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Deprecated
 public class ClassUtils {

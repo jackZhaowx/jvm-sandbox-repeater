@@ -10,7 +10,7 @@ import java.util.Locale;
  * {@link Regress} 回放示例
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Regress implements java.io.Serializable {
     private Long timestamp;

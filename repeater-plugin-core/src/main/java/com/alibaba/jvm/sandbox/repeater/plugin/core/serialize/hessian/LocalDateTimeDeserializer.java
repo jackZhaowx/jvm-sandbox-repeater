@@ -12,7 +12,7 @@ import java.time.ZoneOffset;
  * {@link LocalDateTimeDeserializer} hessian  localDateTime deserializer
  * <p>
  *
- * @author zhaoyb1990.
+ * @author zhaowanxin.
  */
 @Deprecated
 public class LocalDateTimeDeserializer extends AbstractDeserializer {

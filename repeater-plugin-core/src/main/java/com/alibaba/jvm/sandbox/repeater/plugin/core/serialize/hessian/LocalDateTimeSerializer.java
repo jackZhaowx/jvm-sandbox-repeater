@@ -11,7 +11,7 @@ import java.time.ZoneOffset;
  * {@link LocalDateTimeSerializer} hessian 序列化反序列化 localDateTime 适配
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Deprecated
 public class LocalDateTimeSerializer extends AbstractSerializer {

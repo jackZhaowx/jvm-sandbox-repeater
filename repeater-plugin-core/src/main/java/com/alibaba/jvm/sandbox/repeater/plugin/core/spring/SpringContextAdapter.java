@@ -12,7 +12,7 @@ import static org.apache.commons.lang3.reflect.MethodUtils.invokeStaticMethod;
  * {@link SpringContextAdapter} SpringBean获取适配
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class SpringContextAdapter {
 

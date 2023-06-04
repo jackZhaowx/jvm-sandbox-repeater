@@ -5,7 +5,7 @@ import org.kohsuke.MetaInfServices;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(Serializer.class)
 public class NoneSerializer extends AbstractSerializerAdapter {

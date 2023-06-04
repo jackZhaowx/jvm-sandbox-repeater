@@ -4,7 +4,7 @@ package com.alibaba.jvm.sandbox.repeater.plugin.core.serialize;
  * {@link HessianSerializeDomainSub}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class HessianSerializeDomainSub extends HessianSerializeDomain {
 

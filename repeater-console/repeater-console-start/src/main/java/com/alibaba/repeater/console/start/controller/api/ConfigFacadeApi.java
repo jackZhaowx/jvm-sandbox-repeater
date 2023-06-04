@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * {@link ConfigFacadeApi} Demo工程；作为repeater录制回放的配置管理服务
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @RestController
 @RequestMapping("/facade/api")

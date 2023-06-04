@@ -9,7 +9,7 @@ package com.alibaba.jvm.sandbox.repeater.plugin.domain;
  * {@link Invocation} 主要记录了调用时的入参、返回值、调用顺序等信息，用于回放流量的发起和子调用的Mock还原
  * </p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class Invocation implements java.io.Serializable {
 

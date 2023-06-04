@@ -10,7 +10,7 @@ import java.util.Date;
  * {@link ModuleConfigBO}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Getter
 @Setter

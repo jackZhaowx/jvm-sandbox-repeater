@@ -15,7 +15,7 @@ import java.util.List;
  * {@link SpringDataJpaPlugin} Hibernate插件
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(InvokePlugin.class)
 public class SpringDataJpaPlugin extends AbstractInvokePluginAdapter {

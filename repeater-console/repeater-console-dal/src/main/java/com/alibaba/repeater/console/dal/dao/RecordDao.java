@@ -13,13 +13,14 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import javax.persistence.criteria.Predicate;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 /**
  * {@link RecordDao}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @Component("recordDao")
 public class RecordDao {
@@ -36,7 +37,7 @@ public class RecordDao {
     }
 
     public Page<Record> selectByAppNameOrTraceId(@NotNull final RecordParams params) {
-        Pageable pageable = new PageRequest(params.getPage() - 1, params.getSize(), new Sort(Sort.Direction.DESC,"id"));
+        Pageable pageable = new PageRequest(params.getPage() - 1, params.getSize(), new Sort(Sort.Direction.DESC, "id"));
         return recordRepository.findAll(
                 (root, query, cb) -> {
                     List<Predicate> predicates = Lists.newArrayList();
@@ -45,6 +46,15 @@ public class RecordDao {
                     }
                     if (params.getTraceId() != null && !params.getTraceId().isEmpty()) {
                         predicates.add(cb.equal(root.<String>get("traceId"), params.getTraceId()));
+                    }
+                    if (params.getClientHost() != null && !params.getClientHost().isEmpty()) {
+                        predicates.add(cb.equal(root.<String>get("clientHost"), params.getClientHost()));
+                    }
+                    if (params.getUrl() != null && !params.getUrl().isEmpty()) {
+                        predicates.add(cb.equal(root.<String>get("url"), params.getUrl()));
+                    }
+                    if (params.getStartDate() != null && params.getEndDate() != null) {
+                        predicates.add(cb.between(root.<Date>get("gmtCreate"), params.getStartDate(), params.getEndDate()));
                     }
                     return cb.and(predicates.toArray(new Predicate[0]));
                 },

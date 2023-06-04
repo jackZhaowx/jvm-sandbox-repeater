@@ -14,7 +14,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
  * {@link DefaultConfigManager} http数据拉取
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class DefaultConfigManager implements ConfigManager {
 

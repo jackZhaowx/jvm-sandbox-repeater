@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
  * {@link AbstractSerializerAdapter} 抽象的序列化实现，主要完成byte[]和字符串的转换动作
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public abstract class AbstractSerializerAdapter implements Serializer {
 

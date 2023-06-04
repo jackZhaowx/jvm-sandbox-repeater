@@ -8,7 +8,7 @@ import java.util.List;
  * {@link CompareResult}
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class CompareResult {
     private transient Object left;

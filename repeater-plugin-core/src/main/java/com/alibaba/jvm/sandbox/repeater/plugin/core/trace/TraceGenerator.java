@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * {@link TraceGenerator} 作为{@link TraceContext#traceId}的生成器
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class TraceGenerator {
 

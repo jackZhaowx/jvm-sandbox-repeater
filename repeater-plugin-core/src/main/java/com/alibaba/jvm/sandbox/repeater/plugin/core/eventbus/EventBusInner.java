@@ -16,14 +16,14 @@ import org.slf4j.LoggerFactory;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class EventBusInner {
 
     private final static Logger log = LoggerFactory.getLogger(EventBusInner.class);
 
     /**
-     * 回放反序列化开销很大，cpu密集，线程池大小设置成核心数 - 1
+     * 回放反序列化密集开销很大，cpu，线程池大小设置成核心数 - 1
      */
     private final static ExecutorService executor = new ThreadPoolExecutor(
         Runtime.getRuntime().availableProcessors() - 1,

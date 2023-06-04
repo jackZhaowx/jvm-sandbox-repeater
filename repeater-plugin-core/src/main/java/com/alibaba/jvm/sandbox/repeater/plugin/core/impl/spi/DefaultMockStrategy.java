@@ -11,7 +11,7 @@ import org.kohsuke.MetaInfServices;
  * <p>
  * 默认的回放策略，阻断所有的请求
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 @MetaInfServices(MockStrategy.class)
 public class DefaultMockStrategy extends AbstractMockStrategy {

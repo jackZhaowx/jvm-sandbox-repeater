@@ -10,7 +10,7 @@ import com.alibaba.jvm.sandbox.repeater.plugin.spi.SubscribeSupporter;
  *
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public interface LifecycleManager {
 

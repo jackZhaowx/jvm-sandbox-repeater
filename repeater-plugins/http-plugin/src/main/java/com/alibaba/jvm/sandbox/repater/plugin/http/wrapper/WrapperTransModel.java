@@ -1,5 +1,6 @@
 package com.alibaba.jvm.sandbox.repater.plugin.http.wrapper;
 
+import com.alibaba.jvm.sandbox.repeater.plugin.core.util.HttpUtil;
 import org.apache.commons.collections4.MapUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,7 @@ import java.util.Map;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class WrapperTransModel {
 
@@ -18,6 +19,10 @@ public class WrapperTransModel {
 
     public WrapperResponseCopier copier;
 
+    /**
+     * 客户端IP
+     */
+    private String clientHost;
     /**
      * 请求的URL
      */
@@ -55,8 +60,9 @@ public class WrapperTransModel {
      */
     private String response;
 
-    private WrapperTransModel(String requestURL, String requestURI, int port, String method, String contentType,
+    private WrapperTransModel(String clientHost, String requestURL, String requestURI, int port, String method, String contentType,
                               Map<String, String> headers, Map<String, String[]> paramsMap) {
+        this.clientHost = clientHost;
         this.requestURL = requestURL;
         this.requestURI = requestURI;
         this.port = port;
@@ -81,6 +87,7 @@ public class WrapperTransModel {
             }
         }
         return new WrapperTransModel(
+                getIpAddr(request),
                 request.getRequestURL().toString(),
                 request.getRequestURI(),
                 request.getLocalPort(),
@@ -89,6 +96,10 @@ public class WrapperTransModel {
                 headers,
                 parameterMapHolder
         );
+    }
+
+    public String getClientHost() {
+        return clientHost;
     }
 
     public String getRequestURL() {
@@ -133,5 +144,25 @@ public class WrapperTransModel {
 
     public void setResponse(String response) {
         this.response = response;
+    }
+
+    /**
+     * 获取客户端IP
+     *
+     * @param request
+     * @return
+     */
+    private static String getIpAddr(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        return ip;
     }
 }

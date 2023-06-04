@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 /**
  * <p>
  *
- * @author zhaoyb1990
+ * @author zhaowanxin
  */
 public class WrapperResponseCopier extends HttpServletResponseWrapper {
 
