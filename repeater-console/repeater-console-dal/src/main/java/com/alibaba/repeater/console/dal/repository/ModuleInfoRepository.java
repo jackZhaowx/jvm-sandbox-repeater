@@ -1,6 +1,8 @@
 package com.alibaba.repeater.console.dal.repository;
 
+import com.alibaba.repeater.console.common.domain.HomeBO;
 import com.alibaba.repeater.console.common.exception.BizException;
+import com.alibaba.repeater.console.common.params.HomeParams;
 import com.alibaba.repeater.console.common.params.ModuleInfoParams;
 import com.alibaba.repeater.console.dal.model.ModuleInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -38,9 +40,9 @@ public interface ModuleInfoRepository extends JpaRepository<ModuleInfo, Long>, J
                     " where appName =  :#{#moduleInfo.appName}" +
                     " and ip = :#{#moduleInfo.ip}" + " and environment = :#{#moduleInfo.environment}"
     )
-    int updateByAppNameAndIp(@Param("moduleInfo") ModuleInfo moduleInfo);
+    int updateByAppNameAndIpAndEnviAndEnvironment(@Param("moduleInfo") ModuleInfo moduleInfo);
 
-    ModuleInfo findByAppNameAndIp(String appName, String ip);
+    ModuleInfo findByAppNameAndIpAndEnvironment(String appName, String ip, String environment);
 
     ModuleInfo findById(Long id);
 
@@ -50,4 +52,18 @@ public interface ModuleInfoRepository extends JpaRepository<ModuleInfo, Long>, J
                     " where id =  :#{#moduleInfo.id}"
     )
     int updateIngoreKeys(@Param("moduleInfo") ModuleInfoParams moduleInfo);
+
+    ModuleInfo findByIdAndAppName(long id, String appName);
+
+    @Query(value = "select app_name from module_info where environment<>'repeate'", nativeQuery = true)
+    List<String> getRecordModule();
+
+    @Query(value = "select count(1) from (select app_name from module_info group by app_name) tt", nativeQuery = true)
+    long appTotal();
+
+    @Query(value = "select count(1) from (select app_name,ip from module_info group by app_name,ip) tt", nativeQuery = true)
+    long machineTotal();
+
+    @Query(value = "select count(1) from (select app_name,ip,port from module_info group by app_name,ip,port) tt", nativeQuery = true)
+    long serviceTotal();
 }

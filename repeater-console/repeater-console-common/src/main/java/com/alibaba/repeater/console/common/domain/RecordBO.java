@@ -35,6 +35,10 @@ public class RecordBO extends BaseBO implements java.io.Serializable {
 
     private String entranceDesc;
 
+    private boolean replay;
+
+    private boolean replaySuccess;
+
     @Override
     public String toString() {
         return super.toString();

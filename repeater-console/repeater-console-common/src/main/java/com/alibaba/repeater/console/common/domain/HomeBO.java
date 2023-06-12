@@ -4,6 +4,9 @@ import lombok.Data;
 
 @Data
 public class HomeBO {
-    private String name;
-    private long total;
+    private long appTotal;
+    private long machineTotal;
+    private long serviceTotal;
+    private long recordTotal;
+    private long repeateTotal;
 }

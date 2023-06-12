@@ -113,8 +113,9 @@ public class HttpStandaloneListener extends DefaultEventListener implements Invo
         HttpServletResponse resp = (HttpServletResponse) response;
         // 根据 requestURI 进行采样匹配
         List<String> patterns = ApplicationModel.instance().getConfig().getHttpEntrancePatterns();
-        if (!matchRequestURI(patterns, req.getRequestURI())) {
-            LogUtil.debug("current uri {} can't match any httpEntrancePatterns, ignore this request", req.getRequestURI());
+        List<String> notPatterns = ApplicationModel.instance().getConfig().getHttpNotEntrancePatterns();
+        if (matchRequestURI(notPatterns, req.getRequestURI()) || !matchRequestURI(patterns, req.getRequestURI())) {
+            LogUtil.debug("current uri {} can't match any httpEntrancePatterns or match httpNotEntrancePatterns, ignore this request", req.getRequestURI());
             Tracer.getContext().setSampled(false);
             return;
         }
@@ -199,12 +200,14 @@ public class HttpStandaloneListener extends DefaultEventListener implements Invo
         if (invocation == null || invocation.isAsync()) {
             return;
         }
+        byte[] responseData = null;
         try {
-            byte[] responseData = wtm.copier.getResponseData();
-            wtm.setResponse(new String(responseData, GetByteEncode.guessEncoding(responseData)));
-            LogUtil.info("请求返回结果为：{},编码为：{}", new String(responseData, GetByteEncode.guessEncoding(responseData)), GetByteEncode.guessEncoding(responseData));
+            responseData = wtm.copier.getResponseData();
+            wtm.setResponse(new String(responseData, "UTF-8"));
+            LogUtil.debug("请求返回结果为：{},编码为：{}", new String(responseData, "UTF-8"), "UTF-8");
         } catch (Exception e) {
-            LogUtil.error("error occurred when get response,message = {}", e.getMessage());
+            e.printStackTrace();
+            LogUtil.error("error occurred when get response,message = {},byte={}", e.getMessage(), responseData);
         }
         onFinish(invocation, wtm);
     }

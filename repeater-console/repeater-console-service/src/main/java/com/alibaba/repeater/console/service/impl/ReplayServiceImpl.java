@@ -64,13 +64,14 @@ public class ReplayServiceImpl implements ReplayService {
 
     @Override
     public RepeaterResult<String> replay(ReplayParams params) {
-        Optional.ofNullable(params.getIp()).orElseThrow(() -> new RuntimeException("ip can not be null"));
+        Optional.ofNullable(params.getModuleId()).orElseThrow(() -> new RuntimeException("id can not be null"));
         Optional.ofNullable(params.getAppName()).orElseThrow(() -> new RuntimeException("appName can not be null"));
         Optional.ofNullable(params.getTraceId()).orElseThrow(() -> new RuntimeException("traceId can not be null"));
-        RepeaterResult<ModuleInfoBO> result = moduleInfoService.query(params.getAppName(), params.getIp());
+        RepeaterResult<ModuleInfoBO> result = moduleInfoService.queryByIdAndAppName(params.getAppName(), params.getModuleId());
         if (!result.isSuccess() || result.getData() == null) {
             return ResultHelper.copy(result);
         }
+        params.setIp(result.getData().getIp());
         params.setPort(result.getData().getPort());
         params.setEnvironment(result.getData().getEnvironment());
         params.setNamespace(result.getData().getNamespace());
@@ -201,6 +202,8 @@ public class ReplayServiceImpl implements ReplayService {
     }
 
     private Replay saveReplay(Record record, ReplayParams params) {
+        //删除历史回放记录
+        replayDao.deleReplay(record.getId());
         Replay replay = new Replay();
         replay.setRecord(record);
         replay.setAppName(params.getAppName());

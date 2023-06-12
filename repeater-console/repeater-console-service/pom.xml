@@ -42,6 +42,12 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.12.0</version>
         </dependency>
+        <!-- quartz 依赖  没有规定版本的 可以用2.3.0-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

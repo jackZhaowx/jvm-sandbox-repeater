@@ -77,8 +77,8 @@ public class ModuleInfoServiceImpl implements ModuleInfoService {
     }
 
     @Override
-    public RepeaterResult<ModuleInfoBO> query(String appName, String ip) {
-        ModuleInfo moduleInfo = moduleInfoDao.findByAppNameAndIp(appName, ip);
+    public RepeaterResult<ModuleInfoBO> query(String appName, String ip, String environment) {
+        ModuleInfo moduleInfo = moduleInfoDao.findByAppNameAndIpAndEnvironment(appName, ip, environment);
         if (moduleInfo == null) {
             return RepeaterResult.builder().message("data not exist").build();
         }
@@ -155,7 +155,7 @@ public class ModuleInfoServiceImpl implements ModuleInfoService {
 
     @Override
     public RepeaterResult<String> reload(ModuleInfoParams params) {
-        ModuleInfo moduleInfo = moduleInfoDao.findByAppNameAndIp(params.getAppName(), params.getIp());
+        ModuleInfo moduleInfo = moduleInfoDao.findByAppNameAndIpAndEnvironment(params.getAppName(), params.getIp(), params.getEnvironment());
         if (moduleInfo == null) {
             return ResultHelper.fail("data not exist");
         }
@@ -177,13 +177,18 @@ public class ModuleInfoServiceImpl implements ModuleInfoService {
     }
 
     @Override
-    public RepeaterResult<List<ModuleInfoBO>> queryNotIp(String appName, String ip) {
-        List<ModuleInfo> moduleInfos = moduleInfoDao.queryNotIp(appName, ip);
+    public RepeaterResult<List<ModuleInfoBO>> queryNotIpNotEnvironment(String appName, String ip, String environment) {
+        List<ModuleInfo> moduleInfos = moduleInfoDao.queryRepeat(appName);
         return ResultHelper.success(moduleInfos.stream().map(moduleInfoConverter::convert).collect(Collectors.toList()));
     }
 
+    @Override
+    public RepeaterResult<ModuleInfoBO> queryByIdAndAppName(String appName, long moduleId) {
+        return ResultHelper.success(moduleInfoConverter.convert(moduleInfoDao.queryByIdAndAppName(appName, moduleId)));
+    }
+
     private RepeaterResult<ModuleInfoBO> execute(String uri, ModuleInfoParams params, ModuleStatus finishStatus) {
-        ModuleInfo moduleInfo = moduleInfoDao.findByAppNameAndIp(params.getAppName(), params.getIp());
+        ModuleInfo moduleInfo = moduleInfoDao.findByAppNameAndIpAndEnvironment(params.getAppName(), params.getIp(), params.getEnvironment());
         if (moduleInfo == null) {
             return ResultHelper.fail("data not exist");
         }

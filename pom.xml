@@ -37,24 +37,6 @@
         <module>repeater-aide</module>
     </modules>
 
-    <developers>
-        <developer>
-            <id>zhaowanxin</id>
-            <name>赵跃兵</name>
-            <email>zhaowanxin(AT)foxmail(DOT)com</email>
-            <organization>Alibaba Open Source</organization>
-            <organizationUrl>https://github.com/alibaba</organizationUrl>
-            <roles>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
-
-    <organization>
-        <name>Alibaba Open Source</name>
-        <url>https://github.com/alibaba</url>
-    </organization>
-
     <dependencyManagement>
         <dependencies>
             <!-- = = = = = = = = ==-->

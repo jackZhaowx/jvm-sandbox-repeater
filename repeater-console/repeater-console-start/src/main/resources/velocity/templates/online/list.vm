@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/favorite.ico" type="image/x-icon"/>
+    <link rel=”icon” href="/favorite.ico" type="image/x-icon"/>
+    <link rel="bookmark" href="/favorite.ico" type="image/x-icon"/>
+    <title>在线流量 </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/dist/css/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/dist/css/bootstrap-datetimepicker.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="/dist/css/fonts/googlefonts.css" rel="stylesheet">
+    <style>
+        .form-inline .form-control {
+            width: calc(100% - 8em);
+        }
+
+        .form-inline .form-label {
+            width: 8em;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini ">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>在线流量</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/home.htm" target="_self">首页</a></li>
+                            <li class="breadcrumb-item active">在线流量</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-blue card-outline">
+                        <div class="card-header border-0">
+                            <h5 class="card-title text-blue">
+                                调用列表 <i class="fa fa-database"></i>
+                            </h5>
+                        </div>
+                        <div class="card-body" style="margin-top: -20px">
+                            <form class="form-inline" method="get" action="list.htm">
+                                <div class="row col-lg-12">
+                                    <div class="form-group col-lg-5" style="padding-left:10px;padding-bottom:10px;">
+                                        <label class="form-label" for="appName">应用名:</label>
+                                        <input type="text" class="form-control" placeholder="appName" name="appName"
+                                               value="$!requestParams.appName" autocomplete="off"
+                                               data-toggle="tooltip"
+                                               title="appName">
+                                    </div>
+                                    <div class="form-group col-lg-5"
+                                         style="padding-left: 10px;padding-bottom:10px;">
+                                        <label class="form-label" for="TraceId">TraceId:</label>
+                                        <input type="text" class="form-control" placeholder="TraceId" name="traceId"
+                                               value="$!requestParams.traceId" autocomplete="off"
+                                               data-toggle="tooltip"
+                                               title="TraceId">
+                                    </div>
+                                    <div class="form-group  col-lg-2"
+                                         style="padding-left: 10px;padding-bottom:10px;">
+                                        <label class="form-label" for="url">回放结果:</label>
+                                        <select class="form-control" placeholder="回放结果"
+                                                name="replayStatus"
+                                                value="$!requestParams.replayStatus" autocomplete="off"
+                                                data-toggle="tooltip"
+                                                title="url">
+                                            #if($requestParams.replayStatus==0)
+                                                <option value="">全部</option>
+                                                <option selected value="0">未回放</option>
+                                                <option value="1">一致</option>
+                                                <option value="2">不一致</option>
+                                            #elseif($requestParams.replayStatus==1)
+                                                <option value="">全部</option>
+                                                <option value="0">未回放</option>
+                                                <option selected value="1">一致</option>
+                                                <option value="2">不一致</option>
+                                            #elseif($requestParams.replayStatus==2)
+                                                <option value="">全部</option>
+                                                <option value="0">未回放</option>
+                                                <option value="1">一致</option>
+                                                <option selected value="2">不一致</option>
+                                            #else
+                                                <option selected value="">全部</option>
+                                                <option value="0">未回放</option>
+                                                <option value="1">一致</option>
+                                                <option value="2">不一致</option>
+                                            #end
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <div class="form-group col-lg-5"
+                                         style="padding-left: 10px;padding-bottom:10px;">
+                                        <label class="form-label" for="clientHost">客户端IP:</label>
+                                        <input type="text" class="form-control" placeholder="clientHost"
+                                               name="clientHost"
+                                               value="$!requestParams.clientHost" autocomplete="off"
+                                               data-toggle="tooltip"
+                                               title="clientHost">
+                                    </div>
+                                    <div class="form-group col-lg-7" style="padding-left: 10px;padding-bottom:10px;">
+                                        <label class="form-label" for="url">接口地址:</label>
+                                        <input type="text" class="form-control" placeholder="url"
+                                               name="url"
+                                               value="$!requestParams.url" autocomplete="off"
+                                               data-toggle="tooltip"
+                                               title="url">
+                                    </div>
+                                </div>
+                                <div class="row col-lg-12">
+                                    <div class="form-group col-lg-5"
+                                         style="padding-left: 10px;padding-bottom:10px;">
+                                        <label class="form-label" for="startDate">录制开始时间:</label>
+                                        <input type="text" class="form-control" placeholder="录制开始时间"
+                                               name="startDate"
+                                               id="gmt-start"
+                                               value="$!requestParams.startDate" autocomplete="off"
+                                               data-toggle="tooltip"
+                                               title="url">
+                                    </div>
+                                    <div class="form-group col-lg-5"
+                                         style="padding-left: 10px;padding-bottom:10px;">
+                                        <label class="form-label" for="startDate">录制结束时间:</label>
+                                        <input type="text" class="form-control" placeholder="录制结束时间"
+                                               name="endDate"
+                                               id="gmt-end"
+                                               value="$!requestParams.endDate" autocomplete="off"
+                                               data-toggle="tooltip"
+                                               title="url">
+                                    </div>
+                                    <div class="form-group col-lg-2"
+                                         style="padding-left: 20px;padding-bottom:10px;">
+                                        <button type="submit" class="btn btn-primary"
+                                                data-loading-text="searching" id="search-online-btn">
+                                            查询 <i class="fa fa-search icon-on-right bigger"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <table class="table table-hover table-striped" style="word-break: break-all;">
+                                #if($pagerWrapper.content && $pagerWrapper.content.size() > 0)
+                                    <thead>
+                                    <tr style="text-align: center;">
+                                        <th><input data-toggle="tooltip" title="全选" type="checkbox" id="check-all"
+                                                   name="check-all" value=""/></th>
+                                        <th>应用名</th>
+                                        <th>流量入口</th>
+                                        <th>TraceID</th>
+                                        <th>环境</th>
+                                        <th>客户端机器</th>
+                                        <th>机器</th>
+                                        <th>时间</th>
+                                        <th>回放结果</th>
+                                        <th width="100px">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        #foreach($data in $pagerWrapper.content)
+                                        <tr style="text-align: center;">
+                                            <td style="vertical-align: middle"><input data-toggle="icheck"
+                                                                                      type="checkbox" name="choose-case"
+                                                                                      value="$!{data.traceId}"/></td>
+                                            <td style="vertical-align: middle">$!data.appName</td>
+                                            <td style="vertical-align: middle">
+                                                #if($!{data.url}!="")
+                                                    $!{data.url}
+                                                #elseif($!{data.entranceDesc}!="")
+                                                    $!data.entranceDesc
+                                                #end
+                                            </td>
+                                            <td style="vertical-align: middle">$!{data.traceId}</td>
+                                            <td style="vertical-align: middle">$!{data.environment}</td>
+                                            <td style="vertical-align: middle">$!{data.clientHost}</td>
+                                            <td style="vertical-align: middle">$!{data.host}</td>
+                                            <td style="vertical-align: middle">$!{data.gmtRecord}</td>
+                                            <td style="vertical-align: middle">
+                                                #if($!{data.replay}==false)
+                                                    <span class="badge badge-danger">未回放</span>
+                                                #elseif($!{data.replaySuccess}==true)
+                                                    <span class="badge badge-success">一致</span>
+                                                #elseif($!{data.replaySuccess}==false)
+                                                    <span class="badge badge-warning">不一致</span>
+                                                #end
+                                            </td>
+                                            <td style="vertical-align: middle">
+                                                <a target="_self"
+                                                   href="detail.htm?appName=$!{data.appName}&traceId=$!{data.traceId}"
+                                                   class="btn btn-primary btn-xs" data-toggle="tooltip"
+                                                   title="查看详情">详情</a>
+                                                #if($!{data.replay}==false)
+                                                    <button class="btn btn-success btn-xs btn-replay"
+                                                            data-toggle="tooltip"
+                                                            title="执行回放" data-id="$!{data.traceId}"
+                                                            data-app="$!{data.appName}"
+                                                            data-environment="$!{data.environment}"
+                                                            data-ip="$!{data.host}">
+                                                        回放
+                                                    </button>
+                                                #end
+                                            </td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                #else
+                                    <h5 style="padding-left: 10px;padding-top: 20px"> 没有录制到任何数据</h5>
+                                #end
+                            </table>
+                        </div>
+                        <div class="card-footer clearfix">
+                            #parse("blocks/pager.vm")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/dist/js/demo.js"></script>
+<script src="/app/js/start-repaly.js" charset="UTF-8"></script>
+    #parse("blocks/fakeloader.vm")
+
+<script src="/app/js/app.js" charset="UTF-8"></script>
+<script type="application/javascript">
+    jQuery(function ($) {
+        $.fn.datetimepicker.dates['zh-CN'] = {
+            days: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+            daysShort: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+            daysMin: ['日', '一', '二', '三', '四', '五', '六'],
+            months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            monthsShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            today: '今天',
+            suffix: [],
+            meridiem: [],
+            weekStart: 1,
+            format: 'yyyy-mm-dd'
+        };
+        $("#check-all").click(function () {
+            if ($(this).prop("checked")) {
+                $('input[name="choose-case"]:checkbox').each(function () {
+                    $(this).prop("checked", true);
+                })
+            } else {
+                $('input[name="choose-case"]:checkbox').each(function () {
+                    $(this).prop("checked", false);
+                })
+            }
+        });
+        $("#gmt-start").datetimepicker({
+            bootcssVer: 3,  //bootstrap-datetimepicker＋bootstrap v3，但这个插件使用的时候，并没有和V3相匹配，仍然调用的是bootstrap V2的图标 把bootcssVer的值直接设为3，否则datetimepicker不会显示出上、下个月的箭头
+            format: 'yyyy-mm-dd hh:ii:ss',
+            minView: 0,
+            minuteStep: 1,
+            todayBtn: true, //如果此值为true 或 "linked"，则在日期时间选择器组件的底部显示一个 "Today" 按钮用以选择当前日期。如果是true的话，"Today" 按钮仅仅将视图转到当天的日期，如果是"linked"，当天日期将会被选中。
+            language: 'zh-CN',
+            autoclose: true, //当选择一个日期之后是否立即关闭此日期时间选择器。
+            keyboardNavigation: true, //是否允许通过方向键改变日期。
+            forceParse: true, //当选择器关闭的时候，是否强制解析输入框中的值。
+            todayHighlight: 1  //如果为true, 高亮当前日期
+        }).on("click", function () {
+            //設置可选的最后日期為當前日期
+            $("#gmt-start").datetimepicker("setEndDate", getToday())
+        });
+        $("#gmt-end").datetimepicker({
+            bootcssVer: 3,  //bootstrap-datetimepicker＋bootstrap v3，但这个插件使用的时候，并没有和V3相匹配，仍然调用的是bootstrap V2的图标 把bootcssVer的值直接设为3，否则datetimepicker不会显示出上、下个月的箭头
+            format: 'yyyy-mm-dd hh:ii:ss',
+            minView: 0,
+            minuteStep: 1,
+            todayBtn: true, //如果此值为true 或 "linked"，则在日期时间选择器组件的底部显示一个 "Today" 按钮用以选择当前日期。如果是true的话，"Today" 按钮仅仅将视图转到当天的日期，如果是"linked"，当天日期将会被选中。
+            language: 'zh-CN',
+            autoclose: true, //当选择一个日期之后是否立即关闭此日期时间选择器。
+            keyboardNavigation: true, //是否允许通过方向键改变日期。
+            forceParse: true, //当选择器关闭的时候，是否强制解析输入框中的值。
+            todayHighlight: 1  //如果为true, 高亮当前日期
+        }).on("click", function () {
+            //設置可选的最后日期為當前日期
+            $("#gmt-end").datetimepicker("setEndDate", getToday())
+        });
+    });
+
+    //獲取當前日期
+    function getToday() {
+        var today = new Date()
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate() + 1;
+        var todayStr = year + "-" + month + "-" + day;
+        return todayStr;
+    }
+</script>
+    #parse("blocks/start-replay.vm")
+</body>
+</html>

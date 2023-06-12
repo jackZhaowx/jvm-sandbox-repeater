@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html style="background: #f4f6f9;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/favorite.ico" type="image/x-icon"/>
+    <link rel=”icon” href="/favorite.ico" type="image/x-icon"/>
+    <link rel="bookmark" href="/favorite.ico" type="image/x-icon"/>
+    <title>首页 </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/dist/css/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/dist/css/bootstrap-datetimepicker.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="/dist/css/fonts/googlefonts.css" rel="stylesheet">
+    <style>
+        .gua {
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #777;
+            flex-direction: inherit;
+        }
+
+        .card {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini" style="overflow: overlay;">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content" style="justify-content: center; text-align: center;">
+            <div class="card">
+                <div class="row" style="justify-content:center;">
+                    <div class="card bg-gradient-purple col-md-3" style="border-radius: 25px;">
+                        应用数：$!homeBo.appTotal</div>
+                    <div class="card bg-gradient-maroon col-md-3" style="border-radius: 25px;">
+                        机器数：$!homeBo.machineTotal</div>
+                    <div class="card bg-gradient-warning col-md-3" style="border-radius: 25px;">
+                        服务数：$!homeBo.serviceTotal</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-inline" id="searchForm" method="get" action=""
+                         style="padding-top: 20px;justify-content: center;">
+                        <div class="form-group" style="margin-left:10px">
+                            <label for="appName">应用名:</label>
+                            <input type="text" class="form-control" placeholder="appName" name="appName"
+                                   value="$!requestParams.appName"
+                                   autocomplete="off" data-toggle="tooltip" title=""
+                                   style="width: 210px;margin-left:10px" data-original-title="appName">
+                        </div>
+                        <div class="form-group" style="margin-left: 10px">
+                            <label for="ip">机器IP:</label>
+                            <input type="text" class="form-control" placeholder="ip" name="ip"
+                                   value="$!requestParams.ip"
+                                   autocomplete="off" data-toggle="tooltip" title=""
+                                   style="width: 210px;margin-left:10px" data-original-title="ip">
+                        </div>
+                        <div class="form-group" style="margin-left: 10px;margin-bottom:10px;">
+                            <label for="startDate">开始时间:</label>
+                            <input type="text" class="form-control" placeholder="录制开始时间" name="startDate"
+                                   id="gmt-start" value="$!requestParams.startDate" autocomplete="off"
+                                   data-toggle="tooltip" title=""
+                                   style="width: 210px;margin-left:10px" data-original-title="url">
+                        </div>
+                        <div class="form-group" style="margin-left: 10px;margin-bottom:10px;">
+                            <label for="startDate">结束时间:</label>
+                            <input type="text" class="form-control" placeholder="录制结束时间" name="endDate"
+                                   id="gmt-end" value="$!requestParams.endDate" autocomplete="off" data-toggle="tooltip"
+                                   title=""
+                                   style="width: 210px;margin-left:10px" data-original-title="url">
+                        </div>
+                        <div class="form-group" style="margin-left: 20px">
+                            <button onclick="search()" class="btn btn-primary" data-loading-text="searching"
+                                    id="search-online-btn">
+                                查询 <i class="fa fa-search icon-on-right bigger"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-v-d42cfe5c="" class="card gua row">
+                <div class="card bg-info text-white col-md-5" style="border-radius: 50px;">
+                    <div class="card-body">
+                        <div>录制总量：<span id="recordTotal"></span></div>
+                        <div>回放总量：<span id="replayTotal"></span></div>
+                        <div>未回放总量：<span id="replayNoTotal"></span></div>
+                    </div>
+                </div>
+                <div class="card bg-success text-white col-md-5" style="border-radius: 50px;">
+                    <div class="card-body">
+                        <div>回放成功：<span id="successTotal"></span></div>
+                        <div>回放失败：<span id="failTotal"></span></div>
+                        <div>回放成功率：<span id="succRateTotal"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card row" style="height: 500px;">
+                <div style="width: 50%; height: 500px;" id="population_chart_line"></div>
+                <div style="width: 50%; height: 500px;" id="population_chart_bar"></div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/dist/js/demo.js"></script>
+<script src="/app/js/app.js" charset="UTF-8"></script>
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    #parse("blocks/fakeloader.vm")
+<script type="application/javascript">
+    jQuery(function ($) {
+        search();
+        $.fn.datetimepicker.dates['zh-CN'] = {
+            days: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+            daysShort: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+            daysMin: ['日', '一', '二', '三', '四', '五', '六'],
+            months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            monthsShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            today: '今天',
+            suffix: [],
+            meridiem: [],
+            weekStart: 1,
+            format: 'yyyy-mm-dd'
+        };
+        $("#gmt-start").datetimepicker({
+            bootcssVer: 3,  //bootstrap-datetimepicker＋bootstrap v3，但这个插件使用的时候，并没有和V3相匹配，仍然调用的是bootstrap V2的图标 把bootcssVer的值直接设为3，否则datetimepicker不会显示出上、下个月的箭头
+            format: 'yyyy-mm-dd hh:ii:ss',
+            minView: 0,
+            minuteStep: 1,
+            todayBtn: true, //如果此值为true 或 "linked"，则在日期时间选择器组件的底部显示一个 "Today" 按钮用以选择当前日期。如果是true的话，"Today" 按钮仅仅将视图转到当天的日期，如果是"linked"，当天日期将会被选中。
+            language: 'zh-CN',
+            autoclose: true, //当选择一个日期之后是否立即关闭此日期时间选择器。
+            keyboardNavigation: true, //是否允许通过方向键改变日期。
+            forceParse: true, //当选择器关闭的时候，是否强制解析输入框中的值。
+            todayHighlight: 1  //如果为true, 高亮当前日期
+        }).on("click", function () {
+            //設置可选的最后日期為當前日期
+            $("#gmt-start").datetimepicker("setEndDate", getToday())
+        });
+        $("#gmt-end").datetimepicker({
+            bootcssVer: 3,  //bootstrap-datetimepicker＋bootstrap v3，但这个插件使用的时候，并没有和V3相匹配，仍然调用的是bootstrap V2的图标 把bootcssVer的值直接设为3，否则datetimepicker不会显示出上、下个月的箭头
+            format: 'yyyy-mm-dd hh:ii:ss',
+            minView: 0,
+            minuteStep: 1,
+            todayBtn: true, //如果此值为true 或 "linked"，则在日期时间选择器组件的底部显示一个 "Today" 按钮用以选择当前日期。如果是true的话，"Today" 按钮仅仅将视图转到当天的日期，如果是"linked"，当天日期将会被选中。
+            language: 'zh-CN',
+            autoclose: true, //当选择一个日期之后是否立即关闭此日期时间选择器。
+            keyboardNavigation: true, //是否允许通过方向键改变日期。
+            forceParse: true, //当选择器关闭的时候，是否强制解析输入框中的值。
+            todayHighlight: 1  //如果为true, 高亮当前日期
+        }).on("click", function () {
+            //設置可选的最后日期為當前日期
+            $("#gmt-end").datetimepicker("setEndDate", getToday())
+        });
+    })
+    ;
+
+    function initLineChart(xAxisData, seriesData1,seriesData2) {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('population_chart_line'));
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '录制与回放流量(默认查询本周的)',
+                left: '30%', //标题的位置 默认是left，其余还有center、right属性
+                bottom: '0%',
+                textStyle: {
+                    color: "black",
+                    fontSize: 14,
+                    fontWeight: 'normal'
+                }
+            },
+            tooltip: {},
+            legend: {
+                data: ['录制', '回放']
+            },
+            xAxis: {
+                data: xAxisData
+            },
+            yAxis: {},
+            series: [{
+                itemStyle : {
+                    normal: {
+                        label : {
+                            show: true
+                        },
+                        color:  ['#7BCC23'],
+                        lineStyle: {
+                            color: ['#7BCC23'],
+                        }
+                    }
+                },
+                endLabel: {
+                    show: true,
+                    fontSize: 24,
+                    color: 'red',
+                    formatter: function (value) {
+                        return value.seriesName;
+                    }
+                },
+                name: '录制',
+                type: 'line',
+                data: seriesData1
+            }, {
+                itemStyle : {
+                    normal: {
+                        label : {
+                                    show: true
+                                },
+                        color:  ['#0A9CF8'],
+                        lineStyle: {
+                            color: ['#0A9CF8'],
+                        }
+                    }
+                },
+                endLabel: {
+                    show: true,
+                    fontSize: 24,
+                    color: 'green',
+                    formatter: function (value) {
+                        return value.seriesName;
+                    }
+                },
+                name: '回放',
+                type: 'line',
+                data: seriesData2
+            }]
+        };
+        myChart.setOption(option);
+    }
+
+    function initPieChart(seriesData){
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('population_chart_bar'))
+        // 指定图表的配置项和数据
+        var option = {
+            legend: {
+                type: 'plain',
+                orient: 'vertical',
+                left: '75%',
+                top: 'center',
+                align: 'left',
+                itemGap: 6,
+                itemWidth: 10, // 设置宽度
+                itemHeight: 10, // 设置高度
+                icon: 'circle',
+                symbolKeepAspect: false,
+                formatter: function (name) {
+                    let data = option.series[0].data
+                    let total = 0
+                    let tarValue
+                    for (let i = 0; i < data.length; i++) {
+                        total += data[i].value
+                        if (data[i].name == name) {
+                            tarValue = data[i].value
+                        }
+                    }
+                    let v = tarValue + '条'
+                    //计算出百分比
+                    let p = Math.round((tarValue / total) * 100) + '%'
+                    return `${name}  ${v}  ${p}`
+                    //name是名称，v是数值
+                },
+            },
+            color: ['#17a2b8', '#6f42c1', '#d81b60', '#28a745', '#ffc107', '#29abe2', '#00ffff'],
+            series: [
+                {
+                    name: '回放结果',
+                    type: 'pie',
+                    radius: ['42%', '53%'],
+                    center: ['40%', '50%'],
+                    data: seriesData,
+                    roseType: 'angle',
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 200,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+
+    //獲取當前日期
+    function getToday() {
+        var today = new Date()
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate() + 1;
+        var todayStr = year + "-" + month + "-" + day;
+        return todayStr;
+    }
+
+    function search() {
+        var loading = new KZ_Loading('数据加载中。。。');
+        loading.show();
+        var appName = $('input[name="appName"]').val();
+        var ip = $('input[name="ip"]').val();
+        var startDate = $('input[name="startDate"]').val();
+        var endDate = $('input[name="endDate"]').val();
+        $.ajax({
+            type: "get",
+            url: "//" + host + "/search.json",
+            data: {
+                appName: appName,
+                ip: ip,
+                startDate: startDate,
+                endDate, endDate
+            },
+            success: function (data) {
+                $("#recordTotal").html(data.recordTotal);
+                $("#replayTotal").html(data.replayTotal);
+                $("#replayNoTotal").html(data.recordTotal - data.replayTotal)
+                $("#successTotal").html(data.successTotal);
+                $("#failTotal").html(data.failTotal);
+                $("#succRateTotal").html((data.successTotal / (data.replayTotal == 0 ? 1 : data.replayTotal)));
+                var baseCharts=data.replayEchartBOS;
+                var lineDatas=[];
+                var seriesData1=[];
+                var seriesData2=[];
+                baseCharts.forEach((baseChar, index) => {
+                    lineDatas.push(baseChar.strDate);
+                    seriesData1.push(baseChar.recordTotal);
+                    seriesData2.push(baseChar.replayTotal);
+                })
+                initLineChart(lineDatas,seriesData1,seriesData2)
+                loading.destroy();
+                var seriesBarData=[{name:'回放成功',value:data.successTotal},{name:'录制总量',value:data.recordTotal},{name:'回放总量',value:data.replayTotal}]
+                initPieChart(seriesBarData)
+            },
+            error: function (XMLHttpRequest) {
+                loading.destroy();
+                notice("服务抽风了，网络异常 " + XMLHttpRequest.responseText, false);
+            }
+        })
+    }
+</script>
+</body>
+</html>

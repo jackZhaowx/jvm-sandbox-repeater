@@ -27,4 +27,10 @@ public class ReplayParams extends BaseParams {
 
     private boolean mock;
 
+    private long moduleId;
+
+    private String rTraceId;
+
+    private String replayStatus;
+
 }

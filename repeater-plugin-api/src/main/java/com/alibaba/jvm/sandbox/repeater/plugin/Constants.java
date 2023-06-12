@@ -66,6 +66,10 @@ public class Constants {
      * 模块心跳地址
      */
     public static final String REPEAT_HEARTBEAT_URL = "repeat.heartbeat.url";
+    /**
+     * 模块心跳地址
+     */
+    public static final String REPEAT_PORT = "repeat.port";
 
     /**
      * 插件自有类正则

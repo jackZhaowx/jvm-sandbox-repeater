@@ -23,80 +23,6 @@
 <body class="hold-transition sidebar-mini ">
 <!-- Site wrapper -->
 <div class="wrapper">
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-dark">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
-
-        <!-- Right navbar links -->
-        <ul class="navbar-nav ml-auto">
-        </ul>
-    </nav>
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
-        <a href="#" class="brand-link">
-            <img src="/dist/img/RepeaterLogo.ico"
-                 alt="AdminLTE Logo"
-                 class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light">华夏星斗流量录制回放平台</span>
-        </a>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-                    <li class="nav-item">
-                        <a href="/online/search.htm" target="_self" class="nav-link">
-                            <i class="nav-icon fa fa-database"></i>
-                            <p>
-                                在线流量
-                                <span class="right badge badge-success">New</span>
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" target="_self" class="nav-link active">
-                            <i class="nav-icon fa fa-heartbeat"></i>
-                            <p>
-                                回放记录
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/config/list.htm" target="_self" class="nav-link">
-                            <i class="nav-icon fa fa-cogs"></i>
-                            <p>
-                                配置管理
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/module/list.htm" target="_self" class="nav-link">
-                            <i class="nav-icon fa fa-heartbeat"></i>
-                            <p>
-                                在线模块
-                            </p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
-    </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -148,19 +74,19 @@
                                             <table class="table table-hover table-striped"
                                                    style="word-break: break-all;">
                                                 <tbody>
-                                                <tr>
+                                                <tr style="text-align: center;">
                                                     <td width="100px" class="text-right text-bold">应用名</td>
                                                     <td>$!record.appName</td>
                                                     <td width="100px" class="text-right text-bold">流量入口</td>
                                                     <td>$!record.entranceDesc</td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="text-align: center;">
                                                     <td width="100px" class="text-right text-bold">录制机器</td>
                                                     <td>$!record.host</td>
                                                     <td width="100px" class="text-right text-bold">TraceId</td>
                                                     <td>$!{record.traceId}</td>
                                                 </tr>
-                                                <tr>
+                                                <tr style="text-align: center;">
                                                     <td width="100px" class="text-right text-bold">录制时间</td>
                                                     <td>$!record.gmtRecord</td>
                                                     <td width="100px" class="text-right text-bold">录制环境</td>
@@ -218,7 +144,7 @@
                                                 <table class="table table-hover table-striped"
                                                        style="word-break: break-all;">
                                                     <thead>
-                                                    <tr>
+                                                    <tr style="text-align: center;">
                                                         <th>执行结果</th>
                                                         <th>耗时</th>
                                                         <th>执行环境</th>
@@ -229,7 +155,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
+                                                    <tr style="text-align: center;">
                                                         <td>
                                                             #if($!replay.status.desc == '执行中')
                                                                 <span class="badge bg-primary">执行中</span>
@@ -259,7 +185,7 @@
                                                 <table class="table table-bordered table-striped"
                                                        style="word-break: break-all;">
                                                     <thead>
-                                                    <tr>
+                                                    <tr style="text-align: center;">
                                                         <th style="min-width: 100px;">节点</th>
                                                         <th style="min-width: 100px;">期望值</th>
                                                         <th style="min-width: 100px;">实际值</th>
@@ -268,7 +194,7 @@
                                                     </thead>
                                                     <tbody>
                                                         #foreach($diff in $replay.differences)
-                                                        <tr>
+                                                        <tr style="text-align: center;">
                                                             <td>$!diff.nodeName</td>
                                                             <td>
                                                                 #if($diff.expect)
@@ -317,7 +243,7 @@
                                                 <table class="table table-hover table-striped"
                                                        style="word-break: break-all;">
                                                     <thead>
-                                                    <tr>
+                                                    <tr style="text-align: center;">
                                                         <th width="5%">序号</th>
                                                         <th width="15%">录制identity</th>
                                                         <th width="15%">回放identity</th>
@@ -329,7 +255,7 @@
                                                     </thead>
                                                     <tbody>
                                                         #foreach($mock in $!replay.mockInvocations)
-                                                        <tr>
+                                                        <tr style="text-align: center;">
                                                             <td>$!mock.index</td>
                                                             <td>$!mock.originUri</td>
                                                             <td>$!mock.currentUri</td>
@@ -366,20 +292,6 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 1.0.0
-        </div>
-        <strong>Copyright &copy; 2023-2024 <a href="#">华夏人寿保险股份有限公司</a>.</strong> All rights
-        reserved.
-    </footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 

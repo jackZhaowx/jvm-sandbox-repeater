@@ -7,6 +7,7 @@ jQuery(function ($) {
         $('#replay-appName').val(appName);
         var modal = $('#start-replay-modal');
         var ip = $(this).attr('data-ip');
+        var environment = $(this).attr('data-environment');
         modal.on('shown.bs.modal', function () {
             $(this).css('display', 'block');
             var modalHeight = $(window).height() / 2 - $('#start-replay-modal .modal-dialog').height() / 2;
@@ -15,7 +16,11 @@ jQuery(function ($) {
             });
         });
         // 初始化场景选择列表
-        innerPost("/module/byName.json", {'appName': appName, 'ip': ip}, function (response) {
+        innerPost("/module/byName.json", {
+            'appName': appName,
+            'ip': ip,
+            'environment': environment
+        }, function (response) {
             var sSelectArea = $("#machine-select-group");
             var sSelect = $("#machine-select");
             var sHelp = $("#machine-help");
@@ -24,9 +29,9 @@ jQuery(function ($) {
                 jQuery.each(response.data, function (i, val) {
                     var version = (val.version === '-' ? '' : ' 版本:' + val.version);
                     if (i === 0) {
-                        sSelect.append('<option value="' + val.ip + '" selected>' + val.ip + '[' + val.environment + version + ']' + '</option>')
+                        sSelect.append('<option value="' + val.id + '" selected>' + val.ip + '[' + val.environment + version + ']' + '</option>')
                     } else {
-                        sSelect.append('<option value="' + val.ip + '">' + val.ip + '[' + val.environment + version + ']' + '</option>')
+                        sSelect.append('<option value="' + val.id + '">' + val.ip + '[' + val.environment + version + ']' + '</option>')
                     }
                 });
                 sSelectArea.show();
@@ -55,8 +60,7 @@ jQuery(function ($) {
                 $("#start-replay-modal").modal('hide')
                 hideLoading(10)
                 if (data.success) {
-                    openNewWindow(protocol + "//" + host + "/replay/detail.htm?repeatId=" + data.data + "&appName=" + appName,
-                        "执行发起成功，您的浏览器阻止了结果页面自动打开，请先允许或点击前往 >> ")
+                    window.location.href=protocol + "//" + host + "/replay/detail.htm?repeatId=" + data.data + "&appName=" + appName;
                 } else {
                     notice(data.message, data.success)
                 }

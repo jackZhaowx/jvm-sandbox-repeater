@@ -5,7 +5,7 @@ import com.alibaba.repeater.console.dal.model.Replay;
 import org.springframework.stereotype.Component;
 
 /**
- * {@link replayListConverter}
+ * {@link ReplayListConverter}
  * <p>
  *
  * @author zhaowanxin
@@ -23,6 +23,7 @@ public class ReplayListConverter implements ModelConverter<Replay, ReplayListBO>
         rbo.setTraceId(replay.getTraceId());
         rbo.setSuccess(replay.getSuccess());
         rbo.setCost(replay.getCost());
+        rbo.setRTraceId(replay.getRecord().getTraceId());
         return rbo;
     }
 

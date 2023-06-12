@@ -18,14 +18,17 @@ public class RecordParams extends BaseParams {
     private String clientHost;
     private String url;
     private String host;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
 
-    public RecordParams(String clientHost, String url, String host, Date startDate, Date endDate) {
+    private String replayStatus;
+
+    public RecordParams(String clientHost, String url, String host, String startDate, String endDate, String replayStatus) {
         this.clientHost = clientHost;
         this.url = url;
         this.host = host;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.replayStatus = replayStatus;
     }
 }

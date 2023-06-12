@@ -2,37 +2,44 @@ package com.alibaba.repeater.console.service.impl;
 
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
 import com.alibaba.repeater.console.common.domain.HomeBO;
+import com.alibaba.repeater.console.common.domain.HomeSearchBO;
+import com.alibaba.repeater.console.common.domain.RecordAndReplayEchartBO;
+import com.alibaba.repeater.console.common.params.HomeParams;
+import com.alibaba.repeater.console.common.utils.DateUtil;
 import com.alibaba.repeater.console.dal.dao.HomeDao;
+import com.alibaba.repeater.console.dal.model.RecordAndReplayEchart;
 import com.alibaba.repeater.console.service.HomeService;
+import com.alibaba.repeater.console.service.convert.RecordAndReplayConverter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service("homeService")
 public class HomeServiceImpl implements HomeService {
     @Resource
     private HomeDao homeDao;
+    @Resource
+    RecordAndReplayConverter recordAndReplayEchartConverter;
+
     @Override
-    public RepeaterResult<List<HomeBO>> indexJson() {
-        List<HomeBO> result = new ArrayList<>();
-        HomeBO homeBO = new HomeBO();
-        homeBO.setName("原始记录");
-        homeBO.setTotal(homeDao.getRecordTotal());
-        HomeBO homeBO1 = new HomeBO();
-        homeBO1.setName("回调记录");
-        homeBO1.setTotal(homeDao.getReplayTotal());
-        HomeBO homeBO2 = new HomeBO();
-        homeBO2.setName("相同结果");
-        homeBO2.setTotal(homeDao.getReplayResultTotal(1));
-        HomeBO homeBO3 = new HomeBO();
-        homeBO3.setName("不同结果");
-        homeBO3.setTotal(homeDao.getReplayResultTotal(0));
-        result.add(homeBO);
-        result.add(homeBO1);
-        result.add(homeBO2);
-        result.add(homeBO3);
-        return RepeaterResult.builder().success(true).message("查询成功").data(result).build();
+    public HomeBO dataJson() {
+        return homeDao.dataJson();
+    }
+
+    @Override
+    public HomeSearchBO searchJson(HomeParams params) {
+        if (StringUtils.isBlank(params.getStartDate()) || StringUtils.isBlank(params.getEndDate())) {
+            Map<String, String> map = DateUtil.weekBeginningAndEnding();
+            params.setStartDate(map.get("begin"));
+            params.setEndDate(map.get("end"));
+        }
+        HomeSearchBO homeSearchBO = homeDao.searchJson(params);
+        homeSearchBO.setReplayEchartBOS(homeDao.searchCharJson(params).stream().map(recordAndReplayEchartConverter::convert).collect(Collectors.toList()));
+        return homeSearchBO;
     }
 }

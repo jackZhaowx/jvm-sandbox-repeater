@@ -16,7 +16,11 @@ public class ReplayListBO extends BaseBO {
 
     private String repeatId;
 
+    private String rTraceId;
+
     private String traceId;
+
+    private Integer status;
 
     private Boolean success;
 

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.jvm.sandbox.repeater.plugin.Constants;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.impl.AbstractRepeater;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.util.HttpUtil;
+import com.alibaba.jvm.sandbox.repeater.plugin.core.util.PropertyUtil;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.HttpInvocation;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.Invocation;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.InvokeType;
@@ -42,12 +43,12 @@ public class HttpRepeater extends AbstractRepeater {
                 .append("://")
                 .append("127.0.0.1")
                 .append(":")
-                .append(hi.getPort())
+                .append(PropertyUtil.getPropertyOrDefault(Constants.REPEAT_PORT, ""))
                 .append(hi.getRequestURI());
         String url = builder.toString();
         Map<String, String> headers = rebuildHeaders(hi.getHeaders(), extra);
         HttpUtil.Resp resp = HttpUtil.invoke(url, hi.getMethod(), headers, hi.getParamsMap(), hi.getBody());
-        log.debug("开始执行回放，回放结果：{}", JSON.toJSON(resp));
+        log.debug("开始执行回放:{}，回放结果：{}", url, JSON.toJSON(resp));
         return resp.isSuccess() ? resp.getBody() : resp.getMessage();
     }
 

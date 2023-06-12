@@ -4,6 +4,7 @@ import com.alibaba.repeater.console.common.params.ModuleInfoParams;
 import com.alibaba.repeater.console.dal.model.ModuleInfo;
 import com.alibaba.repeater.console.dal.repository.ModuleInfoRepository;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -52,7 +53,7 @@ public class ModuleInfoDao {
     }
 
     public ModuleInfo save(ModuleInfo params) {
-        if (moduleInfoRepository.updateByAppNameAndIp(params) > 0) {
+        if (moduleInfoRepository.updateByAppNameAndIpAndEnviAndEnvironment(params) > 0) {
             return params;
         }
         return moduleInfoRepository.saveAndFlush(params);
@@ -62,8 +63,8 @@ public class ModuleInfoDao {
         return moduleInfoRepository.saveAndFlush(params);
     }
 
-    public ModuleInfo findByAppNameAndIp(String appName, String ip) {
-        return moduleInfoRepository.findByAppNameAndIp(appName, ip);
+    public ModuleInfo findByAppNameAndIpAndEnvironment(String appName, String ip, String environment) {
+        return moduleInfoRepository.findByAppNameAndIpAndEnvironment(appName, ip, environment);
     }
 
     public ModuleInfo findOneById(Long id) {
@@ -74,18 +75,25 @@ public class ModuleInfoDao {
         moduleInfoRepository.updateIngoreKeys(params);
     }
 
-    public List<ModuleInfo> queryNotIp(String appName, String ip) {
+    public List<ModuleInfo> queryRepeat(String appName) {
         return moduleInfoRepository.findAll(
                 (root, query, cb) -> {
                     List<Predicate> predicates = Lists.newArrayList();
-                    if (appName != null && !appName.isEmpty()) {
+                    if (StringUtils.isNotBlank(appName)) {
                         predicates.add(cb.equal(root.<String>get("appName"), appName));
                     }
-                    if (ip != null && !ip.isEmpty()) {
-                        predicates.add(cb.notEqual(root.<String>get("ip"), ip));
-                    }
+                    predicates.add(cb.equal(root.<String>get("environment"), "repeate"));
                     return cb.and(predicates.toArray(new Predicate[0]));
                 }
         );
+    }
+
+    public ModuleInfo queryByIdAndAppName(String appName, long moduleId) {
+        ModuleInfo moduleInfo = moduleInfoRepository.findByIdAndAppName(moduleId, appName);
+        return moduleInfo;
+    }
+
+    public List<String> getRecordModule() {
+        return moduleInfoRepository.getRecordModule();
     }
 }

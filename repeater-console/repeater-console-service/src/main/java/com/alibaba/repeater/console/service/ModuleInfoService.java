@@ -20,7 +20,7 @@ public interface ModuleInfoService {
 
     RepeaterResult<List<ModuleInfoBO>> query(String appName);
 
-    RepeaterResult<ModuleInfoBO> query(String appName, String ip);
+    RepeaterResult<ModuleInfoBO> query(String appName, String ip, String environment);
 
     RepeaterResult<ModuleInfoBO> report(ModuleInfoBO params);
 
@@ -36,5 +36,7 @@ public interface ModuleInfoService {
 
     RepeaterResult<ModuleInfo> updateIngoreKeys(ModuleInfoParams params);
 
-    RepeaterResult<List<ModuleInfoBO>> queryNotIp(String appName, String ip);
+    RepeaterResult<List<ModuleInfoBO>> queryNotIpNotEnvironment(String appName, String ip, String environment);
+
+    RepeaterResult<ModuleInfoBO> queryByIdAndAppName(String appName, long moduleId);
 }

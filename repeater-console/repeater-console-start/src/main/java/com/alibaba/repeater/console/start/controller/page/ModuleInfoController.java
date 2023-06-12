@@ -48,8 +48,8 @@ public class ModuleInfoController {
 
     @ResponseBody
     @RequestMapping("/byName.json")
-    public RepeaterResult<List<ModuleInfoBO>> list(@RequestParam("appName") String appName, @RequestParam("ip") String ip) {
-        return moduleInfoService.queryNotIp(appName, ip);
+    public RepeaterResult<List<ModuleInfoBO>> list(@RequestParam("appName") String appName, @RequestParam("ip") String ip, @RequestParam("environment") String environment) {
+        return moduleInfoService.queryNotIpNotEnvironment(appName, ip,environment);
     }
 
     @ResponseBody

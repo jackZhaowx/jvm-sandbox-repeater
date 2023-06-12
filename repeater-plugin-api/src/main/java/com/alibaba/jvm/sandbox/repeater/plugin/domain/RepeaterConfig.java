@@ -15,7 +15,7 @@ import java.util.List;
  * @author zhaowanxin
  * @since 1.0.0
  */
-public class RepeaterConfig implements java.io.Serializable{
+public class RepeaterConfig implements java.io.Serializable {
 
     /**
      * 是否开启ttl线程上下文切换
@@ -56,7 +56,10 @@ public class RepeaterConfig implements java.io.Serializable{
      * 由于HTTP接口的量太大（前后端未分离的情况可能还有静态资源）因此必须走白名单匹配模式才录制
      */
     private List<String> httpEntrancePatterns = Lists.newArrayList();
-
+    /**
+     * 自定义排除url
+     */
+    private List<String> httpNotEntrancePatterns = Lists.newArrayList();
     /**
      * java入口插件动态增强的行为
      */
@@ -123,6 +126,14 @@ public class RepeaterConfig implements java.io.Serializable{
 
     public void setHttpEntrancePatterns(List<String> httpEntrancePatterns) {
         this.httpEntrancePatterns = httpEntrancePatterns;
+    }
+
+    public List<String> getHttpNotEntrancePatterns() {
+        return httpNotEntrancePatterns;
+    }
+
+    public void setHttpNotEntrancePatterns(List<String> httpNotEntrancePatterns) {
+        this.httpNotEntrancePatterns = httpNotEntrancePatterns;
     }
 
     public List<Behavior> getJavaEntranceBehaviors() {
