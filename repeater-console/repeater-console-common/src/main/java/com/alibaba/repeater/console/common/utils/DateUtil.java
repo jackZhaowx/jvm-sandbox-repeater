@@ -26,6 +26,7 @@ public class DateUtil {
 
     /**
      * 计算两个时间差（天）
+     *
      * @param start
      * @param end
      * @return
@@ -34,14 +35,30 @@ public class DateUtil {
         long diff = end.getTime() - start.getTime();
         return diff / (1000 * 3600 * 24);
     }
+
     /**
      * 计算两个时间差（天）
+     *
      * @param start
      * @param end
      * @return
      */
     public static long diffStrDate(String start, String end) {
-        return diffDate(strYMDToDate(start),strYMDToDate(end));
+        return diffDate(strYMDToDate(start), strYMDToDate(end));
+    }
+
+    /**
+     * 获取当前时间所在自然日的起止日期
+     *
+     * @return
+     */
+    public static Map<String, String> dayBeginningAndEnding() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String startDay = df.format(new Date());
+        Map<String, String> map = new HashMap<>();
+        map.put("begin", startDay + " 00:00:00");
+        map.put("end", startDay + " 23:59:59");
+        return map;
     }
 
     /**
@@ -55,26 +72,47 @@ public class DateUtil {
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = new GregorianCalendar();
-        c.setFirstDayOfWeek(Calendar.MONDAY);		//这里设置一周开始时间是星期一
+        c.setFirstDayOfWeek(Calendar.MONDAY);        //这里设置一周开始时间是星期一
         c.setTime(date);
         c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek()); // Monday
         String beginTime = format.format(c.getTime());      //获取当前自然周的起始时间
-        map.put("begin", beginTime+" 00:00:00");
+        map.put("begin", beginTime + " 00:00:00");
         c.set(Calendar.DAY_OF_WEEK, c.getFirstDayOfWeek() + 6); // Sunday
         String endTime = format.format(c.getTime());        //当前自然周的截止时间
-        map.put("end", endTime+" 23:59:59");
+        map.put("end", endTime + " 23:59:59");
         return map;
     }
+
+    /**
+     * 获取当前时间所在自然月的起止日期
+     *
+     * @return
+     */
+    public static Map<String, String> monthBeginningAndEnding() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String startDay = df.format(new Date());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Integer.parseInt(startDay.substring(0, 4)), Integer.parseInt(startDay.substring(5, 7)) - 1, 1);
+        String firstDayOfMonth = new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
+        calendar.set(Integer.parseInt(startDay.substring(0, 4)), Integer.parseInt(startDay.substring(5, 7)), 1);
+        calendar.add(Calendar.DATE, -1);
+        String lastDayOfMonth = new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
+        Map<String, String> map = new HashMap<>();
+        map.put("begin", firstDayOfMonth + " 00:00:00");
+        map.put("end", lastDayOfMonth + " 23:59:59");
+        return map;
+    }
+
     /**
      * 获取开始和结束之间的每一天
      *
      * @param beginTime 开始时间
      * @param endTime   结束时间
-     * @param type  返回列表中的时间格式
+     * @param type      返回列表中的时间格式
      * @return 返回日期字符串列表
      */
-    public static List<String> weekDays(Date beginTime, Date endTime,String type) {
-        DateFormat format=new SimpleDateFormat(type);
+    public static List<String> weekDays(Date beginTime, Date endTime, String type) {
+        DateFormat format = new SimpleDateFormat(type);
         //设置开始时间
         Calendar calStart = Calendar.getInstance();
         calStart.setTime(beginTime);

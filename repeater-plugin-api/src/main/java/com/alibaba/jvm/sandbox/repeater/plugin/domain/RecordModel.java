@@ -20,7 +20,7 @@ import java.util.List;
  * @since 1.0.0
  */
 public class RecordModel implements java.io.Serializable {
-
+    private long cost;
     private long timestamp;
 
     private String appName;
@@ -38,6 +38,14 @@ public class RecordModel implements java.io.Serializable {
     private Invocation entranceInvocation;
 
     private List<Invocation> subInvocations;
+
+    public long getCost() {
+        return cost;
+    }
+
+    public void setCost(long cost) {
+        this.cost = cost;
+    }
 
     public long getTimestamp() {
         return timestamp;

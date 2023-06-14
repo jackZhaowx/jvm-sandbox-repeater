@@ -56,6 +56,8 @@ public class Record implements java.io.Serializable {
 
     private String response;
 
+    private Long cost;
+
     @OneToMany(mappedBy = "record", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Replay> replays;
 }

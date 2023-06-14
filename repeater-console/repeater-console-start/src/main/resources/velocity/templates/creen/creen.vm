@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<!-- 头部模块 -->
+<header>
+    <h1><span>华夏星斗可视化</span></h1>
+    <p><span>HUALIFE STAR</span></p>
+</header>
+
+<div class="main">
+    <!-- top5 -->
+    <div class="top5">
+        <div class="top5-title">
+            <span>流量TOP5</span>
+        </div>
+        <div class="top5-content">
+            <ul id="top5-content-ul">
+
+            </ul>
+        </div>
+        <div class="top5-title">
+            <span>回放分析</span>
+        </div>
+    </div>
+    <!-- 销售总额 -->
+    <div class="total">
+        <div class="data1">
+            <span>年录制</span>
+            <p id="yearNum"></p>
+        </div>
+        <div class="data2">
+            <span>月录制</span>
+            <p id="monthNum"></p>
+        </div>
+        <div class="data3">
+            <span>周录制</span>
+            <p id="weekNum"></p>
+        </div>
+        <div class="data4">
+            <span>日录制</span>
+            <p id="dayNum"></p>
+        </div>
+        <canvas class="rain"></canvas>
+        <canvas class="dashed"></canvas>
+        <div class="sphere">
+            <div class="sphere-bg"></div>
+            <div class="sum">
+                <span>录制总额</span>
+                <p id="totalReplay"></p>
+            </div>
+        </div>
+        <div class="cicle3"></div>
+        <div class="cicle4"></div>
+        <div class="cicle5"></div>
+        <div class="cicle6"></div>
+        <div class="cicle7"></div>
+        <div class="cicle9">
+            <span id="replayRate"></span>
+            <p>回放率</p>
+        </div>
+        <div class="cicle10">
+            <span id="succRate"></span>
+            <p>成功率</p>
+        </div>
+        <div class="cicle11">
+            <span id="failRate"></span>
+            <p>失败率</p>
+        </div>
+    </div>
+    <!-- 会销分析 -->
+    <div class="analyse">
+        <div class="analyse-title">
+            <span>流量耗时分析</span>
+        </div>
+        <ul>
+            <li>
+                <img src="/images/s1.png" alt="">
+                <h5>100ms以内</h5><br>
+                <span>Time Consuming</span><br>
+                <em id="100_"></em>
+            </li>
+            <li>
+                <img src="/images/s3.png" alt="">
+                <h5>500ms以内</h5><br>
+                <span>Time Consuming</span><br>
+                <em id="500_"></em>
+            </li>
+            <li>
+                <img src="/images/s2.png" alt="">
+                <h5>900ms以内</h5><br>
+                <span>Time Consuming</span><br>
+                <em id="900_"></em>
+            </li>
+        </ul>
+        <div class="execution">
+            <div class="title">耗时情况</div>
+            <div class="cicle1"></div>
+            <div class="cicle2"></div>
+            <div class="waterChart1">
+                <div class="chart-title">1s以内占比</div>
+                <div class="chart1"></div>
+            </div>
+            <div class="waterChart2">
+                <div class="chart-title">1-2s占比</div>
+                <div class="chart2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 鞋服配销售分析 -->
+    <div class="sale">
+        <ul>
+            <li>
+                <div class="showImg">
+                    <img src="/images/shoe.png" alt="">
+                </div>
+                <div class="data">
+                    <span>年回放</span>
+                    <span id="yearReplay"></span>
+                </div>
+                <div class="shoeChart"></div>
+            </li>
+            <li>
+                <div class="showImg">
+                    <img src="/images/clothes.png" alt="">
+                </div>
+                <div class="data">
+                    <span>月回放</span>
+                    <span id="monthReplay"></span>
+                </div>
+                <div class="clothesChart"></div>
+            </li>
+            <li>
+                <div class="showImg">
+                    <img src="/images/mz.png" alt="">
+                </div>
+                <div class="data">
+                    <span>日回放</span>
+                    <span id="dayReplay"></span>
+                </div>
+                <div class="mzChart"></div>
+            </li>
+        </ul>
+    </div>
+    <!-- 折线图 -->
+    <div class="lineChart">
+
+    </div>
+</div>
+
+<!-- 底部模块 -->
+<div class="bottom">
+    <h5><span>数据状况</span></h5>
+    <p>Data Status</p>
+</div>
+</body>
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/js/echarts.min.js"></script>
+<script src="/node_modules/echarts-liquidfill/dist/echarts-liquidfill.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/app/js/app.js" charset="UTF-8"></script>
+    #parse("blocks/fakeloader.vm")
+<script>
+    jQuery(function ($) {
+        initData();
+        setInterval(function () {
+            initData();
+        }, 60000);
+
+        function initData() {
+            $.ajax({
+                type: "get",
+                url: "//" + host + "/creenSearch.json",
+                data: {},
+                success: function (data) {
+                    var ht = "";
+                    data.searchTop5BOS.forEach(dt => {
+                        ht += '<li> <div class="cicle"></div> <div class="li-content"> <span>'
+                                + dt.hourTime + '点</span> <span>' + dt.numCount + '</span> <span>' + dt.rate + '</span> <span><img src="/images/up.png" alt=""></span> </div></li>';
+                    });
+                    $("#top5-content-ul").html(ht);
+                    $("#totalReplay").html(data.onlineBO.totalReplay);
+                    $("#yearNum").html(data.onlineBO.yearNum);
+                    $("#monthNum").html(data.onlineBO.monthNum);
+                    $("#weekNum").html(data.onlineBO.weekNum);
+                    $("#dayNum").html(data.onlineBO.dayNum);
+                    $("#replayRate").html(data.onlineBO.replayRate);
+                    $("#succRate").html(data.onlineBO.succRate);
+                    $("#failRate").html(data.onlineBO.failRate);
+                    $("#100_").html(data.onlineBO.oneTime);
+                    $("#500_").html(data.onlineBO.fiveTime);
+                    $("#900_").html(data.onlineBO.nineTime);
+                    waterChart('.chart1', data.onlineBO.oneT);
+                    waterChart('.chart2', data.onlineBO.oneG);
+                    $("#yearReplay").html(data.onlineBO.yearReplay);
+                    $("#monthReplay").html(data.onlineBO.monthReplay);
+                    $("#dayReplay").html(data.onlineBO.dayReplay);
+                    draw('.shoeChart', data.onlineBO.yearReplay, '回放率', data.onlineBO.yearNum, '#09c4ca');
+                    draw('.clothesChart', data.onlineBO.monthReplay, '回放率', data.onlineBO.monthNum, '#09c4ca');
+                    draw('.mzChart', data.onlineBO.dayReplay, '回放率', data.onlineBO.dayNum, '#09c4ca');
+                    lineChart('.lineChart', data.onlineBO.xdata, data.onlineBO.dataArr);
+                    topColor();
+                }
+            })
+        }
+    })
+</script>
+</html>

@@ -70,17 +70,19 @@
                         </div>
                         <div class="form-group" style="margin-left: 10px;margin-bottom:10px;">
                             <label for="startDate">开始时间:</label>
-                            <input type="text" class="form-control" placeholder="录制开始时间" name="startDate"
+                            <input type="text" class="form-control" placeholder="开始时间" name="startDate"
                                    id="gmt-start" value="$!requestParams.startDate" autocomplete="off"
                                    data-toggle="tooltip" title=""
-                                   style="width: 210px;margin-left:10px" data-original-title="url">
+                                   style="width: 210px;margin-left:10px" data-original-title="开始时间" readonly
+                                   ng-model="StartTime">
                         </div>
                         <div class="form-group" style="margin-left: 10px;margin-bottom:10px;">
                             <label for="startDate">结束时间:</label>
-                            <input type="text" class="form-control" placeholder="录制结束时间" name="endDate"
+                            <input type="text" class="form-control" placeholder="结束时间" name="endDate"
                                    id="gmt-end" value="$!requestParams.endDate" autocomplete="off" data-toggle="tooltip"
                                    title=""
-                                   style="width: 210px;margin-left:10px" data-original-title="url">
+                                   style="width: 210px;margin-left:10px" data-original-title="结束时间" readonly
+                                   ng-model="StartTime">
                         </div>
                         <div class="form-group" style="margin-left: 20px">
                             <button onclick="search()" class="btn btn-primary" data-loading-text="searching"
@@ -128,11 +130,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <script src="/app/js/app.js" charset="UTF-8"></script>
-<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<script src="/js/echarts.min.js"></script>
     #parse("blocks/fakeloader.vm")
 <script type="application/javascript">
     jQuery(function ($) {
-        search();
         $.fn.datetimepicker.dates['zh-CN'] = {
             days: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
             daysShort: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
@@ -143,7 +144,7 @@
             suffix: [],
             meridiem: [],
             weekStart: 1,
-            format: 'yyyy-mm-dd'
+            format: 'yyyy-mm-dd hh:ii:ss'
         };
         $("#gmt-start").datetimepicker({
             bootcssVer: 3,  //bootstrap-datetimepicker＋bootstrap v3，但这个插件使用的时候，并没有和V3相匹配，仍然调用的是bootstrap V2的图标 把bootcssVer的值直接设为3，否则datetimepicker不会显示出上、下个月的箭头
@@ -160,6 +161,7 @@
             //設置可选的最后日期為當前日期
             $("#gmt-start").datetimepicker("setEndDate", getToday())
         });
+        $("#gmt-start").datetimepicker("setDate", getStart())
         $("#gmt-end").datetimepicker({
             bootcssVer: 3,  //bootstrap-datetimepicker＋bootstrap v3，但这个插件使用的时候，并没有和V3相匹配，仍然调用的是bootstrap V2的图标 把bootcssVer的值直接设为3，否则datetimepicker不会显示出上、下个月的箭头
             format: 'yyyy-mm-dd hh:ii:ss',
@@ -175,16 +177,17 @@
             //設置可选的最后日期為當前日期
             $("#gmt-end").datetimepicker("setEndDate", getToday())
         });
+        $("#gmt-end").datetimepicker("setDate", getEnd())
+        search();
     })
-    ;
 
-    function initLineChart(xAxisData, seriesData1,seriesData2) {
+    function initLineChart(xAxisData, seriesData1, seriesData2) {
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('population_chart_line'));
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: '录制与回放流量(默认查询本周的)',
+                text: '录制与回放流量',
                 left: '30%', //标题的位置 默认是left，其余还有center、right属性
                 bottom: '0%',
                 textStyle: {
@@ -202,12 +205,12 @@
             },
             yAxis: {},
             series: [{
-                itemStyle : {
+                itemStyle: {
                     normal: {
-                        label : {
+                        label: {
                             show: true
                         },
-                        color:  ['#7BCC23'],
+                        color: ['#7BCC23'],
                         lineStyle: {
                             color: ['#7BCC23'],
                         }
@@ -225,12 +228,12 @@
                 type: 'line',
                 data: seriesData1
             }, {
-                itemStyle : {
+                itemStyle: {
                     normal: {
-                        label : {
-                                    show: true
-                                },
-                        color:  ['#0A9CF8'],
+                        label: {
+                            show: true
+                        },
+                        color: ['#0A9CF8'],
                         lineStyle: {
                             color: ['#0A9CF8'],
                         }
@@ -252,7 +255,7 @@
         myChart.setOption(option);
     }
 
-    function initPieChart(seriesData){
+    function initPieChart(seriesData) {
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('population_chart_bar'))
         // 指定图表的配置项和数据
@@ -317,6 +320,14 @@
         return todayStr;
     }
 
+    function getStart() {
+        return new Date(new Date(new Date().toLocaleDateString()).getTime());
+    }
+
+    function getEnd() {
+        return new Date(new Date(new Date().toLocaleDateString()).getTime() + 24 * 60 * 60 * 1000 - 1);
+    }
+
     function search() {
         var loading = new KZ_Loading('数据加载中。。。');
         loading.show();
@@ -340,18 +351,21 @@
                 $("#successTotal").html(data.successTotal);
                 $("#failTotal").html(data.failTotal);
                 $("#succRateTotal").html((data.successTotal / (data.replayTotal == 0 ? 1 : data.replayTotal)));
-                var baseCharts=data.replayEchartBOS;
-                var lineDatas=[];
-                var seriesData1=[];
-                var seriesData2=[];
+                var baseCharts = data.replayEchartBOS;
+                var lineDatas = [];
+                var seriesData1 = [];
+                var seriesData2 = [];
                 baseCharts.forEach((baseChar, index) => {
                     lineDatas.push(baseChar.strDate);
                     seriesData1.push(baseChar.recordTotal);
                     seriesData2.push(baseChar.replayTotal);
                 })
-                initLineChart(lineDatas,seriesData1,seriesData2)
+                initLineChart(lineDatas, seriesData1, seriesData2)
                 loading.destroy();
-                var seriesBarData=[{name:'回放成功',value:data.successTotal},{name:'录制总量',value:data.recordTotal},{name:'回放总量',value:data.replayTotal}]
+                var seriesBarData = [{name: '回放成功', value: data.successTotal}, {
+                    name: '录制总量',
+                    value: data.recordTotal
+                }, {name: '回放总量', value: data.replayTotal}]
                 initPieChart(seriesBarData)
             },
             error: function (XMLHttpRequest) {

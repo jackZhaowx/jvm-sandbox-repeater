@@ -46,12 +46,13 @@ public class DefaultInvocationListener implements InvocationListener {
             log.error("Error occurred serialize", e);
         }
         if (invocation.isEntrance()) {
-            log.info("是否为HttpInvocation：{}",invocation instanceof HttpInvocation);
+            log.info("是否为HttpInvocation：{}", invocation instanceof HttpInvocation);
             ApplicationModel am = ApplicationModel.instance();
             RecordModel recordModel = new RecordModel();
             recordModel.setAppName(am.getAppName());
             recordModel.setEnvironment(am.getEnvironment());
             if (invocation instanceof HttpInvocation) {
+                recordModel.setCost(((HttpInvocation) invocation).getCost());
                 recordModel.setClientHost(((HttpInvocation) invocation).getClientHost());
                 recordModel.setUrl(((HttpInvocation) invocation).getRequestURI());
             }

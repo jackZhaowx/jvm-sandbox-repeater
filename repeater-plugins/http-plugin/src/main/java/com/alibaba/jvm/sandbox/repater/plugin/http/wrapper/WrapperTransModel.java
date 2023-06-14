@@ -14,11 +14,18 @@ import java.util.Map;
  * @author zhaowanxin
  */
 public class WrapperTransModel {
-
     public WrapperRequest request;
 
     public WrapperResponseCopier copier;
 
+    /**
+     * 请求开始时间
+     */
+    private long startTime;
+    /**
+     * 耗时
+     */
+    private long cost;
     /**
      * 客户端IP
      */
@@ -60,8 +67,9 @@ public class WrapperTransModel {
      */
     private String response;
 
-    private WrapperTransModel(String clientHost, String requestURL, String requestURI, int port, String method, String contentType,
+    private WrapperTransModel(long startTime, String clientHost, String requestURL, String requestURI, int port, String method, String contentType,
                               Map<String, String> headers, Map<String, String[]> paramsMap) {
+        this.startTime = startTime;
         this.clientHost = clientHost;
         this.requestURL = requestURL;
         this.requestURI = requestURI;
@@ -87,6 +95,7 @@ public class WrapperTransModel {
             }
         }
         return new WrapperTransModel(
+                System.currentTimeMillis(),
                 getIpAddr(request),
                 request.getRequestURL().toString(),
                 request.getRequestURI(),
@@ -96,6 +105,18 @@ public class WrapperTransModel {
                 headers,
                 parameterMapHolder
         );
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public long getCost() {
+        return cost;
+    }
+
+    public void setCost(long cost) {
+        this.cost = cost;
     }
 
     public String getClientHost() {

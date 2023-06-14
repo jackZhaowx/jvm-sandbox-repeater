@@ -209,7 +209,7 @@
                                                    href="detail.htm?appName=$!{data.appName}&traceId=$!{data.traceId}"
                                                    class="btn btn-primary btn-xs" data-toggle="tooltip"
                                                    title="查看详情">详情</a>
-                                                #if($!{data.replay}==false)
+                                                #if($!{data.replay}==false || $!{data.replaySuccess}==false)
                                                     <button class="btn btn-success btn-xs btn-replay"
                                                             data-toggle="tooltip"
                                                             title="执行回放" data-id="$!{data.traceId}"

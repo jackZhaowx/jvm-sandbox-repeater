@@ -11,6 +11,10 @@ import java.util.Map;
  */
 public class HttpInvocation extends Invocation implements java.io.Serializable {
     /**
+     * 耗时
+     */
+    private long cost;
+    /**
      * 客户端Ip
      */
     private String clientHost;
@@ -57,6 +61,14 @@ public class HttpInvocation extends Invocation implements java.io.Serializable {
      * 是否已初始化
      */
     private transient boolean init;
+
+    public long getCost() {
+        return cost;
+    }
+
+    public void setCost(long cost) {
+        this.cost = cost;
+    }
 
     public String getClientHost() {
         return clientHost;
