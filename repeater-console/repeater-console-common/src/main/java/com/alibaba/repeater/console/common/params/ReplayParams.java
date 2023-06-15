@@ -33,4 +33,6 @@ public class ReplayParams extends BaseParams {
 
     private String replayStatus;
 
+    private String replayType;
+
 }

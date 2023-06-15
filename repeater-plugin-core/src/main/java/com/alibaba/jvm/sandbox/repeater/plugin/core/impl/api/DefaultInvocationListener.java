@@ -52,10 +52,10 @@ public class DefaultInvocationListener implements InvocationListener {
             recordModel.setAppName(am.getAppName());
             recordModel.setEnvironment(am.getEnvironment());
             if (invocation instanceof HttpInvocation) {
-                recordModel.setCost(((HttpInvocation) invocation).getCost());
                 recordModel.setClientHost(((HttpInvocation) invocation).getClientHost());
                 recordModel.setUrl(((HttpInvocation) invocation).getRequestURI());
             }
+            recordModel.setCost(invocation.getEnd() - invocation.getStart());
             recordModel.setHost(am.getHost());
             recordModel.setTraceId(invocation.getTraceId());
             recordModel.setTimestamp(invocation.getStart());

@@ -2,6 +2,7 @@ package com.alibaba.repeater.console.start.controller.api;
 
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeatModel;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
+import com.alibaba.repeater.console.common.Constants;
 import com.alibaba.repeater.console.common.params.ReplayParams;
 import com.alibaba.repeater.console.service.RecordService;
 import com.alibaba.repeater.console.service.ReplayService;
@@ -43,6 +44,7 @@ public class PersistenceFacadeApi {
                 .build();
         params.setAppName(appName);
         params.setTraceId(traceId);
+        params.setReplayType(Constants.REPLAY_TYPE_AUTO + "");
         return replayService.replay(params);
     }
 

@@ -157,7 +157,6 @@ public class HttpStandaloneListener extends DefaultEventListener implements Invo
             LogUtil.warn("invalid request, no matched wtm found, traceId={}", Tracer.getTraceId());
             return;
         }
-        wtm.setCost(System.currentTimeMillis() - wtm.getStartTime());
         onResponse(wtm.request, wtm);
         wtmRef.remove();
     }
@@ -223,7 +222,6 @@ public class HttpStandaloneListener extends DefaultEventListener implements Invo
 
     private void assembleHttpAttribute(HttpInvocation invocation, WrapperTransModel wtm) {
         Identity identity = new Identity(InvokeType.HTTP.name(), wtm.getRequestURI(), "", null);
-        invocation.setCost(wtm.getCost());
         invocation.setClientHost(wtm.getClientHost());
         invocation.setRequestURL(wtm.getRequestURL());
         invocation.setRequestURI(wtm.getRequestURI());

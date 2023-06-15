@@ -34,6 +34,8 @@ public class ReplayBO extends BaseBO {
 
     private Long cost;
 
+    private String replayType;
+
     private ReplayStatus status;
 
     private RecordDetailBO record;

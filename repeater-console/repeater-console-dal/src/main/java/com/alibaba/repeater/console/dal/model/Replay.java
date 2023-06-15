@@ -66,4 +66,7 @@ public class Replay implements java.io.Serializable {
 
     @Column(name = "ingore_keys")
     private String ingoreKeys;
+
+    @Column(name = "replay_type")
+    private String replayType;
 }

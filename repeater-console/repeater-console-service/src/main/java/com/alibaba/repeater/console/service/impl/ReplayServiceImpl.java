@@ -214,6 +214,7 @@ public class ReplayServiceImpl implements ReplayService {
         replay.setGmtModified(new Date());
         replay.setStatus(ReplayStatus.PROCESSING.getStatus());
         replay.setIngoreKeys(params.getIngoreKeys());
+        replay.setReplayType(params.getReplayType());
         // 冗余了一个repeatID，实际可以直接使用replay#id
         return replayDao.save(replay);
     }

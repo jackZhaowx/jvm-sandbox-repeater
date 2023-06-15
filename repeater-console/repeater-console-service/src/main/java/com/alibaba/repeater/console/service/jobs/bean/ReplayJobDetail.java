@@ -2,6 +2,7 @@ package com.alibaba.repeater.console.service.jobs.bean;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.util.LogUtil;
+import com.alibaba.repeater.console.common.Constants;
 import com.alibaba.repeater.console.common.params.ReplayParams;
 import com.alibaba.repeater.console.dal.dao.ModuleInfoDao;
 import com.alibaba.repeater.console.dal.dao.RecordDao;
@@ -43,6 +44,7 @@ public class ReplayJobDetail extends QuartzJobBean {
                 params.setModuleId(moduleInfo.getId());
                 params.setAppName(appName);
                 params.setTraceId(traceId);
+                params.setReplayType(Constants.REPLAY_TYPE_EVENT + "");
                 replayService.replay(params);
             }
         }

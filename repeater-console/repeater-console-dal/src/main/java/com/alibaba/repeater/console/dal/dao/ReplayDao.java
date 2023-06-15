@@ -63,6 +63,9 @@ public class ReplayDao {
                             predicates.add(cb.equal(root.<Integer>get("success"), Integer.valueOf(params.getReplayStatus())));
                         }
                     }
+                    if (params.getReplayType() != null && !params.getReplayType().isEmpty()) {
+                        predicates.add(cb.equal(root.<Integer>get("replayType"), Integer.valueOf(params.getReplayType())));
+                    }
                     return cb.and(predicates.toArray(new Predicate[0]));
                 },
                 pageable

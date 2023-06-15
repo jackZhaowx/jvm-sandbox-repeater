@@ -93,6 +93,18 @@
                                                     <td><span class="label label-primary">$!record.environment</span>
                                                     </td>
                                                 </tr>
+                                                <tr style="text-align: center;">
+                                                    <td width="100px" class="text-right text-bold">回放模式</td>
+                                                    <td>
+                                                        #if($!record.replayType=='0')
+                                                            event事件回放
+                                                        #elseif($!record.replayType=='1')
+                                                            quartz定时任务回放
+                                                        #elseif($!record.replayType=='2')
+                                                            手动回放
+                                                        #end
+                                                    </td>
+                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>

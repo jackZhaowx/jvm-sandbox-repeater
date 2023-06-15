@@ -13,4 +13,8 @@ public class Constants {
      * quartz定时任务
      */
     public static final int REPLAY_TYPE_QUARTZ = 1;
+    /**
+     * 手动
+     */
+    public static final int REPLAY_TYPE_AUTO = 2;
 }
