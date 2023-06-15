@@ -28,6 +28,8 @@ public class RecordWrapper {
     private String host;
 
     private String traceId;
+
+    private long cost;
     /**
      * 入口描述
      */
@@ -116,6 +118,14 @@ public class RecordWrapper {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public long getCost() {
+        return cost;
+    }
+
+    public void setCost(long cost) {
+        this.cost = cost;
     }
 
     public String getHost() {

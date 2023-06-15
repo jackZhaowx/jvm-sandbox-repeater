@@ -1,27 +1,24 @@
 package com.alibaba.repeater.console.service.impl;
 
-import com.alibaba.jvm.sandbox.repeater.aide.compare.Comparable;
-import com.alibaba.jvm.sandbox.repeater.aide.compare.ComparableFactory;
-import com.alibaba.jvm.sandbox.repeater.aide.compare.CompareResult;
-import com.alibaba.jvm.sandbox.repeater.plugin.core.serialize.SerializeException;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.wrapper.RecordWrapper;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.wrapper.SerializerWrapper;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeatModel;
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
+import com.alibaba.repeater.console.common.Constants;
 import com.alibaba.repeater.console.common.domain.PageResult;
 import com.alibaba.repeater.console.common.domain.RecordBO;
 import com.alibaba.repeater.console.common.domain.RecordDetailBO;
-import com.alibaba.repeater.console.common.domain.ReplayStatus;
 import com.alibaba.repeater.console.common.params.RecordParams;
 import com.alibaba.repeater.console.dal.dao.RecordDao;
 import com.alibaba.repeater.console.dal.model.Record;
-import com.alibaba.repeater.console.dal.model.Replay;
 import com.alibaba.repeater.console.service.RecordService;
 import com.alibaba.repeater.console.service.convert.ModelConverter;
+import com.alibaba.repeater.console.service.listener.ReplayRecordListener;
 import com.alibaba.repeater.console.service.util.ConvertUtil;
-import com.alibaba.repeater.console.service.util.JacksonUtil;
+import com.google.common.eventbus.EventBus;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +33,7 @@ import java.util.stream.Collectors;
  */
 @Service("recordService")
 @Slf4j
-public class RecordServiceImpl implements RecordService {
+public class RecordServiceImpl implements RecordService, InitializingBean {
 
     @Resource
     private RecordDao recordDao;
@@ -44,6 +41,10 @@ public class RecordServiceImpl implements RecordService {
     private ModelConverter<Record, RecordBO> recordConverter;
     @Resource
     private ModelConverter<Record, RecordDetailBO> recordDetailConverter;
+    @Resource
+    private EventBus eventBus;
+    @Resource
+    private ReplayRecordListener replayRecordListener;
 
     @Override
     public RepeaterResult<String> saveRecord(String body) {
@@ -53,6 +54,11 @@ public class RecordServiceImpl implements RecordService {
                 return RepeaterResult.builder().success(false).message("invalid request").build();
             }
             Record record = ConvertUtil.convertWrapper(wrapper, body);
+            try {
+                eventBus.post(record);
+            } catch (Exception e) {
+                record.setReplayType(Constants.REPLAY_TYPE_QUARTZ);
+            }
             recordDao.insert(record);
             return RepeaterResult.builder().success(true).message("operate success").data("-/-").build();
         } catch (Throwable throwable) {
@@ -96,5 +102,10 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public RepeaterResult<RepeatModel> callback(String repeatId) {
         return null;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        eventBus.register(replayRecordListener);
     }
 }

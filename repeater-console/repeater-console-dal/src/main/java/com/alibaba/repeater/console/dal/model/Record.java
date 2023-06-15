@@ -58,6 +58,9 @@ public class Record implements java.io.Serializable {
 
     private Long cost;
 
+    @Column(name = "replay_type")
+    private int replayType;
+
     @OneToMany(mappedBy = "record", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Replay> replays;
 }

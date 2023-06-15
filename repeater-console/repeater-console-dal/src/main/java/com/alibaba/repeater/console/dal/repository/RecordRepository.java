@@ -30,7 +30,7 @@ public interface RecordRepository extends JpaRepository<Record, Long>, JpaSpecif
      */
     Record findByAppNameAndTraceId(String appName, String traceId);
 
-    @Query(value = "SELECT id, gmt_create, gmt_record, app_name, environment, client_host, url, host, trace_id, entrance_desc, wrapper_record, request, response, ingore_keys FROM record r WHERE app_name=:appName and not exists(select 1 from replay r2 where r2.record_id=r.id) order by id desc limit 50", nativeQuery = true)
+    @Query(value = "SELECT id, gmt_create, gmt_record, app_name, environment, client_host, url, host, trace_id, entrance_desc, wrapper_record, request, response,cost, ingore_keys,replay_type FROM record r WHERE app_name=:appName and replay_type=1 and not exists(select 1 from replay r2 where r2.record_id=r.id) order by id desc limit 50", nativeQuery = true)
     List<Record> selectNotRepaly(@Param("appName") String appName);
 
 }
