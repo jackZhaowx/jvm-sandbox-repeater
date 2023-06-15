@@ -1,5 +1,6 @@
 package com.alibaba.repeater.console.service.listener;
 
+import com.alibaba.jvm.sandbox.repeater.plugin.core.util.LogUtil;
 import com.alibaba.repeater.console.common.params.ReplayParams;
 import com.alibaba.repeater.console.dal.dao.ModuleInfoDao;
 import com.alibaba.repeater.console.dal.model.ModuleInfo;
@@ -7,6 +8,7 @@ import com.alibaba.repeater.console.dal.model.Record;
 import com.alibaba.repeater.console.service.ReplayService;
 import com.google.common.eventbus.Subscribe;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Random;
@@ -25,6 +27,7 @@ public class ReplayRecordListener {
      */
     @Subscribe
     public void replay(Record record) {
+        LogUtil.debug("触发了event事件回放");
         if (record != null) {
             String appName = record.getAppName();
             List<ModuleInfo> moduleInfos = moduleInfoDao.queryRepeat(appName);
