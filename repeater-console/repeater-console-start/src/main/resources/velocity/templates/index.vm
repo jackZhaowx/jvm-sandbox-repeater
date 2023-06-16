@@ -26,7 +26,7 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-widget="" href="#"></a>
+                <a class="" data-widget="" href="#"></a>
             </li>
         </ul>
         <!-- Right navbar links -->
@@ -54,7 +54,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="/home.htm" target="three" class="nav-link active">
+                        <a href="/home.htm" target="three" id="homePage" class="nav-link active">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
                                 首页
@@ -62,7 +62,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/online/list.htm" target="three" class="nav-link">
+                        <a href="/online/list.htm" target="three" id="onlienPage" class="nav-link">
                             <i class="nav-icon fa fa-database"></i>
                             <p>
                                 在线流量
@@ -70,7 +70,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/replay/list.htm" target="three" class="nav-link">
+                        <a href="/replay/list.htm" target="three" id="replayPage" class="nav-link">
                             <i class="nav-icon fa fa-heartbeat"></i>
                             <p>
                                 回放记录
@@ -78,7 +78,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/config/list.htm" target="three" class="nav-link">
+                        <a href="/config/list.htm" target="three" id="configPage" class="nav-link">
                             <i class="nav-icon fa fa-cogs"></i>
                             <p>
                                 配置管理
@@ -86,7 +86,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/module/list.htm" target="three" class="nav-link">
+                        <a href="/module/list.htm" target="three" id="modulePage" class="nav-link">
                             <i class="nav-icon fa fa-heartbeat"></i>
                             <p>
                                 在线模块

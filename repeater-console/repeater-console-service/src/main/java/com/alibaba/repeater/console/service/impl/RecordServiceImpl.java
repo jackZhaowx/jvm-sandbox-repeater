@@ -54,12 +54,13 @@ public class RecordServiceImpl implements RecordService, InitializingBean {
                 return RepeaterResult.builder().success(false).message("invalid request").build();
             }
             Record record = ConvertUtil.convertWrapper(wrapper, body);
+            recordDao.insert(record);
             try {
                 eventBus.post(record);
             } catch (Exception e) {
                 record.setReplayType(Constants.REPLAY_TYPE_QUARTZ);
+                recordDao.update(record);
             }
-            recordDao.insert(record);
             return RepeaterResult.builder().success(true).message("operate success").data("-/-").build();
         } catch (Throwable throwable) {
             return RepeaterResult.builder().success(false).message(throwable.getMessage()).build();

@@ -28,7 +28,7 @@ public class HomeController {
     @RequestMapping("/home.htm")
     public String indexJson(Model model) {
         model.addAttribute("homeBo", homeService.dataJson());
-        return "creen/creen";
+        return "home/home";
     }
 
     @GetMapping("/search.json")

@@ -163,11 +163,13 @@
                                     <tr style="text-align: center;">
                                         <th>应用名</th>
                                         <th>原TraceId</th>
+                                        <th>url</th>
                                         <th>TraceId</th>
                                         <th>RepeateId</th>
-                                        <th>回放对比结果</th>
+                                        <th>回放结果</th>
                                         <th>回放时间</th>
                                         <th>耗时（ms）</th>
+                                        <th>模式</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -176,6 +178,7 @@
                                         <tr style="text-align: center;">
                                             <td style="vertical-align: middle">$!data.appName</td>
                                             <td style="vertical-align: middle">$!{data.rTraceId}</td>
+                                            <td style="vertical-align: middle">$!data.url</td>
                                             <td style="vertical-align: middle">$!data.traceId</td>
                                             <td style="vertical-align: middle">$!{data.repeatId}</td>
                                             <td style="vertical-align: middle">
@@ -189,6 +192,15 @@
                                             </td>
                                             <td style="vertical-align: middle">$!{data.gmtCreate}</td>
                                             <td style="vertical-align: middle">$!{data.cost}</td>
+                                            <td style="vertical-align: middle">
+                                                #if($!data.replayType=='0')
+                                                    event事件回放
+                                                #elseif($!data.replayType=='1')
+                                                    quartz定时任务回放
+                                                #elseif($!data.replayType=='2')
+                                                    手动回放
+                                                #end
+                                            </td>
                                             <td style="vertical-align: middle">
                                                 <a target="_self"
                                                    href="detail.htm?repeatId=$!{data.repeatId}"

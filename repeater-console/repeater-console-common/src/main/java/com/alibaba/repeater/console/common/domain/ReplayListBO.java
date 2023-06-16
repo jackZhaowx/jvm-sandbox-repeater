@@ -18,6 +18,8 @@ public class ReplayListBO extends BaseBO {
 
     private String rTraceId;
 
+    private String url;
+
     private String traceId;
 
     private Integer status;
@@ -27,4 +29,6 @@ public class ReplayListBO extends BaseBO {
     private Date gmtCreate;
 
     private Long cost;
+
+    private String replayType;
 }

@@ -360,6 +360,7 @@ public class HttpUtil {
                     .message("Invoke failed, status code is not 200")
                     .build();
         } catch (Exception e) {
+            e.printStackTrace();
             if (--retryTime > 0) {
                 try {
                     TimeUnit.MILLISECONDS.sleep(100);

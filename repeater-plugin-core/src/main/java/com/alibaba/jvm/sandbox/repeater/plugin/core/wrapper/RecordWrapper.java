@@ -52,6 +52,7 @@ public class RecordWrapper {
         this.environment = recordModel.getEnvironment();
         this.clientHost = recordModel.getClientHost();
         this.url = recordModel.getUrl();
+        this.cost = recordModel.getCost();
         this.host = recordModel.getHost();
         this.traceId = recordModel.getTraceId();
         if (recordModel.getEntranceInvocation() instanceof HttpInvocation) {

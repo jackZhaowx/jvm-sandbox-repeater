@@ -1,5 +1,6 @@
 package com.alibaba.repeater.console.service.listener;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.jvm.sandbox.repeater.plugin.core.util.LogUtil;
 import com.alibaba.repeater.console.common.Constants;
 import com.alibaba.repeater.console.common.params.ReplayParams;
@@ -28,7 +29,7 @@ public class ReplayRecordListener {
      */
     @Subscribe
     public void replay(Record record) {
-        LogUtil.debug("触发了event事件回放");
+        LogUtil.info("触发了event事件回放：{}", record.getTraceId());
         if (record != null) {
             String appName = record.getAppName();
             List<ModuleInfo> moduleInfos = moduleInfoDao.queryRepeat(appName);

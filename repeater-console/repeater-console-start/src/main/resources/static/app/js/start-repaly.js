@@ -51,7 +51,7 @@ jQuery(function ($) {
             notify("没有可用回放机器，请先挂载");
             return false;
         }
-        var appName = $("#replay-appName").val();
+        var traceId = $("#replay-traceId").val();
         showLoading(10);
         $("#startReplayForm").ajaxSubmit({
             type: "post",
@@ -60,7 +60,8 @@ jQuery(function ($) {
                 $("#start-replay-modal").modal('hide')
                 hideLoading(10)
                 if (data.success) {
-                    window.location.href=protocol + "//" + host + "/replay/detail.htm?repeatId=" + data.data + "&appName=" + appName;
+                    changeTip();
+                    window.location.href = protocol + "//" + host + "/replay/list.htm?rTraceId=" + traceId;
                 } else {
                     notice(data.message, data.success)
                 }
@@ -72,3 +73,15 @@ jQuery(function ($) {
         })
     });
 });
+
+function changeTip() {
+    var tips = window.top.document.getElementsByClassName("nav-link");
+    if (tips) {
+        Array.prototype.slice.call(tips).forEach(e => {
+            e.className = "nav-link";
+            if (e.id == "replayPage") {
+                e.className = "nav-link active";
+            }
+        });
+    }
+}

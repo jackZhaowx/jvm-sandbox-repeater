@@ -93,18 +93,6 @@
                                                     <td><span class="label label-primary">$!record.environment</span>
                                                     </td>
                                                 </tr>
-                                                <tr style="text-align: center;">
-                                                    <td width="100px" class="text-right text-bold">回放模式</td>
-                                                    <td>
-                                                        #if($!record.replayType=='0')
-                                                            event事件回放
-                                                        #elseif($!record.replayType=='1')
-                                                            quartz定时任务回放
-                                                        #elseif($!record.replayType=='2')
-                                                            手动回放
-                                                        #end
-                                                    </td>
-                                                </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -158,6 +146,7 @@
                                                     <thead>
                                                     <tr style="text-align: center;">
                                                         <th>执行结果</th>
+                                                        <th>回放模式</th>
                                                         <th>耗时</th>
                                                         <th>执行环境</th>
                                                         <th>执行机器</th>
@@ -177,6 +166,15 @@
                                                                 #else
                                                                     <span class="badge bg-danger">失败</span>
                                                                 #end
+                                                            #end
+                                                        </td>
+                                                        <td>
+                                                            #if($!replay.replayType=='0')
+                                                                event事件回放
+                                                            #elseif($!replay.replayType=='1')
+                                                                quartz定时任务回放
+                                                            #elseif($!replay.replayType=='2')
+                                                                手动回放
                                                             #end
                                                         </td>
                                                         <td>$!{replay.cost}ms</td>

@@ -39,6 +39,8 @@ public class RecordBO extends BaseBO implements java.io.Serializable {
 
     private boolean replaySuccess;
 
+    private long cost;
+
     @Override
     public String toString() {
         return super.toString();

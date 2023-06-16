@@ -171,7 +171,8 @@
                                         <th>环境</th>
                                         <th>客户端机器</th>
                                         <th>机器</th>
-                                        <th>时间</th>
+                                        <th>交易耗时</th>
+                                        <th>录制时间</th>
                                         <th>回放结果</th>
                                         <th width="100px">操作</th>
                                     </tr>
@@ -179,9 +180,10 @@
                                     <tbody>
                                         #foreach($data in $pagerWrapper.content)
                                         <tr style="text-align: center;">
-                                            <td style="vertical-align: middle"><input data-toggle="icheck"
-                                                                                      type="checkbox" name="choose-case"
-                                                                                      value="$!{data.traceId}"/></td>
+                                            <td style="vertical-align: middle">
+                                                <input data-toggle="icheck" type="checkbox" name="choose-case"
+                                                       value="$!{data.traceId}"/>
+                                            </td>
                                             <td style="vertical-align: middle">$!data.appName</td>
                                             <td style="vertical-align: middle">
                                                 #if($!{data.url}!="")
@@ -194,6 +196,7 @@
                                             <td style="vertical-align: middle">$!{data.environment}</td>
                                             <td style="vertical-align: middle">$!{data.clientHost}</td>
                                             <td style="vertical-align: middle">$!{data.host}</td>
+                                            <td style="vertical-align: middle">$!{data.cost}</td>
                                             <td style="vertical-align: middle">$!{data.gmtRecord}</td>
                                             <td style="vertical-align: middle">
                                                 #if($!{data.replay}==false)
@@ -209,6 +212,12 @@
                                                    href="detail.htm?appName=$!{data.appName}&traceId=$!{data.traceId}"
                                                    class="btn btn-primary btn-xs" data-toggle="tooltip"
                                                    title="查看详情">详情</a>
+                                                #if($!{data.replay}==true)
+                                                    <a target="_self"
+                                                       href="/replay/list.htm?rTraceId=$!{data.traceId}"
+                                                       class="btn btn-success btn-xs" data-toggle="tooltip"
+                                                       title="查看详情" onclick="changeTip()">查看回放</a>
+                                                #end
                                                 #if($!{data.replay}==false || $!{data.replaySuccess}==false)
                                                     <button class="btn btn-success btn-xs btn-replay"
                                                             data-toggle="tooltip"
@@ -319,6 +328,18 @@
         var day = today.getDate() + 1;
         var todayStr = year + "-" + month + "-" + day;
         return todayStr;
+    }
+
+    function changeTip() {
+        var tips = window.top.document.getElementsByClassName("nav-link");
+        if (tips) {
+            Array.prototype.slice.call(tips).forEach(e => {
+                e.className = "nav-link";
+                if (e.id == "replayPage") {
+                    e.className = "nav-link active";
+                }
+            });
+        }
     }
 </script>
     #parse("blocks/start-replay.vm")

@@ -1,6 +1,7 @@
 package com.alibaba.repeater.console.start.controller.page;
 
 import com.alibaba.jvm.sandbox.repeater.plugin.domain.RepeaterResult;
+import com.alibaba.repeater.console.common.Constants;
 import com.alibaba.repeater.console.common.domain.ModuleInfoBO;
 import com.alibaba.repeater.console.common.domain.PageResult;
 import com.alibaba.repeater.console.common.domain.ReplayBO;
@@ -53,6 +54,9 @@ public class ReplayController {
     @RequestMapping("execute.json")
     @ResponseBody
     public RepeaterResult<String> replay(@ModelAttribute("requestParams") ReplayParams params) {
+        if (params != null) {
+            params.setReplayType(Constants.REPLAY_TYPE_AUTO + "");
+        }
         return replayService.replay(params);
     }
 }

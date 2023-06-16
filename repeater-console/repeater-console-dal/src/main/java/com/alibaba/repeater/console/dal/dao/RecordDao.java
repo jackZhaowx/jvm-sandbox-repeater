@@ -93,4 +93,8 @@ public class RecordDao {
     public List<Record> selectNotRepaly(String appName) {
         return recordRepository.selectNotRepaly(appName);
     }
+
+    public void update(Record record) {
+        recordRepository.saveAndFlush(record);
+    }
 }
