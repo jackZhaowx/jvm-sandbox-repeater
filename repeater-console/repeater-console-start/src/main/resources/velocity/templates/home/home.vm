@@ -125,8 +125,7 @@
                 <div class="showImg">
                     <img src="/images/shoe.png" alt="">
                 </div>
-                <div class="data">
-                    <span>年回放</span>
+                <div class="data" style="display: flex; align-items:center">
                     <span id="yearReplay"></span>
                 </div>
                 <div class="shoeChart"></div>
@@ -135,8 +134,7 @@
                 <div class="showImg">
                     <img src="/images/clothes.png" alt="">
                 </div>
-                <div class="data">
-                    <span>月回放</span>
+                <div class="data"  style="display: flex; align-items:center">
                     <span id="monthReplay"></span>
                 </div>
                 <div class="clothesChart"></div>
@@ -145,8 +143,7 @@
                 <div class="showImg">
                     <img src="/images/mz.png" alt="">
                 </div>
-                <div class="data">
-                    <span>日回放</span>
+                <div class="data"  style="display: flex; align-items:center">
                     <span id="dayReplay"></span>
                 </div>
                 <div class="mzChart"></div>
@@ -207,9 +204,9 @@
                     $("#yearReplay").html(data.onlineBO.yearReplay);
                     $("#monthReplay").html(data.onlineBO.monthReplay);
                     $("#dayReplay").html(data.onlineBO.dayReplay);
-                    draw('.shoeChart', data.onlineBO.yearReplay, '回放率', data.onlineBO.yearNum, '#09c4ca');
-                    draw('.clothesChart', data.onlineBO.monthReplay, '回放率', data.onlineBO.monthNum, '#09c4ca');
-                    draw('.mzChart', data.onlineBO.dayReplay, '回放率', data.onlineBO.dayNum, '#09c4ca');
+                    draw('.shoeChart', data.onlineBO.yearReplay, '一致率', data.onlineBO.yearNum, '#09c4ca');
+                    draw('.clothesChart', data.onlineBO.monthReplay, '一致率', data.onlineBO.monthNum, '#09c4ca');
+                    draw('.mzChart', data.onlineBO.dayReplay, '一致率', data.onlineBO.dayNum, '#09c4ca');
                     lineChart('.lineChart', data.onlineBO.xdata, data.onlineBO.dataArr);
                     topColor();
                 }

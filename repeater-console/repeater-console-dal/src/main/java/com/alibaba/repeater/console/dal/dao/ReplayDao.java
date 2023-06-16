@@ -92,4 +92,8 @@ public class ReplayDao {
     public void deleReplay(Long id) {
         replayRepository.deleteByRecordId(id);
     }
+
+    public Replay findByRecordId(long recordId) {
+        return replayRepository.findByRecordId(recordId);
+    }
 }

@@ -67,6 +67,10 @@
                                                             aria-expanded="false">返回结果</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#subInvocations" data-toggle="tab"
                                                             aria-expanded="false">子调用信息</a></li>
+                                    <li class="nav-item"><a class="nav-link"
+                                                            href="/online/detail.htm?appName=$!{record.appName}&traceId=$!{record.traceId}"
+                                                            target="_self"
+                                                            onclick="changeTip('onlinePage')">查看详细</a></li>
                                 </ul>
                                 <div class="tab-content no-padding no-border" style="margin-top: 2px">
                                     <div class="tab-pane active" id="basic">
@@ -162,9 +166,9 @@
                                                                 <span class="badge bg-primary">执行中</span>
                                                             #else
                                                                 #if($!replay.success)
-                                                                    <span class="badge bg-success">成功</span>
+                                                                    <span class="badge bg-success">一致</span>
                                                                 #else
-                                                                    <span class="badge bg-danger">失败</span>
+                                                                    <span class="badge bg-danger">不一致</span>
                                                                 #end
                                                             #end
                                                         </td>
@@ -276,9 +280,9 @@
                                                                 #if($!mock.skip)
                                                                     <span class="badge badge-warning">忽略</span>
                                                                 #elseif($!mock.success)
-                                                                    <span class="badge badge-success">成功</span>
+                                                                    <span class="badge badge-success">一致</span>
                                                                 #else
-                                                                    <span class="badge badge-danger">失败</span>
+                                                                    <span class="badge badge-danger">不一致</span>
                                                                 #end
                                                             </td>
                                                         </tr>

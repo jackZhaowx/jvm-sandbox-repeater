@@ -52,35 +52,61 @@
                                 基础信息
                             </h5>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-primary btn-sm float-right btn-replay"
-                                        data-loading-text="searching"
-                                        data-id="$!{record.traceId}" data-app="$!{record.appName}"
-                                        data-ip="$!{record.host}"
-                                        data-environment="$!{record.environment}">
-                                    回放
-                                </button>
+                                #if($!{record.replay}==true)
+                                    <a target="_self"
+                                       href="/replay/detail.htm?recordId=$!{record.id}"
+                                       class="btn btn-success btn-xs" data-toggle="tooltip"
+                                       title="查看详情" onclick="changeTip('replayPage')">查看回放</a>
+                                #end
+                                #if($!{record.replay}==false || $!{record.replaySuccess}==false)
+                                    <button type="button" class="btn btn-primary btn-sm float-right btn-replay"
+                                            data-loading-text="searching"
+                                            data-id="$!{record.traceId}" data-app="$!{record.appName}"
+                                            data-ip="$!{record.host}"
+                                            data-environment="$!{record.environment}">
+                                        回放
+                                    </button>
+                                #end
                             </div>
                         </div>
                         <div class="card-body" style="padding: 5px">
                             <table class="table table-hover table-striped" style="word-break: break-all;">
                                 <tbody>
                                 <tr style="text-align: center;">
-                                    <td width="100px" class="text-right text-bold">应用名</td>
+                                    <td width="120px" class="text-right text-bold">url</td>
+                                    <td>$!record.url</td>
+                                    <td width="120px" class="text-right text-bold">客户机器</td>
+                                    <td>$!record.clientHost</td>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <td width="120px" class="text-right text-bold">应用名</td>
                                     <td>$!record.appName</td>
-                                    <td width="100px" class="text-right text-bold">流量入口</td>
+                                    <td width="120px" class="text-right text-bold">流量入口</td>
                                     <td>$!record.entranceDesc</td>
                                 </tr>
                                 <tr style="text-align: center;">
-                                    <td width="100px" class="text-right text-bold">录制机器</td>
+                                    <td width="120px" class="text-right text-bold">录制机器</td>
                                     <td>$!record.host</td>
-                                    <td width="100px" class="text-right text-bold">TraceId</td>
+                                    <td width="120px" class="text-right text-bold">TraceId</td>
                                     <td>$!{record.traceId}</td>
                                 </tr>
                                 <tr style="text-align: center;">
-                                    <td width="100px" class="text-right text-bold">录制时间</td>
+                                    <td width="120px" class="text-right text-bold">录制时间</td>
                                     <td>$!record.gmtRecord</td>
-                                    <td width="100px" class="text-right text-bold">录制环境</td>
+                                    <td width="120px" class="text-right text-bold">录制环境</td>
                                     <td><span class="label label-primary">$!record.environment</span></td>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <td width="120px" class="text-right text-bold">交易耗时(ms)</td>
+                                    <td>$!record.cost</td>
+                                    <td width="120px" class="text-right text-bold">回放结果</td>
+                                    <td> #if($!{record.replay}==false)
+                                        <span class="badge badge-warning">未回放</span>
+                                    #elseif($!{record.replaySuccess}==true)
+                                        <span class="badge badge-success">一致</span>
+                                    #elseif($!{record.replaySuccess}==false)
+                                        <span class="badge badge-danger">不一致</span>
+                                    #end</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -184,6 +210,18 @@
             $('#subInvocations-editor').fadeIn(500);
         }
     });
+
+    function changeTip() {
+        var tips = window.top.document.getElementsByClassName("nav-link");
+        if (tips) {
+            Array.prototype.slice.call(tips).forEach(e => {
+                e.className = "nav-link";
+                if (e.id == "replayPage") {
+                    e.className = "nav-link active";
+                }
+            });
+        }
+    }
 </script>
     #parse("blocks/start-replay.vm")
 </body>

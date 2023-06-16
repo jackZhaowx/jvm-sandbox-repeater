@@ -170,3 +170,15 @@ var openNewWindow = function (url, msg) {
         noticeUrl(msg, url)
     }
 };
+
+function changeTip(id) {
+    var tips = window.top.document.getElementsByClassName("nav-link");
+    if (tips) {
+        Array.prototype.slice.call(tips).forEach(e => {
+            e.className = "nav-link";
+            if (e.id == id) {
+                e.className = "nav-link active";
+            }
+        });
+    }
+}

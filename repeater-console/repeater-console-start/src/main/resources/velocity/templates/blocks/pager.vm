@@ -57,5 +57,8 @@
             </a>
         </li>
     #end
+    <li class="page-item disabled">
+        <span class="page-link">总数：$pagerWrapper.count</span>
+    </li>
 </ul>
 #end

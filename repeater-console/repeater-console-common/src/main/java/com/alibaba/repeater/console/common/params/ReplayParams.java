@@ -35,4 +35,6 @@ public class ReplayParams extends BaseParams {
 
     private String replayType;
 
+    private long recordId;
+
 }

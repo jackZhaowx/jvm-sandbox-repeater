@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/home.htm" target="_self">首页</a></li>
+                            <li class="breadcrumb-item"><a href="/home.htm" target="_self" onclick="changeTip('homePage')">首页</a></li>
                             <li class="breadcrumb-item active">回放记录</li>
                         </ol>
                     </div>
@@ -187,7 +187,7 @@
                                                 #elseif($!{data.success}==true)
                                                     <span class="badge badge-success">一致</span>
                                                 #elseif($!{data.success}==false)
-                                                    <span class="badge badge-warning">不一致</span>
+                                                    <span class="badge badge-danger">不一致</span>
                                                 #end
                                             </td>
                                             <td style="vertical-align: middle">$!{data.gmtCreate}</td>

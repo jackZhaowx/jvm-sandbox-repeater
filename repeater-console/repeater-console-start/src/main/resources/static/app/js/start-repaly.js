@@ -60,7 +60,7 @@ jQuery(function ($) {
                 $("#start-replay-modal").modal('hide')
                 hideLoading(10)
                 if (data.success) {
-                    changeTip();
+                    changeTip('replayPage');
                     window.location.href = protocol + "//" + host + "/replay/list.htm?rTraceId=" + traceId;
                 } else {
                     notice(data.message, data.success)
@@ -73,15 +73,3 @@ jQuery(function ($) {
         })
     });
 });
-
-function changeTip() {
-    var tips = window.top.document.getElementsByClassName("nav-link");
-    if (tips) {
-        Array.prototype.slice.call(tips).forEach(e => {
-            e.className = "nav-link";
-            if (e.id == "replayPage") {
-                e.className = "nav-link active";
-            }
-        });
-    }
-}

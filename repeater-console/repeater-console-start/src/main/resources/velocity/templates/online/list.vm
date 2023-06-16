@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/home.htm" target="_self">首页</a></li>
+                            <li class="breadcrumb-item"><a href="/home.htm" target="_self" onclick="changeTip('homePage')">首页</a></li>
                             <li class="breadcrumb-item active">在线流量</li>
                         </ol>
                     </div>
@@ -166,7 +166,7 @@
                                         <th><input data-toggle="tooltip" title="全选" type="checkbox" id="check-all"
                                                    name="check-all" value=""/></th>
                                         <th>应用名</th>
-                                        <th>流量入口</th>
+                                        <th>url</th>
                                         <th>TraceID</th>
                                         <th>环境</th>
                                         <th>客户端机器</th>
@@ -200,11 +200,11 @@
                                             <td style="vertical-align: middle">$!{data.gmtRecord}</td>
                                             <td style="vertical-align: middle">
                                                 #if($!{data.replay}==false)
-                                                    <span class="badge badge-danger">未回放</span>
+                                                    <span class="badge badge-warning">未回放</span>
                                                 #elseif($!{data.replaySuccess}==true)
                                                     <span class="badge badge-success">一致</span>
                                                 #elseif($!{data.replaySuccess}==false)
-                                                    <span class="badge badge-warning">不一致</span>
+                                                    <span class="badge badge-danger">不一致</span>
                                                 #end
                                             </td>
                                             <td style="vertical-align: middle">
@@ -214,9 +214,9 @@
                                                    title="查看详情">详情</a>
                                                 #if($!{data.replay}==true)
                                                     <a target="_self"
-                                                       href="/replay/list.htm?rTraceId=$!{data.traceId}"
+                                                       href="/replay/detail.htm?recordId=$!{data.id}"
                                                        class="btn btn-success btn-xs" data-toggle="tooltip"
-                                                       title="查看详情" onclick="changeTip()">查看回放</a>
+                                                       title="查看详情" onclick="changeTip('replayPage')">查看回放</a>
                                                 #end
                                                 #if($!{data.replay}==false || $!{data.replaySuccess}==false)
                                                     <button class="btn btn-success btn-xs btn-replay"
@@ -328,18 +328,6 @@
         var day = today.getDate() + 1;
         var todayStr = year + "-" + month + "-" + day;
         return todayStr;
-    }
-
-    function changeTip() {
-        var tips = window.top.document.getElementsByClassName("nav-link");
-        if (tips) {
-            Array.prototype.slice.call(tips).forEach(e => {
-                e.className = "nav-link";
-                if (e.id == "replayPage") {
-                    e.className = "nav-link active";
-                }
-            });
-        }
     }
 </script>
     #parse("blocks/start-replay.vm")

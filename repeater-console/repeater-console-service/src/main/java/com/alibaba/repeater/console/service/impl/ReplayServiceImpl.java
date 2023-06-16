@@ -159,7 +159,12 @@ public class ReplayServiceImpl implements ReplayService {
 
     @Override
     public RepeaterResult<ReplayBO> query(ReplayParams params) {
-        Replay replay = replayDao.findByRepeatId(params.getRepeatId());
+        Replay replay = null;
+        if (StringUtils.isNotBlank(params.getRepeatId())) {
+            replay = replayDao.findByRepeatId(params.getRepeatId());
+        } else {
+            replay = replayDao.findByRecordId(params.getRecordId());
+        }
         if (replay == null) {
             return RepeaterResult.builder().message("data not exist").build();
         }

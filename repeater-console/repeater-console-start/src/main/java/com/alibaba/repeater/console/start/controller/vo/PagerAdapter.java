@@ -36,6 +36,7 @@ public class PagerAdapter<T> {
         pager.setHasNext(result.hasNext());
         pager.setHasPrevious(result.hasPrevious());
         pager.setCurrentPage(result.getPageIndex());
+        pager.setCount(result.getCount());
         pager.setPages(buildPageNo(result.getPageIndex().intValue(), result.getTotalPage().intValue()));
         pager.setUrl(buildUrl("page"));
         return pager;

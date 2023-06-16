@@ -22,6 +22,8 @@ public interface ReplayRepository extends JpaRepository<Replay, Long>, JpaSpecif
 
     Replay findByRepeatId(String repeatId);
 
+    Replay findByRecordId(long recordId);
+
     @Modifying
     @Query(value = "delete from replay where record_id=:record_id", nativeQuery = true)
     void deleteByRecordId(@Param("record_id") Long record_id);
