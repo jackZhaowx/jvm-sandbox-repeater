@@ -40,8 +40,10 @@ public class CreenDao {
     @Transactional(readOnly = true)
     public OnlineBO online() {
         OnlineBO onlineBO = new OnlineBO();
-        String totalCount = "select count(0) from replay";
-        onlineBO.setTotalReplay(((BigInteger) entityManager.createNativeQuery(totalCount).getSingleResult()).longValue());
+        String totalRecordCount = "select count(0) from record";
+        onlineBO.setTotalRecord(((BigInteger) entityManager.createNativeQuery(totalRecordCount).getSingleResult()).longValue());
+        String totalReplayCount = "select count(0) from replay";
+        onlineBO.setTotalReplay(((BigInteger) entityManager.createNativeQuery(totalReplayCount).getSingleResult()).longValue());
         String yearCount = "select count(0) from record r where year (r.gmt_create)=year (now())";
         onlineBO.setYearNum(((BigInteger) entityManager.createNativeQuery(yearCount).getSingleResult()).longValue());
         Map<String, String> months = DateUtil.monthBeginningAndEnding();
@@ -75,10 +77,16 @@ public class CreenDao {
         onlineBO.setOneG(new double[]{Double.parseDouble(format.format(two / onlineBO.getDayNum()))});
         String yearReplayCount = "select count(0) from record r where year (r.gmt_create)=year (now()) and exists(select 1 from replay r2 where r2.record_id=r.id)";
         onlineBO.setYearReplay(((BigInteger) entityManager.createNativeQuery(yearReplayCount).getSingleResult()).longValue());
+        String yearReplaySuccCount = "select count(0) from record r where year (r.gmt_create)=year (now()) and exists(select 1 from replay r2 where r2.record_id=r.id and r2.success=1)";
+        onlineBO.setYearSuccReplay(((BigInteger) entityManager.createNativeQuery(yearReplaySuccCount).getSingleResult()).longValue());
         String monthReplayCount = "select count(0) from record r where r.gmt_create between '" + months.get("begin") + "' and '" + months.get("end") + "' and exists(select 1 from replay r2 where r2.record_id=r.id)";
         onlineBO.setMonthReplay(((BigInteger) entityManager.createNativeQuery(monthReplayCount).getSingleResult()).longValue());
+        String monthReplaySuccCount = "select count(0) from record r where r.gmt_create between '" + months.get("begin") + "' and '" + months.get("end") + "' and exists(select 1 from replay r2 where r2.record_id=r.id and r2.success=1)";
+        onlineBO.setMonthSuccReplay(((BigInteger) entityManager.createNativeQuery(monthReplaySuccCount).getSingleResult()).longValue());
         String dayReplayCount = "select count(0) from record r where r.gmt_create between '" + days.get("begin") + "' and '" + days.get("end") + "' and exists(select 1 from replay r2 where r2.record_id=r.id)";
         onlineBO.setDayReplay(((BigInteger) entityManager.createNativeQuery(dayReplayCount).getSingleResult()).longValue());
+        String dayReplaySuccCount = "select count(0) from record r where r.gmt_create between '" + days.get("begin") + "' and '" + days.get("end") + "' and exists(select 1 from replay r2 where r2.record_id=r.id and r2.success=1)";
+        onlineBO.setDaySuccReplay(((BigInteger) entityManager.createNativeQuery(dayReplaySuccCount).getSingleResult()).longValue());
         String sql = "select hour(r.gmt_create ) hourT ,count(1) numCount from record r where r.gmt_create>=DATE_FORMAT(CURDATE(), '%Y-%m-%d %00:%00:%00') group by hour(r.gmt_create )";
         Query lineChartQuery = entityManager.createNativeQuery(sql);
         //将结为Map,返回后的果转换map中的key是数据库表字段，如果用实体接收，使用@JsonAlias设置一下在反序列化时进行映射

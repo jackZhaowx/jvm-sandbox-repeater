@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class OnlineBO extends BaseBO {
+    private long totalRecord;
     private long totalReplay;
     private long yearNum;
     private long monthNum;
@@ -18,8 +19,11 @@ public class OnlineBO extends BaseBO {
     private double[] oneG;
     private double[] oneT;
     private long yearReplay;
+    private long yearSuccReplay;
     private long monthReplay;
+    private long monthSuccReplay;
     private long dayReplay;
+    private long daySuccReplay;
     private int[] xData;
     private int[] dataArr;
 }

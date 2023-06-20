@@ -129,7 +129,7 @@ public class RepeaterModule implements Module, ModuleLifecycle {
 
     @Override
     public void loadCompleted() {
-        log.info("开始执行loadCompleted()....,用处理器的Java虚拟机的数量={}个",Runtime.getRuntime().availableProcessors());
+        log.info("开始执行loadCompleted()....,用处理器的Java虚拟机的数量={}个", Runtime.getRuntime().availableProcessors());
         ExecutorInner.execute(new Runnable() {
             @Override
             public void run() {
