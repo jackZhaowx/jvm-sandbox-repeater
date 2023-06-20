@@ -58,7 +58,7 @@ public class ReplayDao {
                     }
                     if (StringUtils.isNotBlank(params.getReplayStatus())) {
                         if ("2".equals(params.getReplayStatus())) {
-                            predicates.add(cb.equal(root.<Integer>get("status"), Integer.valueOf(params.getReplayStatus())));
+                            predicates.add(cb.equal(root.<Integer>get("status"), 0));
                         } else {
                             predicates.add(cb.equal(root.<Integer>get("success"), Integer.valueOf(params.getReplayStatus())));
                         }

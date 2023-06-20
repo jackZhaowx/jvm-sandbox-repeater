@@ -17,4 +17,8 @@ public class Constants {
      * 手动
      */
     public static final int REPLAY_TYPE_AUTO = 2;
+    /**
+     * java
+     */
+    public static final String JAVA = "java";
 }

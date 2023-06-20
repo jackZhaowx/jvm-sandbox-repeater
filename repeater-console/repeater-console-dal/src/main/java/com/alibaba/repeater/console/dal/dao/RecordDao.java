@@ -1,5 +1,6 @@
 package com.alibaba.repeater.console.dal.dao;
 
+import com.alibaba.repeater.console.common.Constants;
 import com.alibaba.repeater.console.common.params.RecordParams;
 import com.alibaba.repeater.console.common.utils.DateUtil;
 import com.alibaba.repeater.console.dal.model.Record;
@@ -48,16 +49,20 @@ public class RecordDao {
                 (root, query, cb) -> {
                     List<Predicate> predicates = Lists.newArrayList();
                     if (StringUtils.isNotBlank(params.getAppName())) {
-                        predicates.add(cb.equal(root.<String>get("appName"), params.getAppName()));
+                        predicates.add(cb.equal(root.<String>get("appName"), params.getAppName().trim()));
                     }
                     if (StringUtils.isNotBlank(params.getTraceId())) {
-                        predicates.add(cb.equal(root.<String>get("traceId"), params.getTraceId()));
+                        predicates.add(cb.equal(root.<String>get("traceId"), params.getTraceId().trim()));
                     }
                     if (StringUtils.isNotBlank(params.getClientHost())) {
-                        predicates.add(cb.equal(root.<String>get("clientHost"), params.getClientHost()));
+                        predicates.add(cb.equal(root.<String>get("clientHost"), params.getClientHost().trim()));
                     }
                     if (StringUtils.isNotBlank(params.getUrl())) {
-                        predicates.add(cb.equal(root.<String>get("url"), params.getUrl()));
+                        if (Constants.JAVA.equals(params.getUrl().trim())) {
+                            predicates.add(cb.isNull(root.<String>get("url")));
+                        } else {
+                            predicates.add(cb.equal(root.<String>get("url"), params.getUrl().trim()));
+                        }
                     }
                     if (StringUtils.isNotBlank(params.getReplayStatus())) {
                         Subquery<Replay> subQuery = query.subquery(Replay.class);
@@ -79,10 +84,15 @@ public class RecordDao {
                             //这句话不加会报错，因为他不知道你子查询要查出什么字段
                             subQuery.select(subRoot.get("id"));
                             predicates.add(cb.exists(subQuery));
+                        } else if ("3".equals(params.getReplayStatus())) {
+                            subQuery.where(cb.equal(subRoot.<Integer>get("status"), 0), cb.equal(root.get("id"), subRoot.<Record>get("record").get("id")));
+                            //这句话不加会报错，因为他不知道你子查询要查出什么字段
+                            subQuery.select(subRoot.get("id"));
+                            predicates.add(cb.exists(subQuery));
                         }
                     }
                     if (StringUtils.isNotBlank(params.getStartDate()) && StringUtils.isNotBlank(params.getEndDate())) {
-                        predicates.add(cb.between(root.<Date>get("gmtCreate"), DateUtil.strYMDToDate(params.getStartDate()), DateUtil.strYMDToDate(params.getEndDate())));
+                        predicates.add(cb.between(root.<Date>get("gmtCreate"), DateUtil.strYMDToDate(params.getStartDate().trim()), DateUtil.strYMDToDate(params.getEndDate().trim())));
                     }
                     return cb.and(predicates.toArray(new Predicate[0]));
                 },

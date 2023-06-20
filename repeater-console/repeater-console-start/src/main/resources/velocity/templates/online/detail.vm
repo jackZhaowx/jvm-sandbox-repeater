@@ -55,7 +55,7 @@
                                 #if($!{record.replay}==true)
                                     <a target="_self"
                                        href="/replay/detail.htm?recordId=$!{record.id}"
-                                       class="btn btn-success btn-xs" data-toggle="tooltip"
+                                       class="btn btn-success btn-sm  float-right" data-toggle="tooltip"
                                        title="查看详情" onclick="changeTip('replayPage')">查看回放</a>
                                 #end
                                 #if($!{record.replay}==false || $!{record.replaySuccess}==false)
@@ -100,13 +100,17 @@
                                     <td width="120px" class="text-right text-bold">交易耗时(ms)</td>
                                     <td>$!record.cost</td>
                                     <td width="120px" class="text-right text-bold">回放结果</td>
-                                    <td> #if($!{record.replay}==false)
-                                        <span class="badge badge-warning">未回放</span>
-                                    #elseif($!{record.replaySuccess}==true)
-                                        <span class="badge badge-success">一致</span>
-                                    #elseif($!{record.replaySuccess}==false)
-                                        <span class="badge badge-danger">不一致</span>
-                                    #end</td>
+                                    <td>
+                                        #if($!{record.replay}==false)
+                                            <span class="badge badge-warning">未回放</span>
+                                        #elseif($!{record.status}==0)
+                                            <span class="badge badge-info">回放中</span>
+                                        #elseif($!{record.replaySuccess}==true)
+                                            <span class="badge badge-success">一致</span>
+                                        #elseif($!{record.replaySuccess}==false)
+                                            <span class="badge badge-danger">不一致</span>
+                                        #end
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

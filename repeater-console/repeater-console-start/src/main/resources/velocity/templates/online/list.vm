@@ -42,7 +42,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/home.htm" target="_self" onclick="changeTip('homePage')">首页</a></li>
+                            <li class="breadcrumb-item"><a href="/home.htm" target="_self"
+                                                           onclick="changeTip('homePage')">首页</a></li>
                             <li class="breadcrumb-item active">在线流量</li>
                         </ol>
                     </div>
@@ -89,21 +90,31 @@
                                             #if($requestParams.replayStatus==0)
                                                 <option value="">全部</option>
                                                 <option selected value="0">未回放</option>
+                                                <option value="3">回放中</option>
                                                 <option value="1">一致</option>
                                                 <option value="2">不一致</option>
                                             #elseif($requestParams.replayStatus==1)
                                                 <option value="">全部</option>
                                                 <option value="0">未回放</option>
+                                                <option value="3">回放中</option>
                                                 <option selected value="1">一致</option>
                                                 <option value="2">不一致</option>
                                             #elseif($requestParams.replayStatus==2)
                                                 <option value="">全部</option>
                                                 <option value="0">未回放</option>
+                                                <option value="3">回放中</option>
                                                 <option value="1">一致</option>
                                                 <option selected value="2">不一致</option>
+                                            #elseif($requestParams.replayStatus==3)
+                                                <option value="">全部</option>
+                                                <option value="0">未回放</option>
+                                                <option selected value="3">回放中</option>
+                                                <option value="1">一致</option>
+                                                <option value="2">不一致</option>
                                             #else
                                                 <option selected value="">全部</option>
                                                 <option value="0">未回放</option>
+                                                <option value="3">回放中</option>
                                                 <option value="1">一致</option>
                                                 <option value="2">不一致</option>
                                             #end
@@ -186,10 +197,10 @@
                                             </td>
                                             <td style="vertical-align: middle">$!data.appName</td>
                                             <td style="vertical-align: middle">
-                                                #if($!{data.url}!="")
-                                                    $!{data.url}
-                                                #elseif($!{data.entranceDesc}!="")
-                                                    $!data.entranceDesc
+                                                #if($!{data.url})
+                                                  $!{data.url}
+                                                #elseif($!{data.entranceDesc})
+                                                    $!{data.entranceDesc}
                                                 #end
                                             </td>
                                             <td style="vertical-align: middle">$!{data.traceId}</td>
@@ -201,6 +212,8 @@
                                             <td style="vertical-align: middle">
                                                 #if($!{data.replay}==false)
                                                     <span class="badge badge-warning">未回放</span>
+                                                #elseif($!{data.status}==0)
+                                                    <span class="badge badge-info">回放中</span>
                                                 #elseif($!{data.replaySuccess}==true)
                                                     <span class="badge badge-success">一致</span>
                                                 #elseif($!{data.replaySuccess}==false)

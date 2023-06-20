@@ -9,6 +9,7 @@ import com.alibaba.repeater.console.common.domain.InvocationBO;
 import com.alibaba.repeater.console.common.domain.RecordDetailBO;
 import com.alibaba.repeater.console.dal.dao.ReplayDao;
 import com.alibaba.repeater.console.dal.model.Record;
+import com.alibaba.repeater.console.dal.model.Replay;
 import com.alibaba.repeater.console.service.util.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -39,13 +40,11 @@ public class RecordDetailConverter implements ModelConverter<Record, RecordDetai
         RecordDetailBO rdb = new RecordDetailBO();
         // lazy mode , this isn't a correct way to copy properties.
         BeanUtils.copyProperties(source, rdb);
-        if (replayDao.selectCount(source.getId()) > 0) {
+        if (source.getReplays() != null && source.getReplays().size() > 0) {
             rdb.setReplay(true);
-            if (replayDao.selectSuccCount(source.getId()) > 0) {
-                rdb.setReplaySuccess(true);
-            } else {
-                rdb.setReplaySuccess(false);
-            }
+            Replay replay = source.getReplays().get(0);
+            rdb.setReplaySuccess(replay.getSuccess());
+            rdb.setStatus(replay.getStatus());
         } else {
             rdb.setReplay(false);
             rdb.setReplaySuccess(false);

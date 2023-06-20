@@ -20,6 +20,8 @@ public class ReplayListBO extends BaseBO {
 
     private String url;
 
+    private String entranceDesc;
+
     private String traceId;
 
     private Integer status;

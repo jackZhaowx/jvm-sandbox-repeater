@@ -25,6 +25,7 @@ public class ReplayListConverter implements ModelConverter<Replay, ReplayListBO>
         rbo.setCost(replay.getCost());
         rbo.setRTraceId(replay.getRecord().getTraceId());
         rbo.setUrl(replay.getRecord().getUrl());
+        rbo.setEntranceDesc(replay.getRecord().getEntranceDesc());
         rbo.setReplayType(replay.getReplayType());
         return rbo;
     }
