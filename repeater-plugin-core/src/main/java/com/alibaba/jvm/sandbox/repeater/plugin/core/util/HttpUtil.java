@@ -26,9 +26,9 @@ public class HttpUtil {
     private static final String KV_SEPARATE = "=";
 
     private static final OkHttpClient client = new OkHttpClient().newBuilder()
-            .connectTimeout(3, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
             .build();
 
     /**
