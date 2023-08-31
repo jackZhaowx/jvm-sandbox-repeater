@@ -73,8 +73,8 @@ public class CreenDao {
         double two = ((BigInteger) entityManager.createNativeQuery(twoTimeQuery).getSingleResult()).doubleValue();
         NumberFormat format = NumberFormat.getInstance();
         format.setMaximumFractionDigits(2);
-        onlineBO.setOneT(new double[]{Double.parseDouble(format.format(one / onlineBO.getDayNum()))});
-        onlineBO.setOneG(new double[]{Double.parseDouble(format.format(two / onlineBO.getDayNum()))});
+        onlineBO.setOneT(new double[]{Double.parseDouble(format.format(one / onlineBO.getDayNum()==0?1:onlineBO.getDayNum()))});
+        onlineBO.setOneG(new double[]{Double.parseDouble(format.format(two /  onlineBO.getDayNum()==0?1:onlineBO.getDayNum()))});
         String yearReplayCount = "select count(0) from record r where year (r.gmt_create)=year (now()) and exists(select 1 from replay r2 where r2.record_id=r.id)";
         onlineBO.setYearReplay(((BigInteger) entityManager.createNativeQuery(yearReplayCount).getSingleResult()).longValue());
         String yearReplaySuccCount = "select count(0) from record r where year (r.gmt_create)=year (now()) and exists(select 1 from replay r2 where r2.record_id=r.id and r2.success=1)";
