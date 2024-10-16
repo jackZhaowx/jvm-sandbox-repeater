@@ -26,7 +26,7 @@ public class CreenDao {
 
     @Transactional(readOnly = true)
     public List<SearchTop5BO> screenTop5() {
-        String sql = "select hour(r.gmt_create ) hourTime ,count(1) numCount,0.00 rate from record r where r.gmt_create>=DATE_FORMAT(CURDATE(), '%Y-%m-%d %00:%00:%00') group by hour(r.gmt_create ) order by numCount desc limit 5";
+        String sql = "select concat(source,\"-\",hour(r.gmt_create)) hourTime ,count(1) numCount,0.00 rate from record r where r.gmt_create>=DATE_FORMAT(CURDATE(), '%Y-%m-%d %00:%00:%00') group by source,hour(r.gmt_create ) order by numCount desc limit 5";
         Query query = entityManager.createNativeQuery(sql);
         //将结为Map,返回后的果转换map中的key是数据库表字段，如果用实体接收，使用@JsonAlias设置一下在反序列化时进行映射
         query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);

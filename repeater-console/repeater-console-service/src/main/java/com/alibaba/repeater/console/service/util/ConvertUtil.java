@@ -13,6 +13,8 @@ import com.alibaba.jvm.sandbox.repeater.plugin.core.wrapper.RecordWrapper;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * {@link }
@@ -21,6 +23,8 @@ import java.util.Map;
  * @author zhaowanxin
  */
 public class ConvertUtil {
+
+  private static final Logger log = LoggerFactory.getLogger(ConvertUtil.class);
 
   public static Record convertWrapper(RecordWrapper wrapper, String body) {
     Record record = new Record();
@@ -47,11 +51,16 @@ public class ConvertUtil {
       String source = "";
       try {
         JSONArray json = (JSONArray) JSON.parse(record.getRequest());
+        log.info("json:{}",json);
         if (json != null && json.size() > 0) {
           Map<String, String> o = (Map<String, String>) json.get(0);
+          log.info("o:{}",o);
           Map<String, Object> o2 = (Map<String, Object>) JSON.parse(o.get("body"));
+          log.info("o2:{}",o2);
           JSONObject jo = (JSONObject) o2.get("head");
+          log.info("jo:{}",jo);
           source = (String) jo.get("source_system");
+          log.info("source:{}",source);
         }
       } catch (Exception e) {
 
