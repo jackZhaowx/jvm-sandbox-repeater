@@ -56,6 +56,7 @@ public class ConvertUtil {
       } catch (Exception e) {
 
       }
+      record.setSource(source);
     } catch (SerializeException e) {
       // ignore
     }
