@@ -44,6 +44,7 @@ public class ReplayRecordListener {
                 params.setAppName(appName);
                 params.setTraceId(traceId);
                 params.setReplayType(Constants.REPLAY_TYPE_EVENT + "");
+                LogUtil.info("开始执行回放：");
                 replayService.replay(params);
             }
         }

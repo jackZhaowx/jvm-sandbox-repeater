@@ -31,7 +31,7 @@ repeater-plugin提供了基础依赖信息，新建的mybatis-plugin的pom.xml�
                 <executions>
                     <execution>
                         <goals>
-                            <goal>attached</goal>
+                            <goal>single</goal>
                         </goals>
                         <phase>package</phase>
                         <configuration>

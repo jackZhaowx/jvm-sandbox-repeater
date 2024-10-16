@@ -58,6 +58,8 @@ public class Record implements java.io.Serializable {
 
     private Long cost;
 
+    private String source;
+
     @Column(name = "replay_type")
     private int replayType;
 
